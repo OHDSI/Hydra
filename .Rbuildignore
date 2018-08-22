@@ -1,0 +1,13 @@
+pom.xml
+extras
+bin
+man-roxygen
+^.*\.Rproj$
+^\.Rproj\.user$
+.classpath
+.project
+.travis.yml
+^\.travis\.yml$
+deploy.sh
+^\.git
+compare_versions
