@@ -1,4 +1,4 @@
-package org.ohdsi.hydra;
+package org.ohdsi.utilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;

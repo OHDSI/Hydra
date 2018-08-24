@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.ohdsi.hydra;
+package org.ohdsi.utilities;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
