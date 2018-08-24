@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.ohdsi.featureExtraction;
+package org.ohdsi.hydra;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -35,7 +35,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONWriter;
-import org.ohdsi.sql.SqlRender;
 
 /**
  * Hydra engine. Generates SQL for constructing and downloading features for cohorts of interest.

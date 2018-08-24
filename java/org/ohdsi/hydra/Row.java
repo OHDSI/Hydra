@@ -1,4 +1,4 @@
-package org.ohdsi.featureExtraction;
+package org.ohdsi.hydra;
 
 import java.util.ArrayList;
 import java.util.HashMap;
