@@ -28,6 +28,10 @@ import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.ohdsi.hydra.actionHandlers.FileNameFindAndReplace;
 import org.ohdsi.hydra.actionHandlers.JsonArrayToCsv;
+import org.ohdsi.hydra.actionHandlers.JsonArrayToJson;
+import org.ohdsi.hydra.actionHandlers.JsonArrayToSql;
+import org.ohdsi.hydra.actionHandlers.JsonToJson;
+import org.ohdsi.hydra.actionHandlers.JsonToRargs;
 import org.ohdsi.hydra.actionHandlers.StringFindAndReplace;
 
 /**
@@ -40,6 +44,7 @@ public class Hydra {
 	private JSONObject	studySpecs;
 
 	public static void main(String[] args) {
+//		System.out.println("abc\n#test\ndef\n#test2\nghi".replaceAll("#test(?s:.*)*#test2", "blah"));
 		Hydra hydra = new Hydra(loadJson("c:/temp/TestPleStudy.json"), "c:/temp/hydraOutput");
 		hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
 		hydra.hydrate();
@@ -93,6 +98,14 @@ public class Hydra {
 			new FileNameFindAndReplace().execute(action, outputFolder, studySpecs);
 		} else if (action.getString("type").equals("jsonArrayToCsv")) {
 			new JsonArrayToCsv().execute(action, outputFolder, studySpecs);
+		} else if (action.getString("type").equals("jsonArrayToJson")) {
+			new JsonArrayToJson().execute(action, outputFolder, studySpecs);
+		} else if (action.getString("type").equals("jsonArrayToSql")) {
+			new JsonArrayToSql().execute(action, outputFolder, studySpecs);
+		} else if (action.getString("type").equals("jsonToRargs")) {
+			new JsonToRargs().execute(action, outputFolder, studySpecs);
+		}else if (action.getString("type").equals("jsonToJson")) {
+			new JsonToJson().execute(action, outputFolder, studySpecs);
 		}
 	}
 
