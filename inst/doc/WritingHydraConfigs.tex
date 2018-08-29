@@ -1,0 +1,478 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Writing Hydra configuration files},
+            pdfauthor={Martijn J. Schuemie},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Writing Hydra configuration files}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Martijn J. Schuemie}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2018-08-29}
+
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+This vignette describes how developers of package skeletons can write
+Hydra configuration files. Hydra configuration files tell Hydra how to
+hydrate the skeleton according to a study specifications object. The
+Hydra configuration file should be embedded in the skeleton zip file.
+
+\hypertarget{study-specifications}{%
+\subsection{Study specifications}\label{study-specifications}}
+
+The study specifications are generated by some external editor, such as
+ATLAS. Study specifications will be in JSON format. The specifications
+will define every aspect of the study, such as the cohorts to use as
+exposures and outcomes, and what covariates to include. Here are the
+first few lines of an example study specification:
+
+\begin{verbatim}
+{
+    "id": 1,
+    "version": "v0.9.0",
+    "name": "Study of some cohorts of interest",
+    "packageName": "ASimpleStudy",
+    "skeletonType": "SimpleExampleStudy",
+    "skeletonVersion": "v0.0.1",
+    "createdBy": "schuemie@ohdsi.org",
+    "createdDate": "2018-03-09T18:25:43.511Z",
+    "modifiedBy": "schuemie@ohdsi.org",
+    "modifiedDate": "2018-04-13T18:25:43.511Z",
+    "cohortDefinitions": [{
+            "id": 1,
+\end{verbatim}
+
+\hypertarget{package-skeleton}{%
+\subsection{Package skeleton}\label{package-skeleton}}
+
+A package skeleton is an R package for fully executing a specific type
+of study, such as a new-user cohort study or a predictive modeling
+study. The skeleton has placeholders for study elements such as those
+specified in the study specifications. Package skeletons are provided as
+zip files, and are embedded inside Hydra (see the
+\texttt{inst/skeletons} folder) .
+
+\hypertarget{hydration}{%
+\subsection{Hydration}\label{hydration}}
+
+By hydration we mean the process by which the package skeleton is
+configured according to the study specification to become a fully
+executable study package. A study package will perform all tasks
+necessary to execute the study at a site, including creation of the
+cohorts needed in the study.
+
+\hypertarget{hydration-configuration-file-example}{%
+\section{Hydration configuration file
+example}\label{hydration-configuration-file-example}}
+
+The hydration configuration is a JSON file. Below is an example
+configuration:
+
+\begin{verbatim}
+{
+    "skeletonType": "SimpleExampleStudy",
+    "skeletonVersion": "v1.0.0",
+    "requiredHydraVersion": "v0.0.1",
+    "actions":[{
+        "type": "fileNameFindAndReplace",
+        "input": "packageName",
+        "find": "SimpleExampleStudy"
+    },{
+        "type": "stringFindAndReplace",
+        "input": "packageName",
+        "find": "SimpleExampleStudy"
+    },{
+        "type": "jsonArrayToCsv",
+        "input": "cohortDefinitions",
+        "mapping": [{"source": "id", "target": "cohortId"},
+                    {"source": "id", "target": "atlasId"},
+                    {"source": "name", "target": "name"}],
+        "output": "inst/settings/CohortsToCreate.csv"
+    },{
+        "type": "jsonArrayToJson",
+        "input": "cohortDefinitions",
+        "fileName": "name",
+        "payload": "expression",
+        "output": "inst/cohorts"
+    },{
+        "type": "jsonArrayToSql",
+        "input": "cohortDefinitions",
+        "fileName": "name",
+        "payload": "expression",
+        "output": "inst/sql/sql_server"
+    }]
+}
+\end{verbatim}
+
+The configuration consists of some meta data such as ``skeletonType'',
+followed by an array of actions. In this example, there are 5 actions
+that will be executed by Hydra in sequence after unzipping the skeleton:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find all files named \texttt{SimpleExampleStudy.*}, and rename them to
+  the name specified in the ``packageName'' attribute in the study
+  specifications (while keeping the same extention).
+\item
+  Find all mentions of the string \texttt{SimpleExampleStudy} in all
+  files in the package folder, and replace it with the string specified
+  in the ``packageName'' attribute in the study specifications.
+\item
+  Create a CSV file called \texttt{inst/settings/CohortsToCreate.csv},
+  and populate it with the elements from the \texttt{cohortDefinitions}
+  array in the study specifications.
+\item
+  Create JSON files in the \texttt{inst/cohorts} folder, one for each
+  element in the \texttt{cohortDefinitions} array in the study
+  specifications.
+\item
+  Create SQL files in the \texttt{inst/sql/sql\_server} folder, one for
+  each element in the \texttt{cohortDefinitions} array in the study
+  specifications. The SQL is generated by Hydra using Circe.
+\end{enumerate}
+
+\hypertarget{action-types}{%
+\section{Action types}\label{action-types}}
+
+Below all available action types and their arguments are described.
+Whenever an element in the study specification is referenced, nested
+elements can be accessed by using a dot (`.'). For example,
+``estimationAnalysisSettings.analysisSpecification'' returns the
+\texttt{analysisSpecification} element of the
+\texttt{estimationAnalysisSettings} root element.
+
+\hypertarget{filenamefindandreplace}{%
+\subsection{fileNameFindAndReplace}\label{filenamefindandreplace}}
+
+Finds all files with the given name, and renames them to a target name
+(while maintaining the file extention).
+
+Arguments:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{input}: The path to the element in the study specification
+  containing the target name.
+\item
+  \emph{find}: The name to look for. Extentions should not be included.
+\end{itemize}
+
+\hypertarget{stringfindandreplace}{%
+\subsection{stringFindAndReplace}\label{stringfindandreplace}}
+
+Finds all mentioned of a string in all files in the package, and
+replaces them with a target string.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{input}: The path to the element in the study specification
+  containing the target string
+\item
+  \emph{find}: The string to look for.
+\end{itemize}
+
+\hypertarget{jsonarraytocsv}{%
+\subsection{jsonArrayToCsv}\label{jsonarraytocsv}}
+
+Convert an array in the study specifications to a CSV file in the
+package, where each element of the array will generate one row in the
+CSV file.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{input}: The path to the array in the study specifications.
+\item
+  \emph{mapping}: An array of objects with the following elements:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{source}: The name of the element to pull from the array
+    element in the study specification
+  \item
+    \emph{target}: The name of the column in the CSV file.
+  \item
+    \emph{separator}: Optional: if the source element is itself an
+    array, what separator should be used to collapse that array into a
+    single string?
+  \end{itemize}
+\item
+  \emph{output}: The name of the CSV file to create.
+\end{itemize}
+
+\hypertarget{jsonarraytojson}{%
+\subsection{jsonArrayToJson}\label{jsonarraytojson}}
+
+Convert an array in the study specifications to a set of JSON files in
+the package, where each element of the array will generate one JSON
+file.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{input}: The path to the array in the study specifications.
+\item
+  \emph{fileName}: The element inside the array element that will be
+  used to generate the JSON file name. The ``.json'' extention will
+  automatically be added.
+\item
+  \emph{payload}: The element inside the array element that will be the
+  content of the JSON file.
+\item
+  \emph{output}: The folder in the package where the JSON files will be
+  written.
+\end{itemize}
+
+\hypertarget{jsonarraytosql}{%
+\subsection{jsonArrayToSql}\label{jsonarraytosql}}
+
+Convert an array in the study specifications to a set of SQL files in
+the package, where each element of the array will generate one SQL file.
+SQL files are automatically generated using Circe.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{input}: The path to the array in the study specifications.
+\item
+  \emph{fileName}: The element inside the array element that will be
+  used to generate the SQL file name. The ``.sql'' extention will
+  automatically be added.
+\item
+  \emph{payload}: The element inside the array element that will be
+  converted to SQL.
+\item
+  \emph{output}: The folder in the package where the SQL files will be
+  written.
+\end{itemize}
+
+\hypertarget{jsontojson}{%
+\subsection{jsonToJson}\label{jsontojson}}
+
+Convert a single element in the study specifications to a JSON file in
+the package.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{input}: The path to the element in the study specification
+  containing the JSON to write to file.
+\item
+  \emph{output}: The name of the JSON file to create.
+\end{itemize}
+
+\hypertarget{jsontorargs}{%
+\subsection{jsonToRargs}\label{jsontorargs}}
+
+Convert an element in the study specifications to R arguments.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{input}: The path to the element in the study specification that
+  should be converted.
+\item
+  \emph{file}: The name of the existing R file in the package where the
+  arguments should be inserted.
+\item
+  \emph{startTag}: The string in the R file that denotes the start
+  location for inserting the arguments.
+\item
+  \emph{endTag}: The string in the R file that denotes the end location
+  for inserting the arguments.
+\item
+  \emph{argumentFunctions}: An array of objects that defines what R
+  functions to use to create nested arguments. These objects should have
+  these elements:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{source}: The name of the element that contains nested
+    arguments
+  \item
+    \emph{function}: The function to use in R to combine the nested
+    arguments into a single argument.
+  \end{itemize}
+\end{itemize}
+
+For example, imagine the study specifications contains this element:
+
+\begin{verbatim}
+"args" : {
+  "foo": "Hello",
+  "bar": {
+    "x": 123,
+    "y": 456
+  }
+}
+\end{verbatim}
+
+And the Hydra configuration specifies:
+
+\begin{verbatim}
+{
+    "type": "jsonToRargs",
+    "input": "args",
+    "file": "R/fooBar.R",
+    "startTag": "# Start fooBar",
+    "endTag": "# End fooBar",
+    "argumentFunctions": [{"source": "bar", "function": "createBar"}]
+}
+\end{verbatim}
+
+If the orginal file fooBar.R in the skeleton contains:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{doFooBar}\NormalTok{(}
+  \CommentTok{# Start fooBar}
+  \DataTypeTok{foo =} \StringTok{"Bye"}\NormalTok{,}
+  \DataTypeTok{bar =} \OtherTok{NULL}
+  \CommentTok{# End fooBar}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The hydrated fooBar.R will become:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{doFooBar}\NormalTok{(}
+  \DataTypeTok{foo =} \StringTok{"Hello"}\NormalTok{,}
+  \DataTypeTok{bar =} \KeywordTok{createBar}\NormalTok{(}\DataTypeTok{x =} \DecValTok{123}\NormalTok{,}
+                  \DataTypeTok{y =} \DecValTok{456}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

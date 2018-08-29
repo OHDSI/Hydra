@@ -71,6 +71,7 @@ You can fetch the JAR files in the inst/java folder of this repository, or use M
 
 Getting Involved
 ================
+* Vignette: [Writing Hydra configuration files](https://raw.githubusercontent.com/OHDSI/Hydra/master/inst/doc/WritingHydraConfigs.pdf)
 * Package manual: [Hydra.pdf](https://raw.githubusercontent.com/OHDSI/Hydra/master/extras/Hydra.pdf) 
 * Developer questions/comments/feedback: <a href="http://forums.ohdsi.org/c/developers">OHDSI Forum</a>
 * We use the <a href="../../issues">GitHub issue tracker</a> for all bugs/issues/enhancements

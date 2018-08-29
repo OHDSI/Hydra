@@ -24,3 +24,9 @@ OhdsiRTools::updateCopyrightYearFolder()
 # Create manual and vignettes
 shell("rm extras/Hydra.pdf")
 shell("R CMD Rd2pdf ./ --output=extras/Hydra.pdf")
+
+rmarkdown::render("vignettes/WritingHydraConfigs.Rmd",
+                  output_file = "../inst/doc/WritingHydraConfigs.pdf",
+                  rmarkdown::pdf_document(latex_engine = "pdflatex",
+                                          toc = TRUE,
+                                          number_sections = TRUE))
