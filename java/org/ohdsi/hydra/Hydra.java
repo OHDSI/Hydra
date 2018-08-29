@@ -44,7 +44,7 @@ public class Hydra {
 	private JSONObject	studySpecs;
 
 	public static void main(String[] args) {
-//		System.out.println("abc\n#test\ndef\n#test2\nghi".replaceAll("#test(?s:.*)*#test2", "blah"));
+		//		System.out.println("abc\n#test\ndef\n#test2\nghi".replaceAll("#test(?s:.*)*#test2", "blah"));
 		Hydra hydra = new Hydra(loadJson("c:/temp/TestPleStudy.json"), "c:/temp/hydraOutput");
 		hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
 		hydra.hydrate();
@@ -75,7 +75,11 @@ public class Hydra {
 	}
 
 	public void hydrate() {
-		unzipSkeleton();
+		hydrate(null);
+	}
+
+	public void hydrate(String skeletonFileName) {
+		unzipSkeleton(skeletonFileName);
 		JSONObject hydraConfig = new JSONObject(loadJson(outputFolder + "/HydraConfig.json"));
 		for (Object action : hydraConfig.getJSONArray("actions")) {
 			executeAction((JSONObject) action);
@@ -109,14 +113,22 @@ public class Hydra {
 		}
 	}
 
-	private void unzipSkeleton() {
-		String skeletonFileName = studySpecs.getString("skeletonType") + "_" + studySpecs.getString("skeletonVersion") + ".zip";
+	private void unzipSkeleton(String skeletonFileName) {
+
 		try {
 			InputStream inputStream;
-			if (packageFolder == null) // Use file in JAR
-				inputStream = Hydra.class.getResourceAsStream("/inst/skeletons/" + skeletonFileName);
-			else
-				inputStream = new FileInputStream(packageFolder + "/skeletons/" + skeletonFileName);
+			if (skeletonFileName == null) {
+				// No external skeleton file specified by the user. Load appropriate skeleton from internal folder
+				skeletonFileName = studySpecs.getString("skeletonType") + "_" + studySpecs.getString("skeletonVersion") + ".zip";
+				if (packageFolder == null) // Use file in JAR
+					inputStream = getClass().getResourceAsStream("/" + skeletonFileName);
+				else // Use file in package folder
+					inputStream = new FileInputStream(packageFolder + "/skeletons/" + skeletonFileName);
+			} else // Load external skeleton file specified by user
+				inputStream = new FileInputStream(skeletonFileName);
+			
+			if (inputStream == null)
+				throw new RuntimeException("Cannot find file " + skeletonFileName);
 
 			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 			ZipEntry zipEntry = null;
