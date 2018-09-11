@@ -2,11 +2,15 @@ package org.ohdsi.hydra.actionHandlers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.zip.ZipEntry;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.ohdsi.utilities.JsonUtilities;
+import org.ohdsi.utilities.ZipInputStreamWrapper;
+import org.ohdsi.utilities.ZipOutputStreamEntry;
+import org.ohdsi.utilities.ZipOutputStreamWrapper;
 
 /**
  * Convert a JSON structure in the study specifications to R arguments to be inserted into an existing R files in the study package.
@@ -16,20 +20,10 @@ public class JsonToRargs implements ActionHandlerInterface {
 	@Override
 	public void execute(JSONObject action, String outputFolder, JSONObject studySpecs) {
 		try {
-			JSONObject jsonArgs = (JSONObject) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
-			for (Object argumentFunctionObject : action.getJSONArray("argumentFunctions")) {
-				JSONObject argumentFunction = (JSONObject) argumentFunctionObject;
-				Object functionArgs = JsonUtilities.getViaPath(jsonArgs, argumentFunction.getString("source"));
-				String string = argumentFunction.getString("function") + "(" + jsonNodeToRargs(functionArgs) + ")";
-				JsonUtilities.setViaPath(jsonArgs, argumentFunction.getString("source"), new Rfunction(string));
-			}
-			String rArgs = jsonNodeToRargs(jsonArgs);			
-			File file = new File(outputFolder + "/" + action.getString("file"));
+			File file = new File(outputFolder + "/" + this.getTargetFileName(action));
 			String content = FileUtils.readFileToString(file, "UTF-8");
-			String find = action.getString("startTag") + "(?s:.*)" + action.getString("endTag");
-			content = content.replaceFirst(find, rArgs);
+			content = this.replaceRargsInContent(action, studySpecs, content);
 			FileUtils.writeStringToFile(file, content, "UTF-8");
-
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -37,6 +31,42 @@ public class JsonToRargs implements ActionHandlerInterface {
 		}
 
 	}
+        
+        public void execute(ZipOutputStreamEntry zipEntry, ZipOutputStreamWrapper zipOutputStream, JSONObject action, JSONObject studySpecs) {
+		try {
+                        String targetFileName = this.getTargetFileName(action);
+                        if (zipEntry.getName().equals(targetFileName) && !zipOutputStream.fileExists(targetFileName)) {
+                            System.out.println(this.getClass().getName() + " " + zipEntry.getName());
+                            String content = this.replaceRargsInContent(action, studySpecs, zipEntry.getContent());
+                            zipEntry.setContent(content);
+                        }
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+        }
+        
+        private String replaceRargsInContent(JSONObject action, JSONObject studySpecs, String content) {
+            String rArgs = this.getRargs(action, studySpecs);
+            String find = action.getString("startTag") + "(?s:.*)" + action.getString("endTag");
+            return content.replaceFirst(find, rArgs);
+        }
+        
+        private String getTargetFileName(JSONObject action) {
+            return action.getString("file");
+        }
+        
+        private String getRargs(JSONObject action, JSONObject studySpecs) {
+            JSONObject jsonArgs = (JSONObject) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
+            for (Object argumentFunctionObject : action.getJSONArray("argumentFunctions")) {
+                    JSONObject argumentFunction = (JSONObject) argumentFunctionObject;
+                    Object functionArgs = JsonUtilities.getViaPath(jsonArgs, argumentFunction.getString("source"));
+                    String string = argumentFunction.getString("function") + "(" + jsonNodeToRargs(functionArgs) + ")";
+                    JsonUtilities.setViaPath(jsonArgs, argumentFunction.getString("source"), new Rfunction(string));
+            }
+            String rArgs = jsonNodeToRargs(jsonArgs);			
+            return rArgs;
+        }
+        
 	private String jsonNodeToRargs(Object nodeObject) {
 		StringBuilder stringBuilder = new StringBuilder();
 		JSONObject node = (JSONObject) nodeObject;

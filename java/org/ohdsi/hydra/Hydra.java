@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.ohdsi.hydra;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,7 +23,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
@@ -33,6 +33,9 @@ import org.ohdsi.hydra.actionHandlers.JsonArrayToSql;
 import org.ohdsi.hydra.actionHandlers.JsonToJson;
 import org.ohdsi.hydra.actionHandlers.JsonToRargs;
 import org.ohdsi.hydra.actionHandlers.StringFindAndReplace;
+import org.ohdsi.utilities.ZipInputStreamWrapper;
+import org.ohdsi.utilities.ZipOutputStreamEntry;
+import org.ohdsi.utilities.ZipOutputStreamWrapper;
 
 /**
  * The main Hydra class.
@@ -45,9 +48,16 @@ public class Hydra {
 
 	public static void main(String[] args) {
 		//		System.out.println("abc\n#test\ndef\n#test2\nghi".replaceAll("#test(?s:.*)*#test2", "blah"));
-		Hydra hydra = new Hydra(loadJson("c:/temp/TestPleStudy.json"), "c:/temp/hydraOutput");
+		//Hydra hydra = new Hydra(loadJson("c:/temp/TestPleStudy.json"), "c:/temp/hydraOutput");
+		//hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
+		//hydra.hydrate();
+                Hydra hydra = new Hydra(loadJson("C:\\Git\\itx-asj\\epi_540\\documents\\specification\\ExampleStudySpecs.json"), null);
 		hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
-		hydra.hydrate();
+                try {
+                    hydra.hydrateToStream();
+                } catch (IOException e) {
+                    System.out.println("Error producing stream: " + e.getMessage());
+                }
 	}
 
 	/**
@@ -85,6 +95,82 @@ public class Hydra {
 			executeAction((JSONObject) action);
 		}
 	}
+        
+        public ByteArrayOutputStream hydrateToStream() throws IOException {
+            String skeletonFileName = studySpecs.getString("skeletonType") + "_" + studySpecs.getString("skeletonVersion") + ".zip";
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ZipOutputStreamWrapper zipOutputStream = new ZipOutputStreamWrapper(baos);
+            // Get the contents of the zip file by iterating over the entries
+            ZipInputStreamWrapper zipInputStream = null;
+            String hydraConfigFromFile = "";
+            JSONObject hydraConfig = null;
+            try {
+                zipInputStream = new ZipInputStreamWrapper(getClass().getResourceAsStream("/" + skeletonFileName));
+                ZipEntry ze = null;
+                // Find the HydraConfig.json in the class resource
+                while ((ze = zipInputStream.getNextEntry()) != null)
+                {
+                    // Get the configuration
+                    if (ze.getName().equalsIgnoreCase("HydraConfig.json")) { 
+                        System.out.println("\tFOUND ----------------------------------------");
+                        hydraConfigFromFile = zipInputStream.readCurrentFileToString();
+                        hydraConfig = new JSONObject(hydraConfigFromFile);
+                        System.out.println(hydraConfigFromFile);
+                        System.out.println("\tEND ----------------------------------------");
+                        break;
+                    }
+                }
+                zipInputStream.close();
+                if (hydraConfig == null) {
+                    throw new IOException("Cannot proceed - HydraConfig.json not found for skeleton: " + skeletonFileName);
+                }
+                zipInputStream = new ZipInputStreamWrapper(getClass().getResourceAsStream("/" + skeletonFileName));
+                while ((ze = zipInputStream.getNextEntry()) != null) 
+                {
+                    System.out.println(ze.getName());
+                    ZipOutputStreamEntry entry = new ZipOutputStreamEntry(ze, zipInputStream);
+                    /*
+                    int fileCount = zipOutputStream.getFileCount();
+                    JSONObject stringFindAndReplaceAction = null;
+                    */
+                    for (Object action : hydraConfig.getJSONArray("actions")) {
+                        JSONObject jsonAction = (JSONObject) action;
+                        /*if (jsonAction.getString("type").equals("stringFindAndReplace")) {
+                            stringFindAndReplaceAction = jsonAction;
+                        } else {*/
+                            executeActionForStream(entry, zipOutputStream, jsonAction);
+                        //}
+                    }
+                    zipOutputStream.addZipEntry(entry);
+                    zipOutputStream.write(entry.getContent());
+                    zipOutputStream.closeEntry();
+                    /*
+                    if (stringFindAndReplaceAction != null) {
+                        // Performing the stringFindAndReplaceAction 
+                        // will ALWAYS add the file to the ZipOutputStream
+                        executeActionForStream(ze, zipOutputStream, zipInputStream, stringFindAndReplaceAction);
+                    } else if (fileCount == zipOutputStream.getFileCount()) {
+                        // No actions were taken on the file to add
+                        // it to the output stream. Add it now.
+                        zipOutputStream.addZipEntry(new ZipEntry(ze.getName()));
+                        zipOutputStream.writeToOutputStream(zipInputStream);
+                        zipOutputStream.closeEntry();
+                    }
+                    */
+                }
+            }
+            catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                if (zipInputStream != null) {
+                    zipInputStream.close();
+                }
+                zipOutputStream.close();
+                baos.flush();
+                baos.close();
+                return baos;
+            }
+        }
 
 	private static String loadJson(String fileName) {
 		try {
@@ -95,7 +181,25 @@ public class Hydra {
 		return null;
 	}
 
-	private void executeAction(JSONObject action) {
+	private void executeActionForStream(ZipOutputStreamEntry zipEntry, ZipOutputStreamWrapper zipOutputStream, JSONObject action) {
+            if (action.getString("type").equals("fileNameFindAndReplace")) {
+		new FileNameFindAndReplace().execute(zipEntry, zipOutputStream, action, studySpecs);
+            } else if (action.getString("type").equals("jsonArrayToCsv")) {
+                new JsonArrayToCsv().execute(zipEntry, zipOutputStream, action, studySpecs);
+            } else if (action.getString("type").equals("jsonArrayToJson")) {
+		new JsonArrayToJson().execute(zipEntry, zipOutputStream, action, studySpecs);
+            } else if (action.getString("type").equals("jsonArrayToSql")) {
+                new JsonArrayToSql().execute(zipEntry, zipOutputStream, action, studySpecs);
+            } else if (action.getString("type").equals("jsonToJson")) {
+                new JsonToJson().execute(zipEntry, zipOutputStream, action, studySpecs);
+            } else if (action.getString("type").equals("jsonToRargs")) {
+                new JsonToRargs().execute(zipEntry, zipOutputStream, action, studySpecs);
+            } else if (action.getString("type").equals("stringFindAndReplace")) {
+                new StringFindAndReplace().execute(zipEntry, zipOutputStream, action, studySpecs);
+            }
+        }
+        
+        private void executeAction(JSONObject action) {
 		if (action.getString("type").equals("stringFindAndReplace")) {
 			new StringFindAndReplace().execute(action, outputFolder, studySpecs);
 		} else if (action.getString("type").equals("fileNameFindAndReplace")) {
@@ -130,7 +234,7 @@ public class Hydra {
 			if (inputStream == null)
 				throw new RuntimeException("Cannot find file " + skeletonFileName);
 
-			ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+			ZipInputStreamWrapper zipInputStream = new ZipInputStreamWrapper(inputStream);
 			ZipEntry zipEntry = null;
 			while ((zipEntry = zipInputStream.getNextEntry()) != null) {
 				if (zipEntry.isDirectory())
@@ -169,5 +273,5 @@ public class Hydra {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}       
 }
