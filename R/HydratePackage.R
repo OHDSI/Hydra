@@ -32,14 +32,18 @@ hydrate <- function(specifications, outputFolder, skeletonFileName = NULL) {
     dir.create(outputFolder, recursive = TRUE) 
   }
   hydra <- rJava::new(Class = rJava::J("org.ohdsi.hydra.Hydra"), 
-                      as.character(specifications), 
-                      as.character(outputFolder))
+                      as.character(specifications))
   hydra$setPackageFolder(system.file(package = "Hydra"))
-  if (is.null(skeletonFileName)) {
-    hydra$hydrate()
-  } else {
-    hydra$hydrate(as.character(skeletonFileName))
-  }
+  
+  
+  
+  if (!is.null(skeletonFileName)) {
+    hydra$setExternalSkeletonFileName(as.character(skeletonFileName))
+  } 
+  tempFile <- tempfile()
+  hydra$hydrate(tempFile)
+  utils::unzip(zipfile = tempFile, exdir = outputFolder, overwrite = TRUE)
+  unlink(tempFile)
 }
 
 #' Load specifications from a JSON file

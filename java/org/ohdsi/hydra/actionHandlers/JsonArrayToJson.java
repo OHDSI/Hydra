@@ -27,6 +27,7 @@ public class JsonArrayToJson implements ActionHandlerInterface {
 			JSONObject element = (JSONObject) elementObject;
 			String json = JsonUtilities.getViaPath(element, action.getString("payload")).toString();
 			String fileName = JsonUtilities.getViaPath(element, action.getString("fileName")).toString();
+			fileName = ValueModifiers.convertToFileName(fileName);
 			fileName = action.getString("output") + "/" + fileName + ".json";
 			fileNametoJson.put(fileName, json);
 		}

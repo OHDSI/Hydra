@@ -35,6 +35,7 @@ public class JsonArrayToSql implements ActionHandlerInterface {
 			options.generateStats = false;
 			String sql = builder.buildExpressionQuery(cohortExpression, options);
 			String fileName = JsonUtilities.getViaPath(element, action.getString("fileName")).toString();
+			fileName = ValueModifiers.convertToFileName(fileName);
 			fileName = action.getString("output") + "/" + fileName + ".sql";
 			fileNametoSql.put(fileName, sql);
 		}

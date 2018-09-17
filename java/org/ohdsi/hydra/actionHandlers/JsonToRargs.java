@@ -17,7 +17,7 @@ public class JsonToRargs implements ActionHandlerInterface {
 	private String	find;
 
 	public JsonToRargs(JSONObject action, JSONObject studySpecs) {
-		outputFileName = action.getString("output");
+		outputFileName = action.getString("file");
 		find = action.getString("startTag") + "(?s:.*)" + action.getString("endTag");
 		JSONObject jsonArgs = (JSONObject) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
 		for (Object argumentFunctionObject : action.getJSONArray("argumentFunctions")) {

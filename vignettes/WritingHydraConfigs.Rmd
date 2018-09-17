@@ -69,7 +69,7 @@ The hydration configuration is a JSON file. Below is an example configuration:
 		"input": "cohortDefinitions",
 		"mapping": [{"source": "id", "target": "cohortId"},
 					{"source": "id", "target": "atlasId"},
-					{"source": "name", "target": "name"}],
+					{"source": "name", "target": "name", "modifiers": ["convertToFileName"]}],
 		"output": "inst/settings/CohortsToCreate.csv"
 	},{
 		"type": "jsonArrayToJson",
@@ -122,7 +122,9 @@ Convert an array in the study specifications to a CSV file in the package, where
 - *mapping*: An array of objects with the following elements:
   - *source*: The name of the element to pull from the array element in the study specification
   - *target*: The name of the column in the CSV file.
-  - *separator*: Optional: if the source element is itself an array, what separator should be used to collapse that array into a single string?
+  - *separator*: Optional: if the source element is itself an array, what separator should be used to collapse that array into a single string? 
+  - *modifiers*: Optional: modifiers to be applied to the source value before entering in the CSV. This should be an array of strings, with these possible values:
+    - *convertToFileName*: Make the source string suitable for creating file names.
 - *output*: The name of the CSV file to create.
 
 ## jsonArrayToJson
@@ -130,7 +132,7 @@ Convert an array in the study specifications to a CSV file in the package, where
 Convert an array in the study specifications to a set of JSON files in the package, where each element of the array will generate one JSON file.
 
 - *input*: The path to the array in the study specifications.
-- *fileName*: The element inside the array element that will be used to generate the JSON file name. The ".json" extention will automatically be added.
+- *fileName*: The element inside the array element that will be used to generate the JSON file name. The source string will be modified to be made suitable for file names. The ".json" extention will automatically be added.
 - *payload*: The element inside the array element that will be the content of the JSON file.
 - *output*: The folder in the package where the JSON files will be written.
 
@@ -139,7 +141,7 @@ Convert an array in the study specifications to a set of JSON files in the packa
 Convert an array in the study specifications to a set of SQL files in the package, where each element of the array will generate one SQL file. SQL files are automatically generated using Circe.
 
 - *input*: The path to the array in the study specifications.
-- *fileName*: The element inside the array element that will be used to generate the SQL file name. The ".sql" extention will automatically be added.
+- *fileName*: The element inside the array element that will be used to generate the SQL file name. The source string will be modified to be made suitable for file names. The ".sql" extention will automatically be added.
 - *payload*: The element inside the array element that will be converted to SQL.
 - *output*: The folder in the package where the SQL files will be written.
 

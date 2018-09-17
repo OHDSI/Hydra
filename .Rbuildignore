@@ -10,4 +10,5 @@ man-roxygen
 ^\.travis\.yml$
 deploy.sh
 ^\.git
+/target/
 compare_versions

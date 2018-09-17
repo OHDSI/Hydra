@@ -43,7 +43,12 @@ public class JsonArrayToCsv implements ActionHandlerInterface {
 					Object valueObject = element.get(mapping.getString("source"));
 					if (valueObject instanceof JSONArray)
 						valueObject = ((JSONArray) valueObject).join(mapping.getString("separator"));
-					row.add(valueObject.toString());
+					String value = valueObject.toString();
+					if (!mapping.isNull("modifiers")) {
+						for (Object modifier : mapping.getJSONArray("modifiers"))
+							value = applyModifier(modifier.toString(), value);
+					}
+					row.add(value);
 				}
 				csvPrinter.printRecord(row);
 			}
@@ -53,6 +58,13 @@ public class JsonArrayToCsv implements ActionHandlerInterface {
 			throw new RuntimeException(e);
 		}
 		content = out.toByteArray();
+	}
+
+	private String applyModifier(String modifier, String value) {
+		if (modifier.equals("convertToFileName"))
+			return ValueModifiers.convertToFileName(value);
+		else
+			throw new RuntimeException("Unknown modifier: " + modifier);
 	}
 
 	public void modifyExisting(InMemoryFile file) {

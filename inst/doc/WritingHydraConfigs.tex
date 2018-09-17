@@ -122,7 +122,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-08-29}
+    \date{2018-09-17}
 
 
 \begin{document}
@@ -209,7 +209,7 @@ configuration:
         "input": "cohortDefinitions",
         "mapping": [{"source": "id", "target": "cohortId"},
                     {"source": "id", "target": "atlasId"},
-                    {"source": "name", "target": "name"}],
+                    {"source": "name", "target": "name", "modifiers": ["convertToFileName"]}],
         "output": "inst/settings/CohortsToCreate.csv"
     },{
         "type": "jsonArrayToJson",
@@ -323,6 +323,17 @@ CSV file.
     \emph{separator}: Optional: if the source element is itself an
     array, what separator should be used to collapse that array into a
     single string?
+  \item
+    \emph{modifiers}: Optional: modifiers to be applied to the source
+    value before entering in the CSV. This should be an array of
+    strings, with these possible values:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \emph{convertToFileName}: Make the source string suitable for
+      creating file names.
+    \end{itemize}
   \end{itemize}
 \item
   \emph{output}: The name of the CSV file to create.
@@ -341,8 +352,9 @@ file.
   \emph{input}: The path to the array in the study specifications.
 \item
   \emph{fileName}: The element inside the array element that will be
-  used to generate the JSON file name. The ``.json'' extention will
-  automatically be added.
+  used to generate the JSON file name. The source string will be
+  modified to be made suitable for file names. The ``.json'' extention
+  will automatically be added.
 \item
   \emph{payload}: The element inside the array element that will be the
   content of the JSON file.
@@ -364,7 +376,8 @@ SQL files are automatically generated using Circe.
   \emph{input}: The path to the array in the study specifications.
 \item
   \emph{fileName}: The element inside the array element that will be
-  used to generate the SQL file name. The ``.sql'' extention will
+  used to generate the SQL file name. The source string will be modified
+  to be made suitable for file names. The ``.sql'' extention will
   automatically be added.
 \item
   \emph{payload}: The element inside the array element that will be
