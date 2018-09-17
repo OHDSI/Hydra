@@ -15,17 +15,19 @@
  ******************************************************************************/
 package org.ohdsi.hydra;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.zip.ZipEntry;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
+import org.ohdsi.hydra.actionHandlers.ActionHandlerInterface;
 import org.ohdsi.hydra.actionHandlers.FileNameFindAndReplace;
 import org.ohdsi.hydra.actionHandlers.JsonArrayToCsv;
 import org.ohdsi.hydra.actionHandlers.JsonArrayToJson;
@@ -33,31 +35,26 @@ import org.ohdsi.hydra.actionHandlers.JsonArrayToSql;
 import org.ohdsi.hydra.actionHandlers.JsonToJson;
 import org.ohdsi.hydra.actionHandlers.JsonToRargs;
 import org.ohdsi.hydra.actionHandlers.StringFindAndReplace;
-import org.ohdsi.utilities.ZipInputStreamWrapper;
-import org.ohdsi.utilities.ZipOutputStreamEntry;
-import org.ohdsi.utilities.ZipOutputStreamWrapper;
+import org.ohdsi.utilities.InMemoryFile;
+import org.ohdsi.utilities.PackageZipWriter;
+import org.ohdsi.utilities.SkeletonReader;
 
 /**
  * The main Hydra class.
  */
 public class Hydra {
 
-	private String		outputFolder;
-	private String		packageFolder;
-	private JSONObject	studySpecs;
+	private String				packageFolder;
+	private JSONObject			studySpecs;
+	private PackageZipWriter	packageOut;
+	private String				externalSkeletonFileName;
 
 	public static void main(String[] args) {
-		//		System.out.println("abc\n#test\ndef\n#test2\nghi".replaceAll("#test(?s:.*)*#test2", "blah"));
-		//Hydra hydra = new Hydra(loadJson("c:/temp/TestPleStudy.json"), "c:/temp/hydraOutput");
-		//hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
-		//hydra.hydrate();
-                Hydra hydra = new Hydra(loadJson("C:\\Git\\itx-asj\\epi_540\\documents\\specification\\ExampleStudySpecs.json"), null);
+		String studySpecs = loadJson("c:/temp/TestPleStudy.json");
+		Hydra hydra = new Hydra(studySpecs);
 		hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
-                try {
-                    hydra.hydrateToStream();
-                } catch (IOException e) {
-                    System.out.println("Error producing stream: " + e.getMessage());
-                }
+		// hydra.setSkeletonFileName("");
+		hydra.hydrate("c:/temp/hydraOutput.zip");
 	}
 
 	/**
@@ -65,17 +62,16 @@ public class Hydra {
 	 * 
 	 * @param studySpecs
 	 *            A JSON string with the study specifications.
-	 * @param outputFolder
-	 *            The folder where the hydrated package should be stored.
 	 */
-	public Hydra(String studySpecs, String outputFolder) {
+	public Hydra(String studySpecs) {
 		this.studySpecs = new JSONObject(studySpecs);
-		this.outputFolder = outputFolder;
-		this.packageFolder = null;
+		packageFolder = null;
+		externalSkeletonFileName = null;
 	}
 
 	/**
-	 * When running Hydra from within an R package, use this function to point Hydra to the root of the installed R package.
+	 * When running Hydra from within an R package, use this function to point Hydra to the root of the installed R package, and the skeletons will be fetched
+	 * from the inst/skeletons folder. If not specified, the skeletons will be fetched from within the jar file.
 	 * 
 	 * @param packageFolder
 	 *            A string denoting the root of the installed R package.
@@ -84,93 +80,119 @@ public class Hydra {
 		this.packageFolder = packageFolder;
 	}
 
-	public void hydrate() {
-		hydrate(null);
+	/**
+	 * Mostly for debugging purposes: point Hydra to an external skeleton zip file to use instead of the internal skeletons.
+	 * 
+	 * @param externalSkeletonFileName
+	 *            The path to the external skeleton file.
+	 */
+	public void setExternalSkeletonFileName(String externalSkeletonFileName) {
+		this.externalSkeletonFileName = externalSkeletonFileName;
 	}
 
-	public void hydrate(String skeletonFileName) {
-		unzipSkeleton(skeletonFileName);
-		JSONObject hydraConfig = new JSONObject(loadJson(outputFolder + "/HydraConfig.json"));
-		for (Object action : hydraConfig.getJSONArray("actions")) {
-			executeAction((JSONObject) action);
+	/**
+	 * Hydrate the skeleton, and write the zip file to disk.
+	 * 
+	 * @param outputFileName
+	 *            The path where the zip file should be stored.
+	 */
+	public void hydrate(String outputFileName) {
+		try {
+			hydrate(new FileOutputStream(outputFileName));
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
 		}
 	}
-        
-        public ByteArrayOutputStream hydrateToStream() throws IOException {
-            String skeletonFileName = studySpecs.getString("skeletonType") + "_" + studySpecs.getString("skeletonVersion") + ".zip";
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ZipOutputStreamWrapper zipOutputStream = new ZipOutputStreamWrapper(baos);
-            // Get the contents of the zip file by iterating over the entries
-            ZipInputStreamWrapper zipInputStream = null;
-            String hydraConfigFromFile = "";
-            JSONObject hydraConfig = null;
-            try {
-                zipInputStream = new ZipInputStreamWrapper(getClass().getResourceAsStream("/" + skeletonFileName));
-                ZipEntry ze = null;
-                // Find the HydraConfig.json in the class resource
-                while ((ze = zipInputStream.getNextEntry()) != null)
-                {
-                    // Get the configuration
-                    if (ze.getName().equalsIgnoreCase("HydraConfig.json")) { 
-                        System.out.println("\tFOUND ----------------------------------------");
-                        hydraConfigFromFile = zipInputStream.readCurrentFileToString();
-                        hydraConfig = new JSONObject(hydraConfigFromFile);
-                        System.out.println(hydraConfigFromFile);
-                        System.out.println("\tEND ----------------------------------------");
-                        break;
-                    }
-                }
-                zipInputStream.close();
-                if (hydraConfig == null) {
-                    throw new IOException("Cannot proceed - HydraConfig.json not found for skeleton: " + skeletonFileName);
-                }
-                zipInputStream = new ZipInputStreamWrapper(getClass().getResourceAsStream("/" + skeletonFileName));
-                while ((ze = zipInputStream.getNextEntry()) != null) 
-                {
-                    System.out.println(ze.getName());
-                    ZipOutputStreamEntry entry = new ZipOutputStreamEntry(ze, zipInputStream);
-                    /*
-                    int fileCount = zipOutputStream.getFileCount();
-                    JSONObject stringFindAndReplaceAction = null;
-                    */
-                    for (Object action : hydraConfig.getJSONArray("actions")) {
-                        JSONObject jsonAction = (JSONObject) action;
-                        /*if (jsonAction.getString("type").equals("stringFindAndReplace")) {
-                            stringFindAndReplaceAction = jsonAction;
-                        } else {*/
-                            executeActionForStream(entry, zipOutputStream, jsonAction);
-                        //}
-                    }
-                    zipOutputStream.addZipEntry(entry);
-                    zipOutputStream.write(entry.getContent());
-                    zipOutputStream.closeEntry();
-                    /*
-                    if (stringFindAndReplaceAction != null) {
-                        // Performing the stringFindAndReplaceAction 
-                        // will ALWAYS add the file to the ZipOutputStream
-                        executeActionForStream(ze, zipOutputStream, zipInputStream, stringFindAndReplaceAction);
-                    } else if (fileCount == zipOutputStream.getFileCount()) {
-                        // No actions were taken on the file to add
-                        // it to the output stream. Add it now.
-                        zipOutputStream.addZipEntry(new ZipEntry(ze.getName()));
-                        zipOutputStream.writeToOutputStream(zipInputStream);
-                        zipOutputStream.closeEntry();
-                    }
-                    */
-                }
-            }
-            catch (Exception e) {
-                System.out.println(e);
-            } finally {
-                if (zipInputStream != null) {
-                    zipInputStream.close();
-                }
-                zipOutputStream.close();
-                baos.flush();
-                baos.close();
-                return baos;
-            }
-        }
+
+	/**
+	 * Hydrate the skeleton to the provided output stream. The output will be written as a ZipOutputStream.
+	 * 
+	 * @param out
+	 *            The stream to write the package to.
+	 */
+	public void hydrate(OutputStream out) {
+		JSONObject hydraConfig = getHydraConfigFromSkeleton();
+
+		List<ActionHandlerInterface> actionHandlers = new ArrayList<ActionHandlerInterface>();
+		for (Object actionObject : hydraConfig.getJSONArray("actions")) {
+			JSONObject action = (JSONObject) actionObject;
+			String actionType = action.getString("type");
+			if (actionType.equals("fileNameFindAndReplace")) {
+				actionHandlers.add(new FileNameFindAndReplace(action, studySpecs));
+			} else if (actionType.equals("stringFindAndReplace")) {
+				actionHandlers.add(new StringFindAndReplace(action, studySpecs));
+			} else if (actionType.equals("jsonArrayToCsv")) {
+				actionHandlers.add(new JsonArrayToCsv(action, studySpecs));
+			} else if (actionType.equals("jsonArrayToJson")) {
+				actionHandlers.add(new JsonArrayToJson(action, studySpecs));
+			} else if (actionType.equals("jsonArrayToSql")) {
+				actionHandlers.add(new JsonArrayToSql(action, studySpecs));
+			} else if (actionType.equals("jsonToJson")) {
+				actionHandlers.add(new JsonToJson(action, studySpecs));
+			} else if (action.getString("type").equals("jsonToRargs")) {
+				actionHandlers.add(new JsonToRargs(action, studySpecs));
+			} else {
+				throw new RuntimeException("Unknown action type: " + actionType);
+			}
+		}
+
+		packageOut = new PackageZipWriter(out);
+		SkeletonReader skeletonReader = getSkeletonReader();
+
+		// Modify existing files:
+		for (InMemoryFile file : skeletonReader) {
+			for (ActionHandlerInterface actionHandler : actionHandlers)
+				actionHandler.modifyExisting(file);
+			packageOut.write(file);
+		}
+		// Generate new files:
+		for (int i = 0; i < actionHandlers.size(); i++) {
+			for (InMemoryFile file : actionHandlers.get(i).generateNew()) {
+				// Later actions may change newly generated file:
+				for (int j = i + 1; j < actionHandlers.size(); j++)
+					actionHandlers.get(j).modifyExisting(file);
+				packageOut.write(file);
+			}
+		}
+
+		packageOut.close();
+	}
+
+	private JSONObject getHydraConfigFromSkeleton() {
+		JSONObject hydraConfig = null;
+		SkeletonReader skeletonReader = getSkeletonReader();
+		for (InMemoryFile file : skeletonReader) {
+			if (file.getName().equalsIgnoreCase("HydraConfig.json")) {
+				hydraConfig = new JSONObject(file.getContentAsString());
+				break;
+			}
+		}
+		skeletonReader.close();
+		if (hydraConfig == null) {
+			throw new RuntimeException("Cannot proceed - HydraConfig.json not found");
+		}
+		return hydraConfig;
+	}
+
+	private SkeletonReader getSkeletonReader() {
+		InputStream inputStream;
+		try {
+			if (externalSkeletonFileName == null) {
+				String skeletonFileName = studySpecs.getString("skeletonType") + "_" + studySpecs.getString("skeletonVersion") + ".zip";
+				if (packageFolder == null) // Use file in JAR
+					inputStream = getClass().getResourceAsStream("/" + skeletonFileName);
+				else // Use file in package folder
+					inputStream = new FileInputStream(packageFolder + "/skeletons/" + skeletonFileName);
+				if (inputStream == null)
+					throw new RuntimeException("Cannot find file " + skeletonFileName);
+			} else {// Load external skeleton file specified by user
+				inputStream = new FileInputStream(externalSkeletonFileName);
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return new SkeletonReader(inputStream);
+	}
 
 	private static String loadJson(String fileName) {
 		try {
@@ -181,97 +203,4 @@ public class Hydra {
 		return null;
 	}
 
-	private void executeActionForStream(ZipOutputStreamEntry zipEntry, ZipOutputStreamWrapper zipOutputStream, JSONObject action) {
-            if (action.getString("type").equals("fileNameFindAndReplace")) {
-		new FileNameFindAndReplace().execute(zipEntry, zipOutputStream, action, studySpecs);
-            } else if (action.getString("type").equals("jsonArrayToCsv")) {
-                new JsonArrayToCsv().execute(zipEntry, zipOutputStream, action, studySpecs);
-            } else if (action.getString("type").equals("jsonArrayToJson")) {
-		new JsonArrayToJson().execute(zipEntry, zipOutputStream, action, studySpecs);
-            } else if (action.getString("type").equals("jsonArrayToSql")) {
-                new JsonArrayToSql().execute(zipEntry, zipOutputStream, action, studySpecs);
-            } else if (action.getString("type").equals("jsonToJson")) {
-                new JsonToJson().execute(zipEntry, zipOutputStream, action, studySpecs);
-            } else if (action.getString("type").equals("jsonToRargs")) {
-                new JsonToRargs().execute(zipEntry, zipOutputStream, action, studySpecs);
-            } else if (action.getString("type").equals("stringFindAndReplace")) {
-                new StringFindAndReplace().execute(zipEntry, zipOutputStream, action, studySpecs);
-            }
-        }
-        
-        private void executeAction(JSONObject action) {
-		if (action.getString("type").equals("stringFindAndReplace")) {
-			new StringFindAndReplace().execute(action, outputFolder, studySpecs);
-		} else if (action.getString("type").equals("fileNameFindAndReplace")) {
-			new FileNameFindAndReplace().execute(action, outputFolder, studySpecs);
-		} else if (action.getString("type").equals("jsonArrayToCsv")) {
-			new JsonArrayToCsv().execute(action, outputFolder, studySpecs);
-		} else if (action.getString("type").equals("jsonArrayToJson")) {
-			new JsonArrayToJson().execute(action, outputFolder, studySpecs);
-		} else if (action.getString("type").equals("jsonArrayToSql")) {
-			new JsonArrayToSql().execute(action, outputFolder, studySpecs);
-		} else if (action.getString("type").equals("jsonToRargs")) {
-			new JsonToRargs().execute(action, outputFolder, studySpecs);
-		}else if (action.getString("type").equals("jsonToJson")) {
-			new JsonToJson().execute(action, outputFolder, studySpecs);
-		}
-	}
-
-	private void unzipSkeleton(String skeletonFileName) {
-
-		try {
-			InputStream inputStream;
-			if (skeletonFileName == null) {
-				// No external skeleton file specified by the user. Load appropriate skeleton from internal folder
-				skeletonFileName = studySpecs.getString("skeletonType") + "_" + studySpecs.getString("skeletonVersion") + ".zip";
-				if (packageFolder == null) // Use file in JAR
-					inputStream = getClass().getResourceAsStream("/" + skeletonFileName);
-				else // Use file in package folder
-					inputStream = new FileInputStream(packageFolder + "/skeletons/" + skeletonFileName);
-			} else // Load external skeleton file specified by user
-				inputStream = new FileInputStream(skeletonFileName);
-			
-			if (inputStream == null)
-				throw new RuntimeException("Cannot find file " + skeletonFileName);
-
-			ZipInputStreamWrapper zipInputStream = new ZipInputStreamWrapper(inputStream);
-			ZipEntry zipEntry = null;
-			while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-				if (zipEntry.isDirectory())
-					new File(outputFolder + "/" + zipEntry.getName()).mkdirs();
-				else {
-					FileOutputStream fout = new FileOutputStream(outputFolder + "/" + zipEntry.getName());
-					copyStream(zipInputStream, fout);
-					zipInputStream.closeEntry();
-					fout.close();
-				}
-			}
-			zipInputStream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void copyStream(InputStream in, OutputStream out) {
-		int bufferSize = 1024;
-		int bytes;
-		byte[] buffer;
-		buffer = new byte[bufferSize];
-		try {
-			while ((bytes = in.read(buffer)) != -1) {
-				if (bytes == 0) {
-					bytes = in.read();
-					if (bytes < 0)
-						break;
-					out.write(bytes);
-					out.flush();
-					continue;
-				}
-				out.write(buffer, 0, bytes);
-				out.flush();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}       
 }

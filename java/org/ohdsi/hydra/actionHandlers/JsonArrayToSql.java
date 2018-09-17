@@ -1,85 +1,65 @@
 package org.ohdsi.hydra.actionHandlers;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.zip.ZipEntry;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.ohdsi.circe.cohortdefinition.CohortExpression;
 import org.ohdsi.circe.cohortdefinition.CohortExpressionQueryBuilder;
 import org.ohdsi.circe.cohortdefinition.CohortExpressionQueryBuilder.BuildExpressionQueryOptions;
+import org.ohdsi.utilities.InMemoryFile;
 import org.ohdsi.utilities.JsonUtilities;
-import org.ohdsi.utilities.ZipInputStreamWrapper;
-import org.ohdsi.utilities.ZipOutputStreamEntry;
-import org.ohdsi.utilities.ZipOutputStreamWrapper;
 
 /**
  * Convert a JSON array in the study specifications to a set of SQL files in the study package using Circe.
  */
 public class JsonArrayToSql implements ActionHandlerInterface {
 
-	@Override
-	public void execute(JSONObject action, String outputFolder, JSONObject studySpecs) {
-		try {
-			JSONArray array = this.getJsonArrayFromStudySpecs(studySpecs, action);
-			for (Object elementObject : array) {
-				JSONObject element = (JSONObject) elementObject;
-                                String targetFileName = this.getTargetFileName(element, action);
-                                String sql = this.getSql(element, action);
-				File file = new File(outputFolder + "/" + targetFileName);
-				FileUtils.writeStringToFile(file, sql, "UTF-8");
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private Map<String, String>	fileNametoSql;
+	private Set<String>			done;
 
+	public JsonArrayToSql(JSONObject action, JSONObject studySpecs) {
+		fileNametoSql = new HashMap<String, String>();
+		JSONArray array = (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
+		for (Object elementObject : array) {
+			JSONObject element = (JSONObject) elementObject;
+			String json = JsonUtilities.getViaPath(element, action.getString("payload")).toString();
+			CohortExpression cohortExpression = CohortExpression.fromJson(json);
+			CohortExpressionQueryBuilder builder = new CohortExpressionQueryBuilder();
+			BuildExpressionQueryOptions options = new BuildExpressionQueryOptions();
+			options.generateStats = false;
+			String sql = builder.buildExpressionQuery(cohortExpression, options);
+			String fileName = JsonUtilities.getViaPath(element, action.getString("fileName")).toString();
+			fileName = action.getString("output") + "/" + fileName + ".sql";
+			fileNametoSql.put(fileName, sql);
+		}
+		done = new HashSet<String>(fileNametoSql.size());
 	}
-        
-        public void execute(ZipOutputStreamEntry zipEntry, ZipOutputStreamWrapper zipOutputStream, JSONObject action, JSONObject studySpecs) {
-		try {
-			JSONArray array = this.getJsonArrayFromStudySpecs(studySpecs, action);
-			for (Object elementObject : array) {
-                                JSONObject element = (JSONObject) elementObject;
-                                String targetFileName = this.getTargetFileName(element, action);
-                                if (!zipOutputStream.fileExists(targetFileName)) {
-                                    String sql = this.getSql(element, action);
-                                    System.out.println(this.getClass().getName() + " " + targetFileName);
-                                    ZipEntry outputFile = new ZipEntry(targetFileName);
-                                    zipOutputStream.addZipEntry(outputFile);
-                                    zipOutputStream.write(sql);
-                                    zipOutputStream.closeEntry();                                    
-                                }
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        }
-        
-        private JSONArray getJsonArrayFromStudySpecs(JSONObject studySpecs, JSONObject action) {
-            return (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
-        }
 
-        private String getTargetFileName(Object elementObject, JSONObject action) {
-            JSONObject element = (JSONObject) elementObject;
-            String fileName = JsonUtilities.getViaPath(element, action.getString("fileName")).toString();
-            return action.getString("output") + "/" + fileName + ".sql";
-        }
-        
-        private String getSql(JSONObject element, JSONObject action) {
-            String payload = JsonUtilities.getViaPath(element, action.getString("payload")).toString();
-            CohortExpression cohortExpression = CohortExpression.fromJson(payload);
-            CohortExpressionQueryBuilder builder = new CohortExpressionQueryBuilder();
-            BuildExpressionQueryOptions options = new BuildExpressionQueryOptions();
-            options.generateStats = false;
-            String sql = builder.buildExpressionQuery(cohortExpression, options);
-            return sql;
-        }
-        
+	public void modifyExisting(InMemoryFile file) {
+		String fileName = file.getName();
+		if (fileNametoSql.keySet().contains(fileName))
+			if (done.contains(fileName))
+				file.setDeleted(true);
+			else {
+				file.setContent(fileNametoSql.get(fileName));
+				done.add(fileName);
+			}
+	}
+
+	public List<InMemoryFile> generateNew() {
+		List<InMemoryFile> files = new ArrayList<InMemoryFile>(1);
+		for (String fileName : fileNametoSql.keySet()) {
+			if (!done.contains(fileName)) {
+				InMemoryFile file = new InMemoryFile(fileName, fileNametoSql.get(fileName));
+				files.add(file);
+			}
+		}
+		return files;
+	}
 }

@@ -1,74 +1,57 @@
 package org.ohdsi.hydra.actionHandlers;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.zip.ZipEntry;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
+import org.ohdsi.utilities.InMemoryFile;
 import org.ohdsi.utilities.JsonUtilities;
-import org.ohdsi.utilities.ZipInputStreamWrapper;
-import org.ohdsi.utilities.ZipOutputStreamEntry;
-import org.ohdsi.utilities.ZipOutputStreamWrapper;
 
 /**
  * Convert a JSON array in the study specifications to a set of JSON files in the study package.
  */
 public class JsonArrayToJson implements ActionHandlerInterface {
 
-	@Override
-	public void execute(JSONObject action, String outputFolder, JSONObject studySpecs) {
-		try {
-			JSONArray array = this.getJsonArrayFromStudySpecs(studySpecs, action);
-			for (Object elementObject : array) {
-				JSONObject element = (JSONObject) elementObject;
-				String payload = this.getPayload(element, action);
-				String targetFileName = this.getTargetFileName(element, action);
-				File file = new File(outputFolder + "/" + action.getString("output") + "/" + targetFileName + ".json");
-				FileUtils.writeStringToFile(file, payload, "UTF-8");
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	private Map<String, String>	fileNametoJson;
+	private Set<String>			done;
+
+	public JsonArrayToJson(JSONObject action, JSONObject studySpecs) {
+		fileNametoJson = new HashMap<String, String>();
+		JSONArray array = (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
+		for (Object elementObject : array) {
+			JSONObject element = (JSONObject) elementObject;
+			String json = JsonUtilities.getViaPath(element, action.getString("payload")).toString();
+			String fileName = JsonUtilities.getViaPath(element, action.getString("fileName")).toString();
+			fileName = action.getString("output") + "/" + fileName + ".json";
+			fileNametoJson.put(fileName, json);
 		}
-
+		done = new HashSet<String>(fileNametoJson.size());
 	}
-        
-        public void execute(ZipOutputStreamEntry zipEntry, ZipOutputStreamWrapper zipOutputStream, JSONObject action, JSONObject studySpecs) {
-                try {
-			JSONArray array = this.getJsonArrayFromStudySpecs(studySpecs, action);
-			for (Object elementObject : array) {
-                            JSONObject element = (JSONObject) elementObject;
-                            String targetFileName = this.getTargetFileName(element, action);
-                            if (!zipOutputStream.fileExists(targetFileName)) {
-                                String payload = this.getPayload(element, action);
-                                System.out.println(this.getClass().getName() + " " + targetFileName);
-                                ZipEntry outputFile = new ZipEntry(targetFileName);
-                                zipOutputStream.addZipEntry(outputFile);
-                                zipOutputStream.write(payload);
-                                zipOutputStream.closeEntry();
-                            }
-			}
-                } catch (JSONException e) {
-                        e.printStackTrace();
-                } catch (IOException e) {
-                        e.printStackTrace();
-                }
-        }        
 
-        private JSONArray getJsonArrayFromStudySpecs(JSONObject studySpecs, JSONObject action) {
-            return (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
-        }
-        
-        private String getPayload(JSONObject element, JSONObject action) {
-            return JsonUtilities.getViaPath(element, action.getString("payload")).toString();
-        }
-        
-        private String getTargetFileName(JSONObject element, JSONObject action) {
-            String fileName = JsonUtilities.getViaPath(element, action.getString("fileName")).toString();
-            return action.getString("output") + "/" + fileName + ".json";
-        }
+	public void modifyExisting(InMemoryFile file) {
+		String fileName = file.getName();
+		if (fileNametoJson.keySet().contains(fileName))
+			if (done.contains(fileName))
+				file.setDeleted(true);
+			else {
+				file.setContent(fileNametoJson.get(fileName));
+				done.add(fileName);
+			}
+	}
+
+	public List<InMemoryFile> generateNew() {
+		List<InMemoryFile> files = new ArrayList<InMemoryFile>(1);
+		for (String fileName : fileNametoJson.keySet()) {
+			if (!done.contains(fileName)) {
+				InMemoryFile file = new InMemoryFile(fileName, fileNametoJson.get(fileName));
+				files.add(file);
+			}
+		}
+		return files;
+	}
 }
