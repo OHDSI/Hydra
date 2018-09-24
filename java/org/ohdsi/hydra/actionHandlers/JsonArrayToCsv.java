@@ -17,13 +17,17 @@ import org.ohdsi.utilities.JsonUtilities;
 /**
  * Convert a JSON array in the study specifications to a CSV file in the study package.
  */
-public class JsonArrayToCsv implements ActionHandlerInterface {
+public class JsonArrayToCsv extends AbstractActionHandler {
 
 	private String	outputFileName;
 	private boolean	done;
 	private byte[]	content;
-
+	
 	public JsonArrayToCsv(JSONObject action, JSONObject studySpecs) {
+		super(action, studySpecs);
+	}
+
+	protected void init(JSONObject action, JSONObject studySpecs) {
 		outputFileName = action.getString("output");
 		done = false;
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -67,7 +71,7 @@ public class JsonArrayToCsv implements ActionHandlerInterface {
 			throw new RuntimeException("Unknown modifier: " + modifier);
 	}
 
-	public void modifyExisting(InMemoryFile file) {
+	protected void modifyExistingInternal(InMemoryFile file) {
 		if (file.getName().equals(outputFileName))
 			if (done)
 				file.setDeleted(true);
@@ -77,7 +81,7 @@ public class JsonArrayToCsv implements ActionHandlerInterface {
 			}
 	}
 
-	public List<InMemoryFile> generateNew() {
+	protected List<InMemoryFile> generateNewInternal() {
 		if (done)
 			return Collections.emptyList();
 		else {

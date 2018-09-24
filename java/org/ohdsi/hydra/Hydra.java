@@ -27,7 +27,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
-import org.ohdsi.hydra.actionHandlers.ActionHandlerInterface;
+import org.ohdsi.hydra.actionHandlers.AbstractActionHandler;
 import org.ohdsi.hydra.actionHandlers.FileNameFindAndReplace;
 import org.ohdsi.hydra.actionHandlers.JsonArrayToCsv;
 import org.ohdsi.hydra.actionHandlers.JsonArrayToJson;
@@ -50,10 +50,16 @@ public class Hydra {
 	private String				externalSkeletonFileName;
 
 	public static void main(String[] args) {
+		
+//		String find = "# Start doPositiveControlSynthesis(?s:.*)# End doPositiveControlSynthesis";
+//		String replace = "abcd";
+//		String text = "# Start doPositiveControlSynthesis\nblah\n# End doPositiveControlSynthesis";
+//		System.out.println(text.replaceAll(find, replace));
+		
 		String studySpecs = loadJson("c:/temp/TestPleStudy.json");
 		Hydra hydra = new Hydra(studySpecs);
 		hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
-		// hydra.setSkeletonFileName("");
+		hydra.setExternalSkeletonFileName("C:/Users/mschuemi/git/SkeletonComparativeEffectStudy/SkeletonComparativeEffectStudy.zip");
 		hydra.hydrate("c:/temp/hydraOutput.zip");
 	}
 
@@ -113,7 +119,7 @@ public class Hydra {
 	public void hydrate(OutputStream out) {
 		JSONObject hydraConfig = getHydraConfigFromSkeleton();
 
-		List<ActionHandlerInterface> actionHandlers = new ArrayList<ActionHandlerInterface>();
+		List<AbstractActionHandler> actionHandlers = new ArrayList<AbstractActionHandler>();
 		for (Object actionObject : hydraConfig.getJSONArray("actions")) {
 			JSONObject action = (JSONObject) actionObject;
 			String actionType = action.getString("type");
@@ -141,7 +147,7 @@ public class Hydra {
 
 		// Modify existing files:
 		for (InMemoryFile file : skeletonReader) {
-			for (ActionHandlerInterface actionHandler : actionHandlers)
+			for (AbstractActionHandler actionHandler : actionHandlers)
 				actionHandler.modifyExisting(file);
 			packageOut.write(file);
 		}

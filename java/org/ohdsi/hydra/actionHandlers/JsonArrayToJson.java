@@ -15,12 +15,16 @@ import org.ohdsi.utilities.JsonUtilities;
 /**
  * Convert a JSON array in the study specifications to a set of JSON files in the study package.
  */
-public class JsonArrayToJson implements ActionHandlerInterface {
+public class JsonArrayToJson extends AbstractActionHandler {
 
 	private Map<String, String>	fileNametoJson;
 	private Set<String>			done;
-
+	
 	public JsonArrayToJson(JSONObject action, JSONObject studySpecs) {
+		super(action, studySpecs);
+	}
+
+	protected void init(JSONObject action, JSONObject studySpecs) {
 		fileNametoJson = new HashMap<String, String>();
 		JSONArray array = (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
 		for (Object elementObject : array) {
@@ -34,7 +38,7 @@ public class JsonArrayToJson implements ActionHandlerInterface {
 		done = new HashSet<String>(fileNametoJson.size());
 	}
 
-	public void modifyExisting(InMemoryFile file) {
+	protected void modifyExistingInternal(InMemoryFile file) {
 		String fileName = file.getName();
 		if (fileNametoJson.keySet().contains(fileName))
 			if (done.contains(fileName))
@@ -45,7 +49,7 @@ public class JsonArrayToJson implements ActionHandlerInterface {
 			}
 	}
 
-	public List<InMemoryFile> generateNew() {
+	protected List<InMemoryFile> generateNewInternal() {
 		List<InMemoryFile> files = new ArrayList<InMemoryFile>(1);
 		for (String fileName : fileNametoJson.keySet()) {
 			if (!done.contains(fileName)) {

@@ -18,12 +18,16 @@ import org.ohdsi.utilities.JsonUtilities;
 /**
  * Convert a JSON array in the study specifications to a set of SQL files in the study package using Circe.
  */
-public class JsonArrayToSql implements ActionHandlerInterface {
+public class JsonArrayToSql extends AbstractActionHandler {
 
 	private Map<String, String>	fileNametoSql;
 	private Set<String>			done;
-
+	
 	public JsonArrayToSql(JSONObject action, JSONObject studySpecs) {
+		super(action, studySpecs);
+	}
+
+	protected void init(JSONObject action, JSONObject studySpecs) {
 		fileNametoSql = new HashMap<String, String>();
 		JSONArray array = (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
 		for (Object elementObject : array) {
@@ -42,7 +46,7 @@ public class JsonArrayToSql implements ActionHandlerInterface {
 		done = new HashSet<String>(fileNametoSql.size());
 	}
 
-	public void modifyExisting(InMemoryFile file) {
+	protected void modifyExistingInternal(InMemoryFile file) {
 		String fileName = file.getName();
 		if (fileNametoSql.keySet().contains(fileName))
 			if (done.contains(fileName))
@@ -53,7 +57,7 @@ public class JsonArrayToSql implements ActionHandlerInterface {
 			}
 	}
 
-	public List<InMemoryFile> generateNew() {
+	protected List<InMemoryFile> generateNewInternal() {
 		List<InMemoryFile> files = new ArrayList<InMemoryFile>(1);
 		for (String fileName : fileNametoSql.keySet()) {
 			if (!done.contains(fileName)) {

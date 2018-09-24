@@ -11,19 +11,23 @@ import org.ohdsi.utilities.JsonUtilities;
 /**
  * Convert a JSON object in the study specifications to a JSON file in the study package.
  */
-public class JsonToJson implements ActionHandlerInterface {
+public class JsonToJson extends AbstractActionHandler {
 
 	private String	outputFileName;
 	private boolean	done;
 	private String	content;
-
+	
 	public JsonToJson(JSONObject action, JSONObject studySpecs) {
+		super(action, studySpecs);
+	}
+
+	protected void init(JSONObject action, JSONObject studySpecs) {
 		outputFileName = action.getString("output");
 		done = false;
 		content = JsonUtilities.getViaPath(studySpecs, action.getString("input")).toString();
 	}
 
-	public void modifyExisting(InMemoryFile file) {
+	protected void modifyExistingInternal(InMemoryFile file) {
 		if (file.getName().equals(outputFileName))
 			if (done)
 				file.setDeleted(true);
@@ -33,7 +37,7 @@ public class JsonToJson implements ActionHandlerInterface {
 			}
 	}
 
-	public List<InMemoryFile> generateNew() {
+	protected List<InMemoryFile> generateNewInternal() {
 		if (done)
 			return Collections.emptyList();
 		else {

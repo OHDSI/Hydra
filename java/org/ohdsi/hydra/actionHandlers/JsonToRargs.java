@@ -10,16 +10,22 @@ import org.ohdsi.utilities.JsonUtilities;
 /**
  * Convert a JSON structure in the study specifications to R arguments to be inserted into an existing R file in the study package.
  */
-public class JsonToRargs implements ActionHandlerInterface {
+public class JsonToRargs extends AbstractActionHandler {
 
 	private String	outputFileName;
 	private String	replace;
 	private String	find;
 
 	public JsonToRargs(JSONObject action, JSONObject studySpecs) {
+		super(action, studySpecs);
+	}
+	
+	protected void init(JSONObject action, JSONObject studySpecs) {
 		outputFileName = action.getString("file");
 		find = action.getString("startTag") + "(?s:.*)" + action.getString("endTag");
-		JSONObject jsonArgs = (JSONObject) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
+		Object jsonArgsObject = JsonUtilities.getViaPath(studySpecs, action.getString("input"));
+		if (jsonArgsObject instanceof JSONObject) {
+		JSONObject jsonArgs = (JSONObject) jsonArgsObject;
 		for (Object argumentFunctionObject : action.getJSONArray("argumentFunctions")) {
 			JSONObject argumentFunction = (JSONObject) argumentFunctionObject;
 			Object functionArgs = JsonUtilities.getViaPath(jsonArgs, argumentFunction.getString("source"));
@@ -27,17 +33,31 @@ public class JsonToRargs implements ActionHandlerInterface {
 			JsonUtilities.setViaPath(jsonArgs, argumentFunction.getString("source"), new Rfunction(string));
 		}
 		replace = jsonNodeToRargs(jsonArgs);
+		} else {
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(action.getString("input"));
+			stringBuilder.append(" = ");
+			if (jsonArgsObject instanceof Boolean)
+				stringBuilder.append(jsonArgsObject.toString().toUpperCase());
+			else if (jsonArgsObject instanceof String)
+				stringBuilder.append("\"" + jsonArgsObject.toString() + "\"");
+			else if (jsonArgsObject.equals(JSONObject.NULL))
+				stringBuilder.append("NULL");
+			else
+				stringBuilder.append(jsonArgsObject.toString());
+			replace = stringBuilder.toString();
+		}
 	}
 
-	public void modifyExisting(InMemoryFile file) {
+	protected void modifyExistingInternal(InMemoryFile file) {
 		if (file.getName().equals(outputFileName)) {
 			String content = file.getContentAsString();
-			content = content.replace(find, replace);
+			content = content.replaceAll(find, replace);
 			file.setContent(content);
 		}
 	}
 
-	public List<InMemoryFile> generateNew() {
+	protected List<InMemoryFile> generateNewInternal() {
 		return Collections.emptyList();
 	}
 

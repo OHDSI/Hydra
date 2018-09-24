@@ -9,22 +9,26 @@ import org.ohdsi.utilities.InMemoryFile;
 /**
  * Replaces file names that match the input.
  */
-public class FileNameFindAndReplace implements ActionHandlerInterface {
+public class FileNameFindAndReplace extends AbstractActionHandler {
 
-	private String find;
-	private String replace;
+	private String	find;
+	private String	replace;
 	
 	public FileNameFindAndReplace(JSONObject action, JSONObject studySpecs) {
+		super(action, studySpecs);
+	}
+
+	protected void init(JSONObject action, JSONObject studySpecs) {
 		find = action.getString("find");
 		replace = studySpecs.getString(action.getString("input"));
 	}
 
-	public void modifyExisting(InMemoryFile file) {
-		if (file.getName().replaceAll("^.*/", "").replaceAll("\\..*$", "").equals(find)) 
+	protected void modifyExistingInternal(InMemoryFile file) {
+		if (file.getName().replaceAll("^.*/", "").replaceAll("\\..*$", "").equals(find))
 			file.setName(file.getName().replaceAll(find, replace));
 	}
-	
-	public List<InMemoryFile> generateNew() {
+
+	protected List<InMemoryFile> generateNewInternal() {
 		return Collections.emptyList();
 	}
 }
