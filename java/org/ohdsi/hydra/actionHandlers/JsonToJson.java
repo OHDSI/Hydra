@@ -24,7 +24,7 @@ public class JsonToJson extends AbstractActionHandler {
 	protected void init(JSONObject action, JSONObject studySpecs) {
 		outputFileName = action.getString("output");
 		done = false;
-		content = JsonUtilities.getViaPath(studySpecs, action.getString("input")).toString();
+		content = ((JSONObject)JsonUtilities.getViaPath(studySpecs, action.getString("input"))).toString(2);
 	}
 
 	protected void modifyExistingInternal(InMemoryFile file) {

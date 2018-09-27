@@ -4,6 +4,8 @@ import org.json.JSONObject;
 
 public class JsonUtilities {
 	public static Object getViaPath(JSONObject jsonObject, String path) {
+		if (path.equals("")) 
+			return jsonObject;
 		Object object = jsonObject;
 		for (String part : path.split("\\."))
 			object = ((JSONObject) object).get(part);

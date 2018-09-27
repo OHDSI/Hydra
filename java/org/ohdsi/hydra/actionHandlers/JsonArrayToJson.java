@@ -29,7 +29,7 @@ public class JsonArrayToJson extends AbstractActionHandler {
 		JSONArray array = (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
 		for (Object elementObject : array) {
 			JSONObject element = (JSONObject) elementObject;
-			String json = JsonUtilities.getViaPath(element, action.getString("payload")).toString();
+			String json = ((JSONObject)JsonUtilities.getViaPath(element, action.getString("payload"))).toString(2);
 			String fileName = JsonUtilities.getViaPath(element, action.getString("fileName")).toString();
 			fileName = ValueModifiers.convertToFileName(fileName);
 			fileName = action.getString("output") + "/" + fileName + ".json";
