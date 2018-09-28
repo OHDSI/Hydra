@@ -34,6 +34,7 @@ import org.ohdsi.hydra.actionHandlers.JsonArrayToJson;
 import org.ohdsi.hydra.actionHandlers.JsonArrayToSql;
 import org.ohdsi.hydra.actionHandlers.JsonToJson;
 import org.ohdsi.hydra.actionHandlers.JsonToRargs;
+import org.ohdsi.hydra.actionHandlers.JsonToSql;
 import org.ohdsi.hydra.actionHandlers.StringFindAndReplace;
 import org.ohdsi.utilities.InMemoryFile;
 import org.ohdsi.utilities.PackageZipWriter;
@@ -50,12 +51,12 @@ public class Hydra {
 	private String				externalSkeletonFileName;
 
 	public static void main(String[] args) {
-		
-//		String find = "# Start doPositiveControlSynthesis(?s:.*)# End doPositiveControlSynthesis";
-//		String replace = "abcd";
-//		String text = "# Start doPositiveControlSynthesis\nblah\n# End doPositiveControlSynthesis";
-//		System.out.println(text.replaceAll(find, replace));
-		
+
+		// String find = "# Start doPositiveControlSynthesis(?s:.*)# End doPositiveControlSynthesis";
+		// String replace = "abcd";
+		// String text = "# Start doPositiveControlSynthesis\nblah\n# End doPositiveControlSynthesis";
+		// System.out.println(text.replaceAll(find, replace));
+
 		String studySpecs = loadJson("c:/temp/TestPleStudy.json");
 		Hydra hydra = new Hydra(studySpecs);
 		hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
@@ -135,8 +136,10 @@ public class Hydra {
 				actionHandlers.add(new JsonArrayToSql(action, studySpecs));
 			} else if (actionType.equals("jsonToJson")) {
 				actionHandlers.add(new JsonToJson(action, studySpecs));
-			} else if (action.getString("type").equals("jsonToRargs")) {
+			} else if (actionType.equals("jsonToRargs")) {
 				actionHandlers.add(new JsonToRargs(action, studySpecs));
+			} else if (actionType.equals("jsonToSql")) {
+				actionHandlers.add(new JsonToSql(action, studySpecs));
 			} else {
 				throw new RuntimeException("Unknown action type: " + actionType);
 			}
