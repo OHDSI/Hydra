@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.ohdsi.utilities.InMemoryFile;
 import org.ohdsi.utilities.JsonUtilities;
@@ -24,7 +25,11 @@ public class JsonToJson extends AbstractActionHandler {
 	protected void init(JSONObject action, JSONObject studySpecs) {
 		outputFileName = action.getString("output");
 		done = false;
-		content = ((JSONObject)JsonUtilities.getViaPath(studySpecs, action.getString("input"))).toString(2);
+		Object object = JsonUtilities.getViaPath(studySpecs, action.getString("input"));
+		if (object instanceof JSONArray) 
+			content = ((JSONArray)JsonUtilities.getViaPath(studySpecs, action.getString("input"))).toString(2);
+		else
+			content = ((JSONObject)JsonUtilities.getViaPath(studySpecs, action.getString("input"))).toString(2);
 	}
 
 	protected void modifyExistingInternal(InMemoryFile file) {
