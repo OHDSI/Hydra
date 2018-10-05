@@ -8,5 +8,5 @@ hydrate(specifications = specifications, outputFolder = outputFolder, skeletonFi
 
 specifications <- loadSpecifications("c:/temp/NewPleSettings.json")
 outputFolder <- "c:/temp/hydraOutput"
-hydrate(specifications = specifications, outputFolder = outputFolder, skeletonFileName = "inst/skeletons/ComparativeEffectStudy_v0.0.1.zip")
+hydrate(specifications = specifications, outputFolder = outputFolder)
 
