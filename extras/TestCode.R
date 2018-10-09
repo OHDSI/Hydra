@@ -6,7 +6,7 @@ hydrate(specifications = specifications, outputFolder = outputFolder, skeletonFi
 
 
 
-specifications <- loadSpecifications("c:/temp/NewPleSettings.json")
+specifications <- loadSpecifications("c:/temp/NewSpecs.json")
 outputFolder <- "c:/temp/hydraOutput"
 hydrate(specifications = specifications, outputFolder = outputFolder)
 

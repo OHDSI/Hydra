@@ -2,9 +2,10 @@ Package: Hydra
 Type: Package
 Title: Hydrating Package Skeletons into Executable R Study Packages
 Version: 0.0.2
-Date: 2018-09-17
+Date: 2018-10-08
 Authors@R: c(
     person("Martijn", "Schuemie", , "schuemie@ohdsi.org", role = c("aut", "cre")),
+    person("Jenna", "Reps", role = c("aut")),
     person("Anthony", "Sena", role = c("aut"))
     )
 Maintainer: Martijn J. Schuemie <schuemie@ohdsi.org>

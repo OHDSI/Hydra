@@ -7,10 +7,14 @@ An R package and Java library for hydrating package skeletons into executable R 
 
 Features
 ========
+- Contains package skeletons for patient-level prediction and population-level estimation studies.
+- Hydrates package skeletons to fully implemented study packages based on a single JSON specification file.
+- Is used in WebAPI to allow ATLAS to generate study packages.
+- Can be used as stand-alone R package (primarily for development purposes).
 
 Technology
 ==========
-Hydra is an R package, with some functions implemented in Java.
+Hydra is an R package, with most functions implemented in Java.
 
 System Requirements
 ===================
