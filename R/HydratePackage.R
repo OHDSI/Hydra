@@ -26,6 +26,9 @@
 #'
 #' @export
 hydrate <- function(specifications, outputFolder, skeletonFileName = NULL) {
+  if (!is.character(specifications)) {
+    stop("Specifications should be character (a JSON string). You can load JSON files using loadSpecifications()") 
+  }
   if (file.exists(outputFolder)) {
     warning("Output folder ", outputFolder, " already exists. Any contents will be overwritten")
   } else {
