@@ -94,3 +94,4 @@ Hydra is being developed in R Studio.
 [![codecov.io](https://codecov.io/github/OHDSI/Hydra/coverage.svg?branch=master)](https://codecov.io/github/OHDSI/Hydra?branch=master)
 
 Under development. Do not use.
+
