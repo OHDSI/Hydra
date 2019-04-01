@@ -1,9 +1,9 @@
 package org.ohdsi.utilities;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import org.apache.commons.io.IOUtils;
 
 public class InMemoryFile {
     private String name;
@@ -15,14 +15,7 @@ public class InMemoryFile {
     	this.name = zipEntry.getName();
     	isDirectory = zipEntry.isDirectory();
     	if (!isDirectory) {
-    		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    		int nRead;
-    		byte[] data = new byte[16384];
-    		while ((nRead = zipInputStream.read(data, 0, data.length)) != -1) {
-    			byteArrayOutputStream.write(data, 0, nRead);
-    		}
-    		byteArrayOutputStream.flush();
-    		content = byteArrayOutputStream.toByteArray();
+    		content = IOUtils.toByteArray(zipInputStream);
     	}
     }
     
