@@ -137,6 +137,7 @@ Finds all mentioned of a string in all files in the package, and replaces them w
 - *input*: The path to the element in the study specification containing the target string
 - *find*: The string to look for. 
 - *condition*: Optional: a condition that must be met to execute the action (see section on conditions).
+- *exclude*: Optional: file mask to exclude conforming filenames from action execution, it could a single string or an array of strings. For example, `*.jar` excludes all jar files.
 
 ## jsonArrayToCsv
 
