@@ -35,7 +35,7 @@ hydrate <- function(specifications, outputFolder, skeletonFileName = NULL) {
     dir.create(outputFolder, recursive = TRUE) 
   }
   hydra <- rJava::new(Class = rJava::J("org.ohdsi.hydra.Hydra"), 
-                      as.character(specifications))
+                      as.character(specifications)[1])
   hydra$setPackageFolder(system.file(package = "Hydra"))
   
   

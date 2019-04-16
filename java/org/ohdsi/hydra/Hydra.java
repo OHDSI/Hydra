@@ -57,10 +57,9 @@ public class Hydra {
 		// String text = "# Start doPositiveControlSynthesis\nblah\n# End doPositiveControlSynthesis";
 		// System.out.println(text.replaceAll(find, replace));
 
-		String studySpecs = loadJson("c:/temp/NewPleSettings.json");
+		String studySpecs = loadJson("c:/temp/StudySpecification.json");
 		Hydra hydra = new Hydra(studySpecs);
 		hydra.setPackageFolder("C:/Users/mschuemi/git/Hydra/inst");
-//		hydra.setExternalSkeletonFileName("C:/Users/mschuemi/git/SkeletonComparativeEffectStudy/SkeletonComparativeEffectStudy.zip");
 		hydra.hydrate("c:/temp/hydraOutput.zip");
 	}
 
