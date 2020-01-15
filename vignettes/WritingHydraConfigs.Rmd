@@ -96,7 +96,7 @@ The configuration consists of some meta data such as "skeletonType", followed by
 
 # Conditions
 
-Each action can be made conditional by adding a *condition* field. For example, in this configration the `jsonToArgs` action is only executed if the `doPositiveControlSynthesis` field in the study specifications resolves to the value 'true' (or '1).
+Each action can be made conditional by adding a *condition* field. For example, in this configuration the `jsonToArgs` action is only executed if the `doPositiveControlSynthesis` field in the study specifications resolves to the value 'true' (or '1).
 
 ```
 {
@@ -122,12 +122,12 @@ Below all available action types and their arguments are described. Whenever an 
 
 ## fileNameFindAndReplace
 
-Finds all files with the given name, and renames them to a target name (while maintaining the file extention).
+Finds all files with the given name, and renames them to a target name (while maintaining the file extension).
 
 Arguments:
 
 - *input*: The path to the element in the study specification containing the target name.
-- *find*: The name to look for. Extentions should not be included.
+- *find*: The name to look for. Extensions should not be included.
 - *condition*: Optional: a condition that must be met to execute the action (see section on conditions).
 
 ## stringFindAndReplace
@@ -224,7 +224,7 @@ And the Hydra configuration specifies:
 	"argumentFunctions": [{"source": "bar", "function": "createBar"}]
 }
 ```
-If the orginal file fooBar.R in the skeleton contains:
+If the original file fooBar.R in the skeleton contains:
 ```{r eval=FALSE, echo=TRUE}
 doFooBar(
   # Start fooBar

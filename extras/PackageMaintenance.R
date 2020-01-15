@@ -20,9 +20,10 @@
 OhdsiRTools::formatRFolder("./R")
 OhdsiRTools::checkUsagePackage("Hydra")
 OhdsiRTools::updateCopyrightYearFolder()
+devtools::spell_check()
 
 # Create manual and vignettes
-shell("rm extras/Hydra.pdf")
+unlink("extras/Hydra.pdf")
 shell("R CMD Rd2pdf ./ --output=extras/Hydra.pdf")
 
 rmarkdown::render("vignettes/WritingHydraConfigs.Rmd",
@@ -32,7 +33,7 @@ rmarkdown::render("vignettes/WritingHydraConfigs.Rmd",
                                           number_sections = TRUE))
 
 # Import comparative effectiveness study skeleton
-skeletonSource <- "C:/Users/mschuemi/Git/SkeletonComparativeEffectStudy"
+skeletonSource <- "C:/Git/SkeletonComparativeEffectStudy"
 skeletonName <- "ComparativeEffectStudy_v0.0.1.zip"
 tempFolder <- "c:/temp/skeleton"
 
