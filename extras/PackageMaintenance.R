@@ -1,6 +1,6 @@
 # @file PackageMaintenance
 #
-# Copyright 2019 Observational Health Data Sciences and Informatics
+# Copyright 2020 Observational Health Data Sciences and Informatics
 #
 # This file is part of Hydra
 # 
@@ -16,23 +16,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Format and check code
+# Format and check code -------------------------------------------------------
 OhdsiRTools::formatRFolder("./R")
 OhdsiRTools::checkUsagePackage("Hydra")
 OhdsiRTools::updateCopyrightYearFolder()
 devtools::spell_check()
 
-# Create manual and vignettes
+# Create manual and vignettes ------------------------------------------------------
 unlink("extras/Hydra.pdf")
 shell("R CMD Rd2pdf ./ --output=extras/Hydra.pdf")
 
+dir.create("inst/doc")
 rmarkdown::render("vignettes/WritingHydraConfigs.Rmd",
                   output_file = "../inst/doc/WritingHydraConfigs.pdf",
                   rmarkdown::pdf_document(latex_engine = "pdflatex",
                                           toc = TRUE,
                                           number_sections = TRUE))
+unlink("inst/doc/WritingHydraConfigs.tex")
 
-# Import comparative effectiveness study skeleton
+pkgdown::build_site()
+OhdsiRTools::fixHadesLogo()
+
+
+# Import comparative effectiveness study skeleton ---------------------------------------------
 skeletonSource <- "C:/Git/SkeletonComparativeEffectStudy"
 skeletonName <- "ComparativeEffectStudy_v0.0.1.zip"
 tempFolder <- "c:/temp/skeleton"
@@ -64,3 +70,23 @@ setwd(oldWd)
 file.rename(file.path(tempFolder, skeletonName), 
             file.path("inst", "skeletons", skeletonName))
 unlink(tempFolder, recursive = TRUE)
+
+
+# Import prediction study skeleton ---------------------------------------------
+skeletonSource <- "C:/Git/SkeletonPredictionStudy"
+skeletonName <- "PatientLevelPredictionStudy_v0.0.1.zip"
+tempFolder <- "c:/temp/skeleton"
+
+unlink(tempFolder, recursive = TRUE, force = TRUE)
+dir.create(tempFolder, recursive = TRUE)
+file.copy(skeletonSource, tempFolder, recursive = TRUE)
+skeletonFolder <- file.path(tempFolder, "SkeletonPredictionStudy")
+oldWd <- setwd(skeletonFolder)
+DatabaseConnector::createZipFile(zipFile = file.path(tempFolder, skeletonName), 
+                                 skeletonFolder)
+setwd(oldWd)
+file.rename(file.path(tempFolder, skeletonName), 
+            file.path("inst", "skeletons", skeletonName))
+unlink(tempFolder, recursive = TRUE)
+
+

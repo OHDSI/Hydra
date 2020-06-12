@@ -12,3 +12,5 @@
 ^\.git
 ^target
 ^compare_versions
+^docs
+^_pkgdown.yml
