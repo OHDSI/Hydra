@@ -10,7 +10,7 @@ devtools::install(packageFolder, upgrade = "never")
 
 # Run the package --------------------------------------------------------------
 library(pleTestPackage)
-options(fftempdir = "s:/FFtemp")
+options(andromedaTempFolder = "s:/andromedaTemp")
 maxCores <- parallel::detectCores()
 outputFolder <- "s:/pleTestPackage"
 connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = "pdw",
@@ -18,7 +18,7 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = "pdw",
                                                                 user = NULL,
                                                                 password = NULL,
                                                                 port = Sys.getenv("PDW_PORT"))
-cdmDatabaseSchema <- "cdm_truven_mdcd_v699.dbo"
+cdmDatabaseSchema <- "CDM_IBM_MDCD_V1153.dbo"
 cohortDatabaseSchema <- "scratch.dbo"
 cohortTable <- "mschuemi_skeleton"
 databaseId <- "Synpuf"
@@ -40,11 +40,10 @@ execute(connectionDetails = connectionDetails,
         createCohorts = TRUE,
         synthesizePositiveControls = TRUE,
         runAnalyses = TRUE,
-        runDiagnostics = TRUE,
         packageResults = TRUE,
         maxCores = maxCores)
 
-resultsZipFile <- file.path(outputFolder, "export", paste0("Results", databaseId, ".zip"))
+resultsZipFile <- file.path(outputFolder, "export", paste0("Results_", databaseId, ".zip"))
 dataFolder <- file.path(outputFolder, "shinyData")
 
 prepareForEvidenceExplorer(resultsZipFile = resultsZipFile, dataFolder = dataFolder)

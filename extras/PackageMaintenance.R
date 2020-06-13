@@ -39,7 +39,7 @@ OhdsiRTools::fixHadesLogo()
 
 
 # Import comparative effectiveness study skeleton ---------------------------------------------
-skeletonSource <- "C:/Git/SkeletonComparativeEffectStudy"
+skeletonSource <- "C:/git/SkeletonComparativeEffectStudy"
 skeletonName <- "ComparativeEffectStudy_v0.0.1.zip"
 tempFolder <- "c:/temp/skeleton"
 
@@ -48,7 +48,7 @@ dir.create(tempFolder, recursive = TRUE)
 file.copy(skeletonSource, tempFolder, recursive = TRUE)
 skeletonFolder <- file.path(tempFolder, "SkeletonComparativeEffectStudy")
 unlink(file.path(skeletonFolder, "readme.md"))
-file.rename(file.path(skeletonFolder, "studyReadme.md"), file.path(skeletonFolder, "readme.md"))
+file.rename(file.path(skeletonFolder, "studyReadme.md"), file.path(skeletonFolder, "README.md"))
 unlink(file.path(skeletonFolder, "vignettes"), recursive = TRUE)
 unlink(file.path(skeletonFolder, ".git"), recursive = TRUE, force = TRUE)
 unlink(file.path(skeletonFolder, ".Rproj.user"), recursive = TRUE)
