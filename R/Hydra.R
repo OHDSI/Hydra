@@ -16,10 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Hydra
-#'
-#' @docType package
-#' @name Hydra
+#' @keywords internal
+"_PACKAGE"
+
 NULL
 
 .onLoad <- function(libname, pkgname) {
