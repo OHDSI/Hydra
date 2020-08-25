@@ -1,3 +1,14 @@
+Hydra 0.1.0
+============
+
+Changes:
+
+1. Added `packageName` argument to `hydrate()` function to override package name in JSON. (Especially useful when name in JSON is `null`.)
+
+2. Updating to version 1.8.6 of Circe for generation of cohort SQL.
+
+3. Added vignette showing how to use the Hydra R package to hydrate study packages.
+
 Hydra 0.0.11
 ============
 

@@ -15,7 +15,7 @@ Features
 - Contains package skeletons for patient-level prediction and population-level estimation studies.
 - Hydrates package skeletons to fully implemented study packages based on a single JSON specification file.
 - Is used in WebAPI to allow ATLAS to generate study packages.
-- Can be used as stand-alone R package (primarily for development purposes).
+- Can be used as stand-alone R package.
 
 Technology
 ==========
@@ -78,6 +78,7 @@ User Documentation
 Documentation can be found on the [package website](https://ohdsi.github.io/Hydra).
 
 PDF versions of the documentation are also available:
+* Vignette: [Hydrating packags](https://raw.githubusercontent.com/OHDSI/Hydra/master/inst/doc/HydratingPackages.pdf)
 * Vignette: [Writing Hydra configuration files](https://raw.githubusercontent.com/OHDSI/Hydra/master/inst/doc/WritingHydraConfigs.pdf)
 * Package manual: [Hydra.pdf](https://raw.githubusercontent.com/OHDSI/Hydra/master/extras/Hydra.pdf) 
 

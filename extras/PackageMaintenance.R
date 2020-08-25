@@ -34,6 +34,13 @@ rmarkdown::render("vignettes/WritingHydraConfigs.Rmd",
                                           number_sections = TRUE))
 unlink("inst/doc/WritingHydraConfigs.tex")
 
+rmarkdown::render("vignettes/HydratingPackages.Rmd",
+                  output_file = "../inst/doc/HydratingPackages.pdf",
+                  rmarkdown::pdf_document(latex_engine = "pdflatex",
+                                          toc = TRUE,
+                                          number_sections = TRUE))
+unlink("inst/doc/HydratingPackages.tex")
+
 pkgdown::build_site()
 OhdsiRTools::fixHadesLogo()
 

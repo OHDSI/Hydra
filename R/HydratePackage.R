@@ -23,9 +23,12 @@
 #'                           of a package skeleton to hydrate. If not specified,
 #'                           the appropriate skeleton will be selected from those
 #'                           inside the Hydra package.
+#' @param packageName        The name of the R package to create. If provided, will
+#'                           override the \code{packageName} variable in the 
+#'                           specifications JSON.
 #'
 #' @export
-hydrate <- function(specifications, outputFolder, skeletonFileName = NULL) {
+hydrate <- function(specifications, outputFolder, skeletonFileName = NULL, packageName = NULL) {
   if (!is.character(specifications)) {
     stop("Specifications should be character (a JSON string). You can load JSON files using loadSpecifications()") 
   }
@@ -34,6 +37,12 @@ hydrate <- function(specifications, outputFolder, skeletonFileName = NULL) {
   } else {
     dir.create(outputFolder, recursive = TRUE) 
   }
+  if (!is.null(packageName)) {
+    specifications <- RJSONIO::fromJSON(specifications)
+    specifications$packageName <- packageName
+    specifications <- RJSONIO::toJSON(specifications)
+  }
+  
   hydra <- rJava::new(Class = rJava::J("org.ohdsi.hydra.Hydra"), 
                       as.character(specifications)[1])
   hydra$setPackageFolder(system.file(package = "Hydra"))

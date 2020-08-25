@@ -1,8 +1,8 @@
 Package: Hydra
 Type: Package
 Title: Hydrating Package Skeletons into Executable R Study Packages
-Version: 0.0.11
-Date: 2020-06-12
+Version: 0.1.0
+Date: 2020-08-25
 Authors@R: c(
     person("Martijn", "Schuemie", , "schuemie@ohdsi.org", role = c("aut", "cre")),
     person("Jenna", "Reps", role = c("aut")),
@@ -15,11 +15,13 @@ VignetteBuilder: knitr
 URL: https://ohdsi.github.io/Hydra, https://github.com/OHDSI/Hydra
 BugReports: https://github.com/OHDSI/Hydra/issues
 Imports:
-    rJava
+    rJava,
+    RJSONIO
 Suggests:
     testthat,
     knitr,
     rmarkdown
 NeedsCompilation: no
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Language: en-US
+Encoding: UTF-8
