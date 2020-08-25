@@ -9,6 +9,9 @@ Changes:
 
 3. Added vignette showing how to use the Hydra R package to hydrate study packages.
 
+4. Updating PLE skeleton to use renv.
+
+
 Hydra 0.0.11
 ============
 
