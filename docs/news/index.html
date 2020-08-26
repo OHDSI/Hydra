@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Hydra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -96,6 +96,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/HydratingPackages.html">Hydrating packages</a>
+    </li>
     <li>
       <a href="../articles/WritingHydraConfigs.html">Writing Hydra configuration files</a>
     </li>
@@ -129,6 +132,17 @@
       <small>Source: <a href='https://github.com/OHDSI/Hydra/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="hydra-010" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#hydra-010" class="anchor"></a>Hydra 0.1.0</h1>
+<p>Changes:</p>
+<ol>
+<li><p>Added <code>packageName</code> argument to <code><a href="../reference/hydrate.html">hydrate()</a></code> function to override package name in JSON. (Especially useful when name in JSON is <code>null</code>.)</p></li>
+<li><p>Updating to version 1.8.6 of Circe for generation of cohort SQL.</p></li>
+<li><p>Added vignette showing how to use the Hydra R package to hydrate study packages.</p></li>
+<li><p>Updating PLE skeleton to use renv.</p></li>
+</ol>
+</div>
     <div id="hydra-0011" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.11">
 <a href="#hydra-0011" class="anchor"></a>Hydra 0.0.11</h1>

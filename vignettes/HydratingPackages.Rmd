@@ -21,13 +21,13 @@ This vignette describes how the Hydra package can be used to create study R pack
 
 # Obtaining the JSON
 
-The first step is to fully define the study in [ATLAS](http://atlas-demo.ohdsi.org/). This can be an estimation study of a prediction study. Once completed, we need to obtain the JSON. We can obtain the JSON from the Export tab in the Utilities tab, as shown in Figure 1.
+The first step is to fully define the study in [ATLAS](http://atlas-demo.ohdsi.org/). This can be an estimation study or a prediction study. Once completed, we need to obtain the JSON. We can obtain the JSON from the Export tab in the Utilities tab, as shown in Figure 1.
 
 ```{r atlas, fig.cap='Obtaining the JSON specifications from ATLAS',echo=FALSE, out.width='100%', fig.align='center'}
 knitr::include_graphics("atlas.png")
 ```
 
-Select all the JSON text (for example using Ctrl-a on Windows), copy it, and paste it into a text file. Save the text file somewhere on your computer, for example in `c:/temp/specs.json`.
+Select all the JSON text (for example using Ctrl-a on Windows), copy it, and paste it into a text file. Save the text file somewhere on your computer, for example as `c:/temp/specs.json`.
 
 # Installing Hydra
 
