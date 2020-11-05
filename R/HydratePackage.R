@@ -38,9 +38,7 @@ hydrate <- function(specifications, outputFolder, skeletonFileName = NULL, packa
     dir.create(outputFolder, recursive = TRUE) 
   }
   if (!is.null(packageName)) {
-    specifications <- RJSONIO::fromJSON(specifications)
-    specifications$packageName <- packageName
-    specifications <- RJSONIO::toJSON(specifications)
+    specifications <- gsub("\"packageName\":.*?,", sprintf("\"packageName\": \"%s\",", packageName), specifications)
   }
   
   hydra <- rJava::new(Class = rJava::J("org.ohdsi.hydra.Hydra"), 

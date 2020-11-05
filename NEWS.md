@@ -1,5 +1,13 @@
+Hydra 0.1.1
+===========
+
+Bugfixes:
+
+1. Prevent conversion to scientific notation when hydrating.
+
+
 Hydra 0.1.0
-============
+===========
 
 Changes:
 
