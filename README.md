@@ -1,7 +1,7 @@
 Hydra
 =====
 
-[![Build Status](https://travis-ci.org/OHDSI/Hydra.svg?branch=master)](https://travis-ci.org/OHDSI/Hydra)
+[![Build Status](https://github.com/OHDSI/Hydra/workflows/R-CMD-check/badge.svg)](https://github.com/OHDSI/Hydra/actions?query=workflow%3AR-CMD-check)
 [![codecov.io](https://codecov.io/github/OHDSI/Hydra/coverage.svg?branch=master)](https://codecov.io/github/OHDSI/Hydra?branch=master)
 
 Hydra is part of [HADES](https://ohdsi.github.io/Hades).
