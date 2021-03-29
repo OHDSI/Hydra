@@ -28,10 +28,10 @@ for (i in (1:nrow(webApiCohorts))) {
 }
 studyCohorts <- dplyr::bind_rows(studyCohorts)
 
-cohortDefinitionsArray <- studyCohorts %>% 
-        dplyr::select(.data$id, .data$name) %>% 
+cohortDefinitionsArray <- studyCohorts %>%
+        dplyr::select(.data$id, .data$name, .data$expression) %>% 
+        # as.list() %>% 
         jsonlite::toJSON(pretty = TRUE)
-
 
 
 # Hydrate skeleton with example specifications ---------------------------------
