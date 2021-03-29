@@ -30,16 +30,16 @@ studyCohorts <- dplyr::bind_rows(studyCohorts)
 
 cohortDefinitionsArray <- studyCohorts %>% 
         dplyr::select(.data$id, .data$name) %>% 
-        as.list()
+        jsonlite::toJSON(pretty = TRUE)
 
 
 
 # Hydrate skeleton with example specifications ---------------------------------
 specifications <- Hydra::loadSpecifications("extras/ExampleCohortDiagnosticsSpecs.json") %>% 
-        RJSONIO::fromJSON(digits = 23)
+        jsonlite::fromJSON()
 specifications$cohortDefinitions <- cohortDefinitionsArray
 specifications <- specifications %>% 
-        RJSONIO::toJSON(digits = 23)
+        jsonlite::toJSON(pretty = TRUE)
 
 
 packageFolder <- "c:/temp/hydraOutput/CohortDiagnostics"
