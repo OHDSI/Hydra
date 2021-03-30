@@ -8,7 +8,7 @@
 	"createdDate": null,
 	"modifiedBy": "rao@ohdsi.org",
 	"modifiedDate": null,
-  "skeletonType": "CohortDiagnostics",
+  "skeletonType": "CohortDiagnosticsStudy",
   "organizationName": "OHDSI",
   "description": "Cohort diagnostics on selected set of cohorts.",
   "cohortDefinitions": []

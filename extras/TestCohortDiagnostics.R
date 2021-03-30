@@ -20,7 +20,8 @@ for (i in (1:nrow(webApiCohorts))) {
         df <- tidyr::tibble(
                 id = cohortId,
                 name = stringr::str_trim(stringr::str_squish(cohortDefinition$name)),
-                expression = cohortDefinition$expression %>% RJSONIO::toJSON(digits = 23, pretty = TRUE),
+                expression = cohortDefinition$expression %>% 
+                        RJSONIO::toJSON(digits = 23, pretty = TRUE),
                 sql = ROhdsiWebApi::getCohortSql(cohortDefinition = cohortDefinition$expression,
                                                  baseUrl = baseUrl)
         )
@@ -28,10 +29,8 @@ for (i in (1:nrow(webApiCohorts))) {
 }
 studyCohorts <- dplyr::bind_rows(studyCohorts)
 
-cohortDefinitionsArray <- studyCohorts %>%
-        dplyr::select(.data$id, .data$name, .data$expression) %>% 
-        # as.list() %>% 
-        jsonlite::toJSON(pretty = TRUE)
+cohortDefinitionsArray <- studyCohorts[1,] %>%
+        dplyr::select(.data$id, .data$name, .data$expression)
 
 
 # Hydrate skeleton with example specifications ---------------------------------
@@ -39,7 +38,7 @@ specifications <- Hydra::loadSpecifications("extras/ExampleCohortDiagnosticsSpec
         jsonlite::fromJSON()
 specifications$cohortDefinitions <- cohortDefinitionsArray
 specifications <- specifications %>% 
-        jsonlite::toJSON(pretty = TRUE)
+        jsonlite::toJSON(pretty = TRUE) 
 
 
 packageFolder <- "c:/temp/hydraOutput/CohortDiagnostics"
