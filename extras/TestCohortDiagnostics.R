@@ -19,9 +19,12 @@ for (i in (1:nrow(webApiCohorts))) {
                 ROhdsiWebApi::getCohortDefinition(cohortId = cohortId, baseUrl = baseUrl)
         df <- tidyr::tibble(
                 id = cohortId,
+                createdDate = webApiCohorts$createdDate[[i]],
+                modifiedDate = webApiCohorts$modifiedDate[[i]],
+                description = webApiCohorts$description[[i]],
                 name = stringr::str_trim(stringr::str_squish(cohortDefinition$name)),
                 expression = cohortDefinition$expression %>% 
-                        RJSONIO::toJSON(digits = 23, pretty = TRUE),
+                        RJSONIO::toJSON(digits = 23),
                 sql = ROhdsiWebApi::getCohortSql(cohortDefinition = cohortDefinition$expression,
                                                  baseUrl = baseUrl)
         )
@@ -29,8 +32,22 @@ for (i in (1:nrow(webApiCohorts))) {
 }
 studyCohorts <- dplyr::bind_rows(studyCohorts)
 
-cohortDefinitionsArray <- studyCohorts[1,] %>%
-        dplyr::select(.data$id, .data$name, .data$expression)
+cohortDefinitions <- studyCohorts %>%
+        dplyr::select(.data$id, .data$name, .data$createdDate, 
+                      .data$modifiedDate, .data$description,
+                      .data$expression)
+
+cohortDefinitionsArray <- list()
+for (i in (1:nrow(cohortDefinitions))) {
+        cohortDefinition <- cohortDefinitions[i,]
+        cohortDefinitionsArray[[i]] <- list(id = cohortDefinition$id,
+                                            name = cohortDefinition$name,
+                                            createdDate = cohortDefinition$createdDate,
+                                            modifiedDate = cohortDefinition$modifiedDate,
+                                            expression = cohortDefinition$expression %>% 
+                                                    RJSONIO::fromJSON(digits = 23))
+}
+
 
 
 # Hydrate skeleton with example specifications ---------------------------------
@@ -43,7 +60,10 @@ specifications <- specifications %>%
 
 packageFolder <- "c:/temp/hydraOutput/CohortDiagnostics"
 unlink(packageFolder, recursive = TRUE)
-Hydra::hydrate(specifications = specifications, outputFolder = packageFolder)
+Hydra::hydrate(specifications = specifications, 
+               outputFolder = packageFolder, 
+               skeletonFileName = "D:\\git\\github\\gowthamrao\\Hydra\\inst\\skeletons\\CohortDiagnosticsStudy_v0.0.1.zip", 
+               packageName = "eunomiaTemp")
 
 
 # Build and install hydrated package -------------------------------------------
