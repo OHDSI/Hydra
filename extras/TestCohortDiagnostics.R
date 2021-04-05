@@ -1,49 +1,56 @@
+# converts time in integer/milliseconds to date-time with timezone.  assumption is that the system
+# timezone = time zone of the local server running WebApi.
+.millisecondsToDate <- function(milliseconds) {
+        if (is.numeric(milliseconds)) {
+                # we assume that WebApi returns in milliseconds when the value is numeric
+                sec <- milliseconds/1000
+                milliseconds <- lubridate::as_datetime(x = sec, tz = Sys.timezone())
+        }
+        return(milliseconds)
+}
+
+.convertToDateTime <- function(x) {
+        if (is.numeric(x)) {
+                x <- .millisecondsToDate(milliseconds = x)
+        } else if (is.character(x)) {
+                x <- stringr::str_trim(x)
+                x <- lubridate::as_datetime(x = x,
+                                            tz = Sys.timezone(),
+                                            lubridate::guess_formats(x = x, orders = c("y-m-d H:M",
+                                                                                       "y-m-d H:M:S",
+                                                                                       "ymdHMS",
+                                                                                       "ymd HMS"))[1])
+        }
+        return(x)
+}
+
 library(magrittr)
 # Set up
-baseUrl <- Sys.getenv("BaseUrl")
-cohortIds <- c(18345,18346,14906,18351,18347,18348,14907,
-               18349,18350,18352,17493,17492,14909,18342,
-               17693,17692,17695,17694,17720, 
-               21402)
-
-# get specifications for the cohortIds above
-webApiCohorts <-
-        ROhdsiWebApi::getCohortDefinitionsMetaData(baseUrl = baseUrl) %>%
-        dplyr::filter(.data$id %in% cohortIds)
+baseUrl <- "http://api.ohdsi.org:8080/WebAPI"
+cohortIds <- c(1776966)
 
 # compile them into a data table
 studyCohorts <- list()
-for (i in (1:nrow(webApiCohorts))) {
-        cohortId <- webApiCohorts$id[[i]]
+for (i in (1:length(cohortIds))) {
         cohortDefinition <-
-                ROhdsiWebApi::getCohortDefinition(cohortId = cohortId, baseUrl = baseUrl)
+                ROhdsiWebApi::getCohortDefinition(cohortId = cohortIds[[i]], baseUrl = baseUrl)
         df <- tidyr::tibble(
-                id = cohortId,
-                createdDate = webApiCohorts$createdDate[[i]],
-                modifiedDate = webApiCohorts$modifiedDate[[i]],
-                description = webApiCohorts$description[[i]],
+                id = cohortDefinition$id,
+                createdDate = .convertToDateTime(cohortDefinition$createdDate),
                 name = stringr::str_trim(stringr::str_squish(cohortDefinition$name)),
                 expression = cohortDefinition$expression %>% 
-                        RJSONIO::toJSON(digits = 23),
-                sql = ROhdsiWebApi::getCohortSql(cohortDefinition = cohortDefinition$expression,
-                                                 baseUrl = baseUrl)
+                        RJSONIO::toJSON(digits = 23)
         )
         studyCohorts[[i]] <- df
 }
 studyCohorts <- dplyr::bind_rows(studyCohorts)
 
-cohortDefinitions <- studyCohorts %>%
-        dplyr::select(.data$id, .data$name, .data$createdDate, 
-                      .data$modifiedDate, .data$description,
-                      .data$expression)
-
 cohortDefinitionsArray <- list()
-for (i in (1:nrow(cohortDefinitions))) {
-        cohortDefinition <- cohortDefinitions[i,]
+for (i in (1:nrow(studyCohorts))) {
+        cohortDefinition <- studyCohorts[i,]
         cohortDefinitionsArray[[i]] <- list(id = cohortDefinition$id,
                                             name = cohortDefinition$name,
                                             createdDate = cohortDefinition$createdDate,
-                                            modifiedDate = cohortDefinition$modifiedDate,
                                             expression = cohortDefinition$expression %>% 
                                                     RJSONIO::fromJSON(digits = 23))
 }
@@ -54,16 +61,27 @@ for (i in (1:nrow(cohortDefinitions))) {
 specifications <- Hydra::loadSpecifications("extras/ExampleCohortDiagnosticsSpecs.json") %>% 
         jsonlite::fromJSON()
 specifications$cohortDefinitions <- cohortDefinitionsArray
-specifications <- specifications %>% 
-        jsonlite::toJSON(pretty = TRUE) 
 
+tempJson <- paste0(tempfile(), ".json")
+specifications %>% 
+        jsonlite::toJSON() %>% 
+        SqlRender::writeSql(targetFile = tempJson)
+specifications <- Hydra::loadSpecifications(tempJson)
 
 packageFolder <- "c:/temp/hydraOutput/CohortDiagnostics"
 unlink(packageFolder, recursive = TRUE)
 Hydra::hydrate(specifications = specifications, 
-               outputFolder = packageFolder, 
-               skeletonFileName = "D:\\git\\github\\gowthamrao\\Hydra\\inst\\skeletons\\CohortDiagnosticsStudy_v0.0.1.zip", 
-               packageName = "eunomiaTemp")
+               outputFolder = packageFolder)
+
+
+
+
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+
 
 
 # Build and install hydrated package -------------------------------------------
