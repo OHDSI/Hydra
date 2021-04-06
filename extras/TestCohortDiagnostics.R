@@ -55,22 +55,19 @@ for (i in (1:nrow(studyCohorts))) {
                                                     RJSONIO::fromJSON(digits = 23))
 }
 
-
-
-# Hydrate skeleton with example specifications ---------------------------------
-specifications <- Hydra::loadSpecifications("extras/ExampleCohortDiagnosticsSpecs.json") %>% 
-        jsonlite::fromJSON()
+# Hydrate skeleton with example specifications --------------------------------- 
+specifications <- rjson::fromJSON(file = "extras/ExampleCohortDiagnosticsSpecs.json")
 specifications$cohortDefinitions <- cohortDefinitionsArray
-
-tempJson <- paste0(tempfile(), ".json")
-specifications %>% 
-        jsonlite::toJSON() %>% 
-        SqlRender::writeSql(targetFile = tempJson)
-specifications <- Hydra::loadSpecifications(tempJson)
+specifications <- specifications %>% 
+        rjson::toJSON()
+jsonFileName <- paste0(tempfile(), ".json")
+write(x = specifications, file = jsonFileName)
+hydraSpecificationFromFile <- Hydra::loadSpecifications(fileName = jsonFileName)
+unlink(x = jsonFileName, force = TRUE)
 
 packageFolder <- "c:/temp/hydraOutput/CohortDiagnostics"
-unlink(packageFolder, recursive = TRUE)
-Hydra::hydrate(specifications = specifications, 
+unlink(x = packageFolder, recursive = TRUE)
+Hydra::hydrate(specifications = hydraSpecificationFromFile,
                outputFolder = packageFolder)
 
 
