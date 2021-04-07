@@ -1,28 +1,18 @@
-# converts time in integer/milliseconds to date-time with timezone.  assumption is that the system
-# timezone = time zone of the local server running WebApi.
-.millisecondsToDate <- function(milliseconds) {
-        if (is.numeric(milliseconds)) {
-                # we assume that WebApi returns in milliseconds when the value is numeric
-                sec <- milliseconds/1000
-                milliseconds <- lubridate::as_datetime(x = sec, tz = Sys.timezone())
-        }
-        return(milliseconds)
-}
+# Hydrate skeleton with example specifications --------------------------------- 
+id <- 1
+version <- "v0.1.0"
+name <- "Study of some cohorts of interest"
+packageName <- "eunomiaExamplePackage"
+skeletonVersion <- "v0.0.1"
+createdBy <- "rao@ohdsi.org"
+createdDate <- Sys.Date()
+modifiedBy <- "rao@ohdsi.org"
+modifiedDate <- NA
+skeletonType <- "CohortDiagnosticsStudy"
+organizationName <- "OHDSI"
+description <- "Cohort diagnostics on selected set of cohorts."
 
-.convertToDateTime <- function(x) {
-        if (is.numeric(x)) {
-                x <- .millisecondsToDate(milliseconds = x)
-        } else if (is.character(x)) {
-                x <- stringr::str_trim(x)
-                x <- lubridate::as_datetime(x = x,
-                                            tz = Sys.timezone(),
-                                            lubridate::guess_formats(x = x, orders = c("y-m-d H:M",
-                                                                                       "y-m-d H:M:S",
-                                                                                       "ymdHMS",
-                                                                                       "ymd HMS"))[1])
-        }
-        return(x)
-}
+
 
 library(magrittr)
 # Set up
@@ -30,45 +20,45 @@ baseUrl <- "http://api.ohdsi.org:8080/WebAPI"
 cohortIds <- c(1776966)
 
 # compile them into a data table
-studyCohorts <- list()
+cohortDefinitionsArray <- list()
 for (i in (1:length(cohortIds))) {
         cohortDefinition <-
                 ROhdsiWebApi::getCohortDefinition(cohortId = cohortIds[[i]], baseUrl = baseUrl)
-        df <- tidyr::tibble(
+        cohortDefinitionsArray[[i]] <- list(
                 id = cohortDefinition$id,
-                createdDate = .convertToDateTime(cohortDefinition$createdDate),
+                createdDate = cohortDefinition$createdDate,
                 name = stringr::str_trim(stringr::str_squish(cohortDefinition$name)),
-                expression = cohortDefinition$expression %>% 
-                        RJSONIO::toJSON(digits = 23)
+                expression = cohortDefinition$expression
         )
-        studyCohorts[[i]] <- df
-}
-studyCohorts <- dplyr::bind_rows(studyCohorts)
-
-cohortDefinitionsArray <- list()
-for (i in (1:nrow(studyCohorts))) {
-        cohortDefinition <- studyCohorts[i,]
-        cohortDefinitionsArray[[i]] <- list(id = cohortDefinition$id,
-                                            name = cohortDefinition$name,
-                                            createdDate = cohortDefinition$createdDate,
-                                            expression = cohortDefinition$expression %>% 
-                                                    RJSONIO::fromJSON(digits = 23))
 }
 
-# Hydrate skeleton with example specifications --------------------------------- 
-specifications <- rjson::fromJSON(file = "extras/ExampleCohortDiagnosticsSpecs.json")
-specifications$cohortDefinitions <- cohortDefinitionsArray
-specifications <- specifications %>% 
-        rjson::toJSON()
+specifications <- list(id = id,
+                       version = version,
+                       name = name,
+                       packageName = packageName,
+                       skeletonVersin = skeletonVersion,
+                       createdBy = createdBy,
+                       createdDate = createdDate,
+                       modifiedBy = modifiedBy,
+                       modifiedDate = modifiedDate,
+                       skeletontype = skeletonType,
+                       organizationName = organizationName,
+                       description = description,
+                       cohortDefinitions = cohortDefinitionsArray)
+
 jsonFileName <- paste0(tempfile(), ".json")
-write(x = specifications, file = jsonFileName)
+write(x = specifications %>% rjson::toJSON(), file = jsonFileName)
 hydraSpecificationFromFile <- Hydra::loadSpecifications(fileName = jsonFileName)
 unlink(x = jsonFileName, force = TRUE)
 
 packageFolder <- "c:/temp/hydraOutput/CohortDiagnostics"
 unlink(x = packageFolder, recursive = TRUE)
 Hydra::hydrate(specifications = hydraSpecificationFromFile,
-               outputFolder = packageFolder)
+               outputFolder = packageFolder, 
+               skeletonFileName = system.file("skeletons", 
+                                              "CohortDiagnosticsStudy_v0.0.1.zip", 
+                                              package = "Hydra")
+)
 
 
 
