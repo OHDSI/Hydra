@@ -1,15 +1,254 @@
 {
-  "id": 1,
-  "version": "v0.1.0",
-	"name": "Study of some cohorts of interest",
-	"packageName": "eunomiaExamplePackage",
-	"skeletonVersion": "v0.0.1",
-	"createdBy": "rao@ohdsi.org",
-	"createdDate": null,
-	"modifiedBy": "rao@ohdsi.org",
-	"modifiedDate": null,
-  "skeletonType": "CohortDiagnosticsStudy",
-  "organizationName": "OHDSI",
-  "description": "Cohort diagnostics on selected set of cohorts.",
-  "cohortDefinitions": []
+	"id" : 1,
+	"version" : "v0.1.0",
+	"name" : "Study of some cohorts of interest",
+	"packageName" : "eunomiaExamplePackage",
+	"skeletonVersin" : "v0.0.1",
+	"createdBy" : "rao@ohdsi.org",
+	"createdDate" : 18728,
+	"modifiedBy" : "rao@ohdsi.org",
+	"modifiedDate" : null,
+	"skeletontype" : "CohortDiagnosticsStudy",
+	"organizationName" : "OHDSI",
+	"description" : "Cohort diagnostics on selected set of cohorts.",
+	"cohortDefinitions" : [
+		{
+			"id" : 82,
+			"createdDate" : 1.430511e+12,
+			"name" : "Newly diagnosed women with endometriosis",
+			"expression" : {
+				"cdmVersionRange" : ">=5.0.0",
+				"PrimaryCriteria" : {
+					"CriteriaList" : [
+						{
+							"ConditionOccurrence" : {
+								"CodesetId" : 0,
+								"First" : true,
+								"ConditionTypeExclude" : false
+							}
+						}
+					],
+					"ObservationWindow" : {
+						"PriorDays" : 180,
+						"PostDays" : 0
+					},
+					"PrimaryCriteriaLimit" : {
+						"Type" : "All"
+					}
+				},
+				"ConceptSets" : [
+					{
+						"id" : 0,
+						"name" : "Endometriosis",
+						"expression" : {
+							"items" : [
+								{
+									"concept" : {
+										"CONCEPT_ID" : 433527,
+										"CONCEPT_NAME" : "Endometriosis",
+										"STANDARD_CONCEPT" : "S",
+										"STANDARD_CONCEPT_CAPTION" : "Standard",
+										"INVALID_REASON" : "V",
+										"INVALID_REASON_CAPTION" : "Valid",
+										"CONCEPT_CODE" : "129103003",
+										"DOMAIN_ID" : "Condition",
+										"VOCABULARY_ID" : "SNOMED",
+										"CONCEPT_CLASS_ID" : "Clinical Finding"
+									},
+									"isExcluded" : false,
+									"includeDescendants" : true,
+									"includeMapped" : false
+								}
+							]
+						}
+					},
+					{
+						"id" : 1,
+						"name" : "depression",
+						"expression" : {
+							"items" : [
+								{
+									"concept" : {
+										"CONCEPT_ID" : 4098302,
+										"CONCEPT_NAME" : "Recurrent depression",
+										"STANDARD_CONCEPT" : "S",
+										"STANDARD_CONCEPT_CAPTION" : "Standard",
+										"INVALID_REASON" : "V",
+										"INVALID_REASON_CAPTION" : "Valid",
+										"CONCEPT_CODE" : "191616006",
+										"DOMAIN_ID" : "Condition",
+										"VOCABULARY_ID" : "SNOMED",
+										"CONCEPT_CLASS_ID" : "Clinical Finding"
+									},
+									"isExcluded" : false,
+									"includeDescendants" : true,
+									"includeMapped" : false
+								},
+								{
+									"concept" : {
+										"CONCEPT_ID" : 4282316,
+										"CONCEPT_NAME" : "Recurrent major depression",
+										"STANDARD_CONCEPT" : "S",
+										"STANDARD_CONCEPT_CAPTION" : "Standard",
+										"INVALID_REASON" : "V",
+										"INVALID_REASON_CAPTION" : "Valid",
+										"CONCEPT_CODE" : "66344007",
+										"DOMAIN_ID" : "Condition",
+										"VOCABULARY_ID" : "SNOMED",
+										"CONCEPT_CLASS_ID" : "Clinical Finding"
+									},
+									"isExcluded" : false,
+									"includeDescendants" : true,
+									"includeMapped" : false
+								}
+							]
+						}
+					}
+				],
+				"QualifiedLimit" : {
+					"Type" : "First"
+				},
+				"ExpressionLimit" : {
+					"Type" : "First"
+				},
+				"InclusionRules" : [
+					{
+						"name" : "depression",
+						"expression" : {
+							"Type" : "ALL",
+							"CriteriaList" : [
+								{
+									"Criteria" : {
+										"ConditionOccurrence" : {
+											"CodesetId" : 1,
+											"ConditionTypeExclude" : false
+										}
+									},
+									"StartWindow" : {
+										"Start" : {
+											"Coeff" : -1
+										},
+										"End" : {
+											"Coeff" : 1
+										}
+									},
+									"RestrictVisit" : false,
+									"IgnoreObservationPeriod" : false,
+									"Occurrence" : {
+										"Type" : 2,
+										"Count" : 1,
+										"IsDistinct" : false
+									}
+								}
+							],
+							"DemographicCriteriaList" : [],
+							"Groups" : []
+						}
+					},
+					{
+						"expression" : {
+							"Type" : "ALL",
+							"CriteriaList" : [
+								{
+									"Criteria" : {
+										"ConditionOccurrence" : {
+											"CodesetId" : 1,
+											"ConditionTypeExclude" : false
+										}
+									},
+									"StartWindow" : {
+										"Start" : {
+											"Coeff" : -1
+										},
+										"End" : {
+											"Coeff" : 1
+										}
+									},
+									"RestrictVisit" : false,
+									"IgnoreObservationPeriod" : false,
+									"Occurrence" : {
+										"Type" : 2,
+										"Count" : 1,
+										"IsDistinct" : false
+									}
+								}
+							],
+							"DemographicCriteriaList" : [],
+							"Groups" : []
+						}
+					}
+				],
+				"CensoringCriteria" : [],
+				"CollapseSettings" : {
+					"CollapseType" : "ERA",
+					"EraPad" : 0
+				}
+			}
+		},
+		{
+			"id" : 1776966,
+			"createdDate" : 1.617626e+12,
+			"name" : "[CohortDiagnostics] Simple Cohort Definition",
+			"expression" : {
+				"cdmVersionRange" : ">=5.0.0",
+				"PrimaryCriteria" : {
+					"CriteriaList" : [
+						{
+							"ConditionOccurrence" : {
+								"CodesetId" : 0,
+								"ConditionTypeExclude" : false
+							}
+						}
+					],
+					"ObservationWindow" : {
+						"PriorDays" : 0,
+						"PostDays" : 0
+					},
+					"PrimaryCriteriaLimit" : {
+						"Type" : "First"
+					}
+				},
+				"ConceptSets" : [
+					{
+						"id" : 0,
+						"name" : "Hypertension",
+						"expression" : {
+							"items" : [
+								{
+									"concept" : {
+										"CONCEPT_ID" : 320128,
+										"CONCEPT_NAME" : "Essential hypertension",
+										"STANDARD_CONCEPT" : "S",
+										"STANDARD_CONCEPT_CAPTION" : "Standard",
+										"INVALID_REASON" : "V",
+										"INVALID_REASON_CAPTION" : "Valid",
+										"CONCEPT_CODE" : "59621000",
+										"DOMAIN_ID" : "Condition",
+										"VOCABULARY_ID" : "SNOMED",
+										"CONCEPT_CLASS_ID" : "Clinical Finding"
+									},
+									"isExcluded" : false,
+									"includeDescendants" : true,
+									"includeMapped" : false
+								}
+							]
+						}
+					}
+				],
+				"QualifiedLimit" : {
+					"Type" : "First"
+				},
+				"ExpressionLimit" : {
+					"Type" : "First"
+				},
+				"InclusionRules" : [],
+				"CensoringCriteria" : [],
+				"CollapseSettings" : {
+					"CollapseType" : "ERA",
+					"EraPad" : 0
+				},
+				"CensorWindow" : {}
+			}
+		}
+	]
 }
