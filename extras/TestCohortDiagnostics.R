@@ -2,6 +2,7 @@ rootFolder <- "D:/temp"
 
 ########## Code to generate ExampleCohortDiagnosticsSpecs.json #####################
 # Hydrate skeleton with example specifications ---------------------------------
+
 # id <- 1
 # version <- "v0.1.0"
 # name <- "Study of some cohorts of interest"
@@ -105,19 +106,25 @@ unlink(outputFolder, recursive = TRUE)
 
 library("eunomiaExamplePackage")
 
+connectionDetails <- Eunomia::getEunomiaConnectionDetails()
+databaseId = "Eunomia"
+cdmDatabaseSchema <- "main"
+cohortDatabaseSchema <- "main"
+cohortTable <- "cohort"
+oracleTempSchema <- NULL
+
 runCohortDiagnostics(
-        packageName = "eunomiaExamplePackage",
         connectionDetails = connectionDetails,
         cdmDatabaseSchema = cdmDatabaseSchema,
         cohortDatabaseSchema = cohortDatabaseSchema,
         cohortTable = cohortTable,
         outputFolder = outputFolder,
-        databaseId = "Eunomia",
-        databaseName = "Eunomia Test",
-        databaseDescription = "This is a test data base called Eunomia",
+        databaseId = databaseId,
+        databaseName = databaseId,
+        databaseDescription = databaseId,
         runCohortCharacterization = TRUE,
         runCohortOverlap = TRUE,
-        runOrphanConcepts = FALSE,
+        runOrphanConcepts = TRUE,
         runVisitContext = TRUE,
         runIncludedSourceConcepts = TRUE,
         runTimeDistributions = TRUE,
