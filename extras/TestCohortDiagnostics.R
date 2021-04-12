@@ -1,7 +1,7 @@
 rootFolder <- "D:/temp"
 
-########### Code to generate ExampleCohortDiagnosticsSpecs.json #####################
-# # Hydrate skeleton with example specifications --------------------------------- 
+########## Code to generate ExampleCohortDiagnosticsSpecs.json #####################
+# Hydrate skeleton with example specifications ---------------------------------
 # id <- 1
 # version <- "v0.1.0"
 # name <- "Study of some cohorts of interest"
@@ -18,17 +18,26 @@ rootFolder <- "D:/temp"
 # 
 # library(magrittr)
 # # Set up
-# baseUrl <- "http://api.ohdsi.org:8080/WebAPI"
-# cohortIds <- c(82,1776966)
+# baseUrl <- Sys.getenv("BaseUrl")
+# webApiCohorts <- ROhdsiWebApi::getCohortDefinitionsMetaData(baseUrl = baseUrl)
+# studyCohorts <-  webApiCohorts %>% 
+#         dplyr::filter(.data$id %in% c(18345,18346,14906,18351,18347,18348,14907,
+#                                       18349,18350,18352,17493,17492,14909,18342,
+#                                       17693,17692,17695,17694,17720, 
+#                                       21402
+#         ))
 # 
 # # compile them into a data table
 # cohortDefinitionsArray <- list()
-# for (i in (1:length(cohortIds))) {
+# for (i in (1:nrow(studyCohorts))) {
 #         cohortDefinition <-
-#                 ROhdsiWebApi::getCohortDefinition(cohortId = cohortIds[[i]], baseUrl = baseUrl)
+#                 ROhdsiWebApi::getCohortDefinition(cohortId = studyCohorts$id[[i]], 
+#                                                   baseUrl = baseUrl)
 #         cohortDefinitionsArray[[i]] <- list(
-#                 id = cohortDefinition$id,
-#                 createdDate = cohortDefinition$createdDate,
+#                 id = studyCohorts$id[[i]],
+#                 createdDate = studyCohorts$createdDate[[i]],
+#                 modifiedDate = studyCohorts$createdDate[[i]],
+#                 logicDescription = studyCohorts$description[[i]],
 #                 name = stringr::str_trim(stringr::str_squish(cohortDefinition$name)),
 #                 expression = cohortDefinition$expression
 #         )
@@ -90,19 +99,18 @@ outputFolder <- file.path(rootFolder, "testResults")
 connectionDetails <- Eunomia::getEunomiaConnectionDetails()
 cdmDatabaseSchema <- "main"
 cohortDatabaseSchema <- "main"
-cohortTable <- "Eunomia"
+cohortTable <- "EunomiaCohortTable"
 
 unlink(outputFolder, recursive = TRUE)
 
 library("eunomiaExamplePackage")
 
 runCohortDiagnostics(
-        packageName = packageName,
+        packageName = "eunomiaExamplePackage",
         connectionDetails = connectionDetails,
         cdmDatabaseSchema = cdmDatabaseSchema,
         cohortDatabaseSchema = cohortDatabaseSchema,
         cohortTable = cohortTable,
-        oracleTempSchema = oracleTempSchema,
         outputFolder = outputFolder,
         databaseId = "Eunomia",
         databaseName = "Eunomia Test",
