@@ -1,8 +1,8 @@
 Package: Hydra
 Type: Package
 Title: Hydrating Package Skeletons into Executable R Study Packages
-Version: 0.1.2
-Date: 2021-2-02
+Version: 0.2.0
+Date: 2021-4-27
 Authors@R: c(
     person("Martijn", "Schuemie", , "schuemie@ohdsi.org", role = c("aut", "cre")),
     person("Jenna", "Reps", role = c("aut")),
