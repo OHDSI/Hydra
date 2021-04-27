@@ -7,9 +7,6 @@ Changes:
 2. Fixed oracleTempSchema issue in validation package v0.0.1 plus removed ff dependencies.
 3. Added updated prediction validation skeleton (v1.0.1)
 
-Bugfixes:
-
-1. Prevent conversion to scientific notation when hydrating.
 
 Hydra 0.1.1
 ===========
