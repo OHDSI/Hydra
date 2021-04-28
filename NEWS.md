@@ -4,7 +4,9 @@ Hydra 0.2.0
 Changes:
 
 1. Added updated prediction skeleton (v0.0.6)
+
 2. Fixed oracleTempSchema issue in validation package v0.0.1 plus removed ff dependencies.
+
 3. Added updated prediction validation skeleton (v1.0.1)
 
 
