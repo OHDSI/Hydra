@@ -19,24 +19,28 @@ import org.ohdsi.utilities.JsonUtilities;
  * Convert a JSON array in the study specifications to a set of SQL files in the study package using Circe.
  */
 public class JsonArrayToSql extends AbstractActionHandler {
-
+	
 	private Map<String, String>	fileNametoSql;
 	private Set<String>			done;
 	
 	public JsonArrayToSql(JSONObject action, JSONObject studySpecs) {
 		super(action, studySpecs);
 	}
-
+	
 	protected void init(JSONObject action, JSONObject studySpecs) {
 		fileNametoSql = new HashMap<String, String>();
 		JSONArray array = (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
+		boolean generateStats = false;
+		if (action.has("generateStats") && (action.getString("generateStats").toLowerCase() == "true"
+				|| action.getString("generateStats").toLowerCase() == "yes" || action.getString("generateStats") == "1"))
+			generateStats = true;
 		for (Object elementObject : array) {
 			JSONObject element = (JSONObject) elementObject;
 			String json = JsonUtilities.getViaPath(element, action.getString("payload")).toString();
 			CohortExpression cohortExpression = CohortExpression.fromJson(json);
 			CohortExpressionQueryBuilder builder = new CohortExpressionQueryBuilder();
 			BuildExpressionQueryOptions options = new BuildExpressionQueryOptions();
-			options.generateStats = false;
+			options.generateStats = generateStats;
 			String sql = builder.buildExpressionQuery(cohortExpression, options);
 			String fileName = JsonUtilities.getViaPath(element, action.getString("fileName")).toString();
 			fileName = ValueModifiers.convertToFileName(fileName);
@@ -45,7 +49,7 @@ public class JsonArrayToSql extends AbstractActionHandler {
 		}
 		done = new HashSet<String>(fileNametoSql.size());
 	}
-
+	
 	protected void modifyExistingInternal(InMemoryFile file) {
 		String fileName = file.getName();
 		if (fileNametoSql.keySet().contains(fileName))
@@ -56,7 +60,7 @@ public class JsonArrayToSql extends AbstractActionHandler {
 				done.add(fileName);
 			}
 	}
-
+	
 	protected List<InMemoryFile> generateNewInternal() {
 		List<InMemoryFile> files = new ArrayList<InMemoryFile>(1);
 		for (String fileName : fileNametoSql.keySet()) {

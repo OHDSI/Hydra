@@ -13,6 +13,7 @@
 
 # Maven
 /bin
+/src
 /target/
 /inst/java/classes
 /inst/java/apidocs

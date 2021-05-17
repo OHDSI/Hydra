@@ -171,6 +171,7 @@ Convert an array in the study specifications to a set of SQL files in the packag
 - *fileName*: The element inside the array element that will be used to generate the SQL file name. The source string will be modified to be made suitable for file names. The ".sql" extention will automatically be added.
 - *payload*: The element inside the array element that will be converted to SQL.
 - *output*: The folder in the package where the SQL files will be written.
+- *generateStats*: Optional: Add statements to the SQL that will compute inclusion rule statistics? ('true' or 'false')
 - *condition*: Optional: a condition that must be met to execute the action (see section on conditions).
 
 ## jsonToSql
@@ -180,6 +181,7 @@ Convert a single element in the study specifications to a SQL file in the packag
 - *input*: The path to the element in the study specifications.
 - *expressionType*: Optional: The type of expression that is to be converted. Currently supports 'cohort' for generic cohort expressions, and 'outcome' for (negative control) outcome cohorts. If not specified, will default to 'cohort'.
 - *output*: The file in the package where the SQL will be written.
+- *generateStats*: Optional: Add statements to the SQL that will compute inclusion rule statistics? ('true' or 'false')
 - *condition*: Optional: a condition that must be met to execute the action (see section on conditions).
 
 ## jsonToJson
