@@ -30,8 +30,7 @@ public class JsonToSql extends AbstractActionHandler {
 		done = false;
 		String json = JsonUtilities.getViaPath(studySpecs, action.getString("input")).toString();
 		boolean generateStats = false;
-		if (action.has("generateStats") && (action.getString("generateStats").toLowerCase() == "true"
-				|| action.getString("generateStats").toLowerCase() == "yes" || action.getString("generateStats") == "1"))
+		if (action.has("generateStats") && action.getBoolean("generateStats"))
 			generateStats = true;
 		if (action.isNull("expressionType") || action.getString("expressionType").toLowerCase().equals("cohort")) {
 			CohortExpression cohortExpression = CohortExpression.fromJson(json);

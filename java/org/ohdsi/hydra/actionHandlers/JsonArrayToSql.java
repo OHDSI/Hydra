@@ -31,8 +31,7 @@ public class JsonArrayToSql extends AbstractActionHandler {
 		fileNametoSql = new HashMap<String, String>();
 		JSONArray array = (JSONArray) JsonUtilities.getViaPath(studySpecs, action.getString("input"));
 		boolean generateStats = false;
-		if (action.has("generateStats") && (action.getString("generateStats").toLowerCase() == "true"
-				|| action.getString("generateStats").toLowerCase() == "yes" || action.getString("generateStats") == "1"))
+		if (action.has("generateStats") && action.getBoolean("generateStats"))
 			generateStats = true;
 		for (Object elementObject : array) {
 			JSONObject element = (JSONObject) elementObject;
