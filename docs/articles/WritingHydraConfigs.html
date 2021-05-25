@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Hydra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -85,13 +85,13 @@
 
       
 
-      </header><script src="WritingHydraConfigs_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="WritingHydraConfigs_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Writing Hydra configuration files</h1>
                         <h4 class="author">Martijn J. Schuemie</h4>
             
-            <h4 class="date">2021-04-28</h4>
+            <h4 class="date">2021-05-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/OHDSI/Hydra/blob/master/vignettes/WritingHydraConfigs.Rmd"><code>vignettes/WritingHydraConfigs.Rmd</code></a></small>
       <div class="hidden name"><code>WritingHydraConfigs.Rmd</code></div>
@@ -291,6 +291,8 @@
 <li>
 <em>output</em>: The folder in the package where the SQL files will be written.</li>
 <li>
+<em>generateStats</em>: Optional: Add statements to the SQL that will compute inclusion rule statistics? (‘true’ or ‘false’)</li>
+<li>
 <em>condition</em>: Optional: a condition that must be met to execute the action (see section on conditions).</li>
 </ul>
 </div>
@@ -305,6 +307,8 @@
 <em>expressionType</em>: Optional: The type of expression that is to be converted. Currently supports ‘cohort’ for generic cohort expressions, and ‘outcome’ for (negative control) outcome cohorts. If not specified, will default to ‘cohort’.</li>
 <li>
 <em>output</em>: The file in the package where the SQL will be written.</li>
+<li>
+<em>generateStats</em>: Optional: Add statements to the SQL that will compute inclusion rule statistics? (‘true’ or ‘false’)</li>
 <li>
 <em>condition</em>: Optional: a condition that must be met to execute the action (see section on conditions).</li>
 </ul>

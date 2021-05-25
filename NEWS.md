@@ -1,3 +1,13 @@
+Hydra 0.3.0
+===========
+
+Changes:
+
+1. Upgrading Circe to v1.9.4.
+
+2. Adding 'generateStats' argument to `jsonArrayToSql` and `jsonToSql` actions.
+
+
 Hydra 0.2.0
 ===========
 
