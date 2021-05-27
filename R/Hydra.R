@@ -19,6 +19,7 @@
 #' @keywords internal
 "_PACKAGE"
 
+#' @importFrom utils install.packages menu packageVersion
 NULL
 
 .onLoad <- function(libname, pkgname) {

@@ -2,3 +2,7 @@
 
 export(hydrate)
 export(loadSpecifications)
+export(prepareForOfflineStudyPackageExecution)
+importFrom(utils,install.packages)
+importFrom(utils,menu)
+importFrom(utils,packageVersion)

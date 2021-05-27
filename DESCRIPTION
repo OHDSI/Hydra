@@ -16,11 +16,14 @@ URL: https://ohdsi.github.io/Hydra, https://github.com/OHDSI/Hydra
 BugReports: https://github.com/OHDSI/Hydra/issues
 Imports:
     rJava,
-    RJSONIO
+    RJSONIO,
+    utils
 Suggests:
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    renv,
+    DatabaseConnector
 NeedsCompilation: no
 RoxygenNote: 7.1.1
 Language: en-US

@@ -7,6 +7,8 @@ Changes:
 
 2. Adding 'generateStats' argument to `jsonArrayToSql` and `jsonToSql` actions.
 
+3. Adding experimental `prepareForOfflineStudyPackageExecution` function that will install all dependencies specified in the skeletons so in the future they can be executed without further internet connectivity.
+
 
 Hydra 0.2.0
 ===========
