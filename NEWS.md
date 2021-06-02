@@ -9,6 +9,10 @@ Changes:
 
 3. Adding experimental `prepareForOfflineStudyPackageExecution` function that will install all dependencies specified in the skeletons so in the future they can be executed without further internet connectivity.
 
+4. Upgrading comparative effect estimation study skeleton. Now includes evidence synthesis across data sites (also shown in the Shiny app).
+
+5. Adding a new cohort diagnostics study package skeleton.
+
 
 Hydra 0.2.0
 ===========
