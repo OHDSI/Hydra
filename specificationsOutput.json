@@ -1,0 +1,1604 @@
+{
+  "id": 1,
+  "version": "v0.1.0",
+  "name": "Study of some cohorts of interest",
+  "packageName": "eunomiaExamplePackage",
+  "skeletonVersion": "v0.0.1",
+  "createdBy": "rao@ohdsi.org",
+  "createdDate": {},
+  "modifiedBy": "rao@ohdsi.org",
+  "modifiedDate": {},
+  "skeletonType": "CohortDiagnosticsStudy",
+  "organizationName": "OHDSI",
+  "description": "Cohort diagnostics on selected set of cohorts.",
+  "cohortDefinitions": [
+    {
+      "id": 17492,
+      "name": "[PL 192671002] Gastrointestinal hemorrhage referent concept prevalent cohort: First occurrence of referent concept + descendants",
+      "createdDate": "2020-07-31 22:35:55",
+      "modifiedDate": null,
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "First": true,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Gastrointestinal hemorrhage",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192671,
+                    "CONCEPT_NAME": "Gastrointestinal hemorrhage",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "74474003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 17493,
+      "name": "[PL 192671001] Gastrointestinal hemorrhage referent concept incident cohort: First occurrence of referent concept + descendants with >=365d prior observation",
+      "createdDate": "2020-07-31 22:36:05",
+      "modifiedDate": null,
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "First": true,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [365, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Gastrointestinal hemorrhage",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192671,
+                    "CONCEPT_NAME": "Gastrointestinal hemorrhage",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "74474003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 17692,
+      "name": "[PL 201254002] Type 1 diabetes mellitus referent concept prevalent cohort: First occurrence of referent concept + descendants",
+      "createdDate": "2020-07-31 23:07:54",
+      "modifiedDate": null,
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "First": true,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Type 1 diabetes mellitus",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 201254,
+                    "CONCEPT_NAME": "Type 1 diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "46635009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 17693,
+      "name": "[PL 201254001] Type 1 diabetes mellitus referent concept incident cohort: First occurrence of referent concept + descendants with >=365d prior observation",
+      "createdDate": "2020-07-31 23:08:03",
+      "modifiedDate": null,
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "First": true,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [365, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Type 1 diabetes mellitus",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 201254,
+                    "CONCEPT_NAME": "Type 1 diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "46635009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 17694,
+      "name": "[PL 201826002] Type 2 diabetes mellitus referent concept prevalent cohort: First occurrence of referent concept + descendants",
+      "createdDate": "2020-07-31 23:08:13",
+      "modifiedDate": null,
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "First": true,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Type 2 diabetes mellitus",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 201826,
+                    "CONCEPT_NAME": "Type 2 diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "44054006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 17720,
+      "name": "[PL 201826003] Type 2 diabetes mellitus prevalent cohort: First condition occurrence of 'Type 2 diabetes mellitus' conceptset or observation of 'History of diabetes'",
+      "createdDate": "2020-08-01 11:12:57",
+      "modifiedDate": "2020-08-01 13:59:37",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            },
+            {
+              "Observation": {
+                "CodesetId": 1,
+                "ObservationTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Type 2 Diabetes Mellitus",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 201820,
+                    "CONCEPT_NAME": "Diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "73211009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 442793,
+                    "CONCEPT_NAME": "Complication due to diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "74627003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 443238,
+                    "CONCEPT_NAME": "Diabetic - poor control",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "268519009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 201254,
+                    "CONCEPT_NAME": "Type 1 diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "46635009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4058243,
+                    "CONCEPT_NAME": "Diabetes mellitus during pregnancy, childbirth and the puerperium",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "199223000",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 435216,
+                    "CONCEPT_NAME": "Disorder due to type 1 diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "420868002",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 40484648,
+                    "CONCEPT_NAME": "Type 1 diabetes mellitus uncontrolled",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "444073006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "History of diabetes",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 40769338,
+                    "CONCEPT_NAME": "History of Diabetes (regardless of treatment) [PhenX]",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "66678-4",
+                    "DOMAIN_ID": "Observation",
+                    "VOCABULARY_ID": "LOINC",
+                    "CONCEPT_CLASS_ID": "Clinical Observation"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 43021173,
+                    "CONCEPT_NAME": "History of diabetes mellitus type 2",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "472969004",
+                    "DOMAIN_ID": "Observation",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Context-dependent"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 42539022,
+                    "CONCEPT_NAME": "History of diabetes related lower limb amputation",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "735199000",
+                    "DOMAIN_ID": "Observation",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Context-dependent"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 46270562,
+                    "CONCEPT_NAME": "History of small vessel disease due to diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "59801000119102",
+                    "DOMAIN_ID": "Observation",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Context-dependent"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 17695,
+      "name": "[PL 201826001] Type 2 diabetes mellitus referent concept incident cohort: First occurrence of referent concept + descendants with >=365d prior observation",
+      "createdDate": "2020-07-31 23:08:22",
+      "modifiedDate": null,
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "First": true,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [365, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Type 2 diabetes mellitus",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 201826,
+                    "CONCEPT_NAME": "Type 2 diabetes mellitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "44054006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 14909,
+      "name": "[Cohort Diagnostics] Gastrointestinal hemorrhage for Eunomia",
+      "createdDate": "2020-03-24 03:23:54",
+      "modifiedDate": "2020-09-03 19:40:30",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "All"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Gastrointestinal hemorrhage ConceptSet",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192671,
+                    "CONCEPT_NAME": "Gastrointestinal hemorrhage",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "74474003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "All",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18342,
+      "name": "[Cohort Diagnostics] Gastrointestinal hemorrhage for Eunomia, first time in persons history",
+      "createdDate": "2020-09-03 19:40:32",
+      "modifiedDate": "2020-09-03 19:41:14",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "First": true,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Gastrointestinal hemorrhage ConceptSet",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192671,
+                    "CONCEPT_NAME": "Gastrointestinal hemorrhage",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "74474003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18345,
+      "name": "[1118084001] Celecoxib referent concept incident cohort: First occurrence of referent concept + descendants with >=365d prior observation",
+      "createdDate": "2020-09-03 20:12:34",
+      "modifiedDate": "2020-09-03 20:15:32",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "First": true,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [365, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "celecoxib",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1118084,
+                    "CONCEPT_NAME": "celecoxib",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "140587",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "EndStrategy": {
+          "CustomEra": [0, 0, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18346,
+      "name": "[1118084002] Celecoxib referent concept incident cohort: First occurrence of referent concept + descendants",
+      "createdDate": "2020-09-03 20:15:38",
+      "modifiedDate": "2020-09-03 20:16:14",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "First": true,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "celecoxib",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1118084,
+                    "CONCEPT_NAME": "celecoxib",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "140587",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "EndStrategy": {
+          "CustomEra": [0, 0, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18347,
+      "name": "[1124300002] Diclofenac referent concept incident cohort: First occurrence of referent concept + descendants",
+      "createdDate": "2020-09-03 20:17:55",
+      "modifiedDate": "2020-09-03 20:18:37",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "First": true,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "diclofenac",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1124300,
+                    "CONCEPT_NAME": "diclofenac",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3355",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": false,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "EndStrategy": {
+          "CustomEra": [0, 0, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18348,
+      "name": "[1124300001] Diclofenac referent concept incident cohort: First occurrence of referent concept + descendants with >=365d prior observation",
+      "createdDate": "2020-09-03 20:19:31",
+      "modifiedDate": "2020-09-03 20:20:13",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "First": true,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [365, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "diclofenac",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1124300,
+                    "CONCEPT_NAME": "diclofenac",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3355",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": false,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "EndStrategy": {
+          "CustomEra": [0, 0, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18349,
+      "name": "[1124300004] Male Diclofenac",
+      "createdDate": "2020-09-03 20:33:53",
+      "modifiedDate": "2020-09-03 20:34:45",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [365, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "diclofenac",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1124300,
+                    "CONCEPT_NAME": "diclofenac",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3355",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": false,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [
+          {
+            "name": "Gender is male",
+            "expression": {
+              "Type": "ALL",
+              "CriteriaList": [],
+              "DemographicCriteriaList": [
+                {
+                  "Gender": [
+                    {
+                      "CONCEPT_ID": 8507,
+                      "CONCEPT_NAME": "MALE",
+                      "STANDARD_CONCEPT": {},
+                      "STANDARD_CONCEPT_CAPTION": "Unknown",
+                      "INVALID_REASON": {},
+                      "INVALID_REASON_CAPTION": "Unknown",
+                      "CONCEPT_CODE": "M",
+                      "DOMAIN_ID": "Gender",
+                      "VOCABULARY_ID": "Gender",
+                      "CONCEPT_CLASS_ID": {}
+                    }
+                  ]
+                }
+              ],
+              "Groups": []
+            }
+          }
+        ],
+        "EndStrategy": {
+          "CustomEra": [0, 0, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18350,
+      "name": "[1124300005] Male Diclofenac with some disorder or body system",
+      "createdDate": "2020-09-03 20:34:58",
+      "modifiedDate": "2020-09-03 20:36:43",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [365, 0],
+          "PrimaryCriteriaLimit": "First"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "diclofenac",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1124300,
+                    "CONCEPT_NAME": "diclofenac",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3355",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": false,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Disorder of body system",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4180628,
+                    "CONCEPT_NAME": "Disorder of body system",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "362965005",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [
+          {
+            "name": "Gender is male",
+            "expression": {
+              "Type": "ALL",
+              "CriteriaList": [],
+              "DemographicCriteriaList": [
+                {
+                  "Gender": [
+                    {
+                      "CONCEPT_ID": 8507,
+                      "CONCEPT_NAME": "MALE",
+                      "STANDARD_CONCEPT": {},
+                      "STANDARD_CONCEPT_CAPTION": "Unknown",
+                      "INVALID_REASON": {},
+                      "INVALID_REASON_CAPTION": "Unknown",
+                      "CONCEPT_CODE": "M",
+                      "DOMAIN_ID": "Gender",
+                      "VOCABULARY_ID": "Gender",
+                      "CONCEPT_CLASS_ID": {}
+                    }
+                  ]
+                }
+              ],
+              "Groups": []
+            }
+          },
+          {
+            "name": "Metabolic disease at any time",
+            "expression": {
+              "Type": "ALL",
+              "CriteriaList": [
+                {
+                  "Criteria": {
+                    "ConditionOccurrence": false
+                  },
+                  "StartWindow": {
+                    "Start": -1,
+                    "End": 1,
+                    "UseIndexEnd": false,
+                    "UseEventEnd": false
+                  },
+                  "RestrictVisit": false,
+                  "IgnoreObservationPeriod": false,
+                  "Occurrence": {
+                    "Type": 2,
+                    "Count": 1,
+                    "IsDistinct": false
+                  }
+                }
+              ],
+              "DemographicCriteriaList": [],
+              "Groups": []
+            }
+          }
+        ],
+        "EndStrategy": {
+          "CustomEra": [0, 0, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 14906,
+      "name": "[1118084003] All users of Celecoxis, till end of drug continuous coverage",
+      "createdDate": "2020-03-24 03:19:20",
+      "modifiedDate": "2020-09-04 04:09:10",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "All"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "celecoxib",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1118084,
+                    "CONCEPT_NAME": "celecoxib",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "140587",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "All",
+        "InclusionRules": [],
+        "EndStrategy": {
+          "CustomEra": [0, 0, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18351,
+      "name": "[1118084004] Second dispensation of Celecoxib, till end of drug continuous coverage for second dispensation",
+      "createdDate": "2020-09-04 04:08:20",
+      "modifiedDate": "2020-09-04 04:13:22",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CorrelatedCriteria": {
+                  "Type": "ALL",
+                  "CriteriaList": [
+                    {
+                      "Criteria": {
+                        "DrugExposure": {
+                          "CodesetId": 0,
+                          "DrugTypeExclude": false
+                        }
+                      },
+                      "StartWindow": {
+                        "Start": -1,
+                        "End": [1, -1],
+                        "UseIndexEnd": false,
+                        "UseEventEnd": false
+                      },
+                      "RestrictVisit": false,
+                      "IgnoreObservationPeriod": false,
+                      "Occurrence": {
+                        "Type": 0,
+                        "Count": 1,
+                        "IsDistinct": false
+                      }
+                    }
+                  ],
+                  "DemographicCriteriaList": [],
+                  "Groups": []
+                },
+                "CodesetId": 0,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "All"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "celecoxib",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1118084,
+                    "CONCEPT_NAME": "celecoxib",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "140587",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "All",
+        "InclusionRules": [],
+        "EndStrategy": {
+          "CustomEra": [0, 0, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 14907,
+      "name": "[1124300003] Users of diclofenac with no history of gastrointestinal hemorrhage",
+      "createdDate": "2020-03-24 03:21:17",
+      "modifiedDate": "2020-09-04 04:18:17",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "All"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "diclofenac",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1124300,
+                    "CONCEPT_NAME": "diclofenac",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3355",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Gastrointestinal hemorrhage",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192671,
+                    "CONCEPT_NAME": "Gastrointestinal hemorrhage",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "74474003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [
+          {
+            "name": "With no history of gastrointestinal hemorrhage",
+            "expression": {
+              "Type": "ALL",
+              "CriteriaList": [
+                {
+                  "Criteria": {
+                    "ConditionOccurrence": {
+                      "CodesetId": 1,
+                      "ConditionTypeExclude": false
+                    }
+                  },
+                  "StartWindow": {
+                    "Start": -1,
+                    "End": [0, -1],
+                    "UseIndexEnd": false,
+                    "UseEventEnd": false
+                  },
+                  "RestrictVisit": false,
+                  "IgnoreObservationPeriod": false,
+                  "Occurrence": {
+                    "Type": 0,
+                    "Count": 0,
+                    "IsDistinct": false
+                  }
+                }
+              ],
+              "DemographicCriteriaList": [],
+              "Groups": []
+            }
+          }
+        ],
+        "EndStrategy": {
+          "CustomEra": [0, 30, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 18352,
+      "name": "[1124300006] Users of diclofenac with history of gastrointestinal hemorrhage",
+      "createdDate": "2020-09-04 04:20:24",
+      "modifiedDate": "2020-09-04 04:21:02",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugExposure": {
+                "CodesetId": 0,
+                "DrugTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [0, 0],
+          "PrimaryCriteriaLimit": "All"
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "diclofenac",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 1124300,
+                    "CONCEPT_NAME": "diclofenac",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3355",
+                    "DOMAIN_ID": "Drug",
+                    "VOCABULARY_ID": "RxNorm",
+                    "CONCEPT_CLASS_ID": "Ingredient"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Gastrointestinal hemorrhage",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192671,
+                    "CONCEPT_NAME": "Gastrointestinal hemorrhage",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "74474003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "All",
+        "InclusionRules": [
+          {
+            "name": "With gastrointestinal hemorrhage at some point",
+            "expression": {
+              "Type": "ALL",
+              "CriteriaList": [
+                {
+                  "Criteria": {
+                    "ConditionOccurrence": {
+                      "CodesetId": 1,
+                      "ConditionTypeExclude": false
+                    }
+                  },
+                  "StartWindow": {
+                    "Start": -1,
+                    "End": [0, -1],
+                    "UseIndexEnd": false,
+                    "UseEventEnd": false
+                  },
+                  "RestrictVisit": false,
+                  "IgnoreObservationPeriod": false,
+                  "Occurrence": {
+                    "Type": 2,
+                    "Count": 1,
+                    "IsDistinct": false
+                  }
+                }
+              ],
+              "DemographicCriteriaList": [],
+              "Groups": []
+            }
+          }
+        ],
+        "EndStrategy": {
+          "CustomEra": [0, 30, 0]
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    },
+    {
+      "id": 21402,
+      "name": "Eunomia Persons at risk at first encounter",
+      "createdDate": "2021-03-19 09:30:26",
+      "modifiedDate": "2021-03-19 10:09:33",
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "VisitOccurrence": {
+                "OccurrenceStartDate": ["2005-01-01", "bt", "2020-12-31"],
+                "VisitTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": [365, 0],
+          "PrimaryCriteriaLimit": "All"
+        },
+        "ConceptSets": [],
+        "QualifiedLimit": "First",
+        "ExpressionLimit": "First",
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      }
+    }
+  ]
+}

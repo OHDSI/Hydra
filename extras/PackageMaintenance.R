@@ -97,3 +97,31 @@ file.rename(file.path(tempFolder, skeletonName),
 unlink(tempFolder, recursive = TRUE)
 
 
+
+# Import Cohort Diagnostics study skeleton ---------------------------------------------
+#### get the skeleton from github
+tempFolder <- tempdir()
+download.file(url = "https://github.com/OHDSI/SkeletonCohortDiagnosticsStudy/archive/refs/heads/main.zip",
+              destfile = file.path(tempFolder, 'skeleton.zip'))
+unzip(zipfile =  file.path(tempFolder, 'skeleton.zip'), 
+      overwrite = TRUE,
+      exdir = file.path(tempFolder, "skeleton")
+)
+tempFolder <- file.path(tempFolder, "skeleton", "SkeletonCohortDiagnosticsStudy-main")
+
+unlink(list.files(file.path(tempFolder), pattern = "git", recursive = TRUE), force = TRUE)
+unlink(list.files(file.path(tempFolder), pattern = "Rproj.user", recursive = TRUE), force = TRUE)
+unlink(list.files(file.path(tempFolder), pattern = "Rhistory", recursive = TRUE), force = TRUE)
+unlink(file.path(tempFolder, "vignettes"), recursive = TRUE, force = TRUE)
+unlink(file.path(tempFolder, "inst", "doc"), recursive = TRUE, force = TRUE)
+
+files <- list.files(file.path(tempFolder, "inst"), "json", full.names = TRUE, recursive = TRUE)
+unlink(files)
+
+files <- gsub(".json$", ".sql", gsub("cohorts", "sql/sql_server", files))
+unlink(files)
+
+fileList <- list.files(path = file.path(tempFolder), full.names = TRUE, recursive = TRUE, all.files = TRUE)
+DatabaseConnector::createZipFile(zipFile = file.path("inst", "skeletons", 'CohortDiagnosticsStudy_v0.0.1.zip'), 
+                                 files = fileList, 
+                                 rootFolder = tempFolder)
