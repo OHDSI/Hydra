@@ -17,7 +17,7 @@ buildPackageWithRenvLibrary <- function(packageFolder) {
         renv::load(packageFolder)
         renv::restore(prompt = FALSE)
         
-        # To prevent renv::install from fetching dependencies, set dependency.fields 
+        # To prevent renv::install from fetching dependencies, set package.dependency.fields 
         # to LinkingTo, since study packages don't have that section:
         old <- renv::settings$package.dependency.fields() 
         renv::settings$package.dependency.fields(value = c("LinkingTo")) 
