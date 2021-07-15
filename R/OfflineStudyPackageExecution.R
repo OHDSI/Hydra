@@ -40,38 +40,47 @@ prepareForOfflineStudyPackageExecution <- function(installRpackages = TRUE,
     skeletons <- list.files(system.file("skeletons", package = "Hydra"), pattern = "*.zip")
     # skeleton <- skeletons[1]
     for (skeleton in skeletons) {
-      contents <- utils::unzip(system.file("skeletons", skeleton, package = "Hydra"), list = TRUE)
-      if ("renv.lock" %in% contents$Name) {
-        message(sprintf("*** Found renv.lock file in %s. Installing specified dependencies. ***", skeleton))
-        
-        # Restore lock file dependencies in temp folder. This will add the dependencies to be added to the renv cache:
-        tempProjectFolder <- tempfile("tempRProject")
-        dir.create(tempProjectFolder)
-        tempLibraryFolder <- file.path(tempProjectFolder, "library")
-        utils::unzip(system.file("skeletons", skeleton, package = "Hydra"), "renv.lock", exdir = tempProjectFolder)
-        renv::restore(project = tempProjectFolder, library = tempLibraryFolder, prompt = FALSE)
-        unlink(tempProjectFolder, recursive = TRUE)        
-      }
+      setupSkeleton(skeleton = skeleton, tempfileLoc = tempfile("tempRProject"))
     }
   }
   
   if (installJdbcDrivers) {
-    if (Sys.getenv("DATABASECONNECTOR_JAR_FOLDER") == "")
-      stop("The DATABASECONNECTOR_JAR_FOLDER environmental variable is not set")
-    ensure_installed("DatabaseConnector")
-    if (as.numeric(gsub("\\..*", "", packageVersion("DatabaseConnector"))) < 4) {
-      install.packages("DatabaseConnector")
-    }
-    # Once we start to support different versions of the JDBC drivers we will need to do this call for each 
-    # lock file
-    
-    # When new version of DatabaseConnector is released we can use a single call where dbms = 'all':
-    for (dbms in c("postgresql", "redshift", "sql server", "oracle")) {
-      DatabaseConnector::downloadJdbcDrivers(dbms)
-    }
+    installDrivers()
   }
 }
 
+setupSkeleton <- function(skeleton, tempfileLoc = tempfile("tempRProject")){
+  
+  contents <- utils::unzip(system.file("skeletons", skeleton, package = "Hydra"), list = TRUE)
+  if ("renv.lock" %in% contents$Name) {
+    message(sprintf("*** Found renv.lock file in %s. Installing specified dependencies. ***", skeleton))
+    
+    # Restore lock file dependencies in temp folder. This will add the dependencies to be added to the renv cache:
+    tempProjectFolder <- tempfileLoc#tempfile("tempRProject")
+    dir.create(tempProjectFolder)
+    tempLibraryFolder <- file.path(tempProjectFolder, "library")
+    utils::unzip(system.file("skeletons", skeleton, package = "Hydra"), "renv.lock", exdir = tempProjectFolder)
+    renv::restore(project = tempProjectFolder, library = tempLibraryFolder, prompt = FALSE)
+    unlink(tempProjectFolder, recursive = TRUE)        
+  }
+}
+
+
+installDrivers <- function(){
+  if (Sys.getenv("DATABASECONNECTOR_JAR_FOLDER") == "")
+    stop("The DATABASECONNECTOR_JAR_FOLDER environmental variable is not set")
+  ensure_installed("DatabaseConnector")
+  if (as.numeric(gsub("\\..*", "", packageVersion("DatabaseConnector"))) < 4) {
+    install.packages("DatabaseConnector")
+  }
+  # Once we start to support different versions of the JDBC drivers we will need to do this call for each 
+  # lock file
+  
+  # When new version of DatabaseConnector is released we can use a single call where dbms = 'all':
+  for (dbms in c("postgresql", "redshift", "sql server", "oracle")) {
+    DatabaseConnector::downloadJdbcDrivers(dbms)
+  }
+}
 
 # Borrowed from devtools:
 # https://github.com/hadley/devtools/blob/ba7a5a4abd8258c52cb156e7b26bb4bf47a79f0b/R/utils.r#L44
