@@ -37,10 +37,9 @@ expect_error(hydrate(specifications = 1,
 })
 
 ##specifications <- loadSpecifications("D:/GitHub/Hydra/extras/ExamplePleSpecs.json")
-specifications <- loadSpecifications("./extras/ExamplePleSpecs.json")
-##specifications <-data("SkeletonPredictionValidationStudy")
+data(ExamplePleSpecs)
 test_that("hydrate warning due to outputFolder existing ", {
-  testthat::expect_warning(hydrate(specifications = specifications, 
+  testthat::expect_warning(hydrate(specifications = ExamplePleSpecs, 
           outputFolder = indexFolder, 
           skeletonFileName = NULL, 
           packageName = NULL))
