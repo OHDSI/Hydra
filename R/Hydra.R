@@ -46,5 +46,5 @@ NULL
 #' hydrate(specifications = ExamplePleSpecs, 
 #' outputFolder = file.path(getwd(), 'example'), 
 #' skeletonFileName = NULL, 
-#' packageName = NULL))}
+#' packageName = NULL)}
 NULL

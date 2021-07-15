@@ -19,6 +19,6 @@ An example json specification object used by Hydra
 hydrate(specifications = ExamplePleSpecs, 
 outputFolder = file.path(getwd(), 'example'), 
 skeletonFileName = NULL, 
-packageName = NULL))}
+packageName = NULL)}
 }
 \keyword{datasets}
