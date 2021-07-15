@@ -6,7 +6,8 @@
 \usage{
 prepareForOfflineStudyPackageExecution(
   installRpackages = TRUE,
-  installJdbcDrivers = TRUE
+  installJdbcDrivers = TRUE,
+  skeletonVector = NULL
 )
 }
 \arguments{
@@ -14,6 +15,8 @@ prepareForOfflineStudyPackageExecution(
 
 \item{installJdbcDrivers}{Install all JDBC drivers? Requires the DATABASECONNECTOR_JAR_FOLDER
 environmental variable to be set.}
+
+\item{skeletonVector}{list of skeletons to check, if null uses all in the Hydra package}
 }
 \value{
 This function does not return anything. Instead, it installs all dependencies required

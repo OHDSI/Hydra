@@ -20,6 +20,7 @@
 #' @param installRpackages  Install the R packages required by the skeletons?
 #' @param installJdbcDrivers Install all JDBC drivers? Requires the DATABASECONNECTOR_JAR_FOLDER
 #'                           environmental variable to be set. 
+#' @param skeletonVector  list of skeletons to check, if null uses all in the Hydra package                        
 #'                           
 #' @details
 #' 
@@ -34,10 +35,14 @@
 #' 
 #' @export
 prepareForOfflineStudyPackageExecution <- function(installRpackages = TRUE,
-                                                   installJdbcDrivers = TRUE) {
+                                                   installJdbcDrivers = TRUE,
+                                                   skeletonVector = NULL) {
   if (installRpackages) {
     ensure_installed("renv")
     skeletons <- list.files(system.file("skeletons", package = "Hydra"), pattern = "*.zip")
+    if(!is.null(skeletonVector)){
+      skeletons <-skeletonVector
+    }
     # skeleton <- skeletons[1]
     for (skeleton in skeletons) {
       setupSkeleton(skeleton = skeleton, tempfileLoc = tempfile("tempRProject"))

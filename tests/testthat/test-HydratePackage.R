@@ -26,6 +26,8 @@ test_that("loadSpecifications", {
 
 })
 
+
+
 outputFolder <- tempfile("outputFolder")
 # check input errors work
 test_that("hydrate error due to specifications not character", {
@@ -36,8 +38,21 @@ expect_error(hydrate(specifications = 1,
   
 })
 
-##specifications <- loadSpecifications("D:/GitHub/Hydra/extras/ExamplePleSpecs.json")
+# load specifications
 data(ExamplePleSpecs)
+
+test_that("hydrate when skeletonFileName and packageName specified", {
+  
+  resultLoc <- tempfile("indexFolder")
+  hydrate(specifications = ExamplePleSpecs, 
+                       outputFolder = resultLoc, 
+                       skeletonFileName = file.path(system.file('skeletons', package = 'Hydra'),'ComparativeEffectStudy_v0.0.1.zip'), 
+                       packageName = 'testingPackage')
+  
+  expect_equal(length(dir(resultLoc))>0, T)
+  
+})
+
 test_that("hydrate warning due to outputFolder existing ", {
   testthat::expect_warning(hydrate(specifications = ExamplePleSpecs, 
           outputFolder = indexFolder, 
