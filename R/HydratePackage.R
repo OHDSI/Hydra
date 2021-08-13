@@ -38,7 +38,11 @@ hydrate <- function(specifications, outputFolder, skeletonFileName = NULL, packa
     dir.create(outputFolder, recursive = TRUE) 
   }
   if (!is.null(packageName)) {
-    specifications <- gsub("\"packageName\":.*?,", sprintf("\"packageName\": \"%s\",", packageName), specifications)
+    if (grepl("packageName", specs)) {
+      specifications <- gsub("\"packageName\":.*?,", sprintf("\"packageName\": \"%s\",", packageName), specifications)
+    } else {
+      specifications <- gsub("\"skeletonType\"", sprintf("\"packageName\": \"%s\",\"skeletonType\"", packageName), specifications)
+    }
   }
   
   hydra <- rJava::new(Class = rJava::J("org.ohdsi.hydra.Hydra"), 

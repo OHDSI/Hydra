@@ -13,6 +13,10 @@ Changes:
 
 5. Adding a new cohort diagnostics study package skeleton.
 
+Bugfixes:
+
+1. Adding skeleton name to JSON if not present at all and user specifies package name when calling `hydrate()`.
+
 
 Hydra 0.2.0
 ===========
