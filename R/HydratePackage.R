@@ -38,7 +38,7 @@ hydrate <- function(specifications, outputFolder, skeletonFileName = NULL, packa
     dir.create(outputFolder, recursive = TRUE) 
   }
   if (!is.null(packageName)) {
-    if (grepl("packageName", specs)) {
+    if (grepl("packageName", specifications)) {
       specifications <- gsub("\"packageName\":.*?,", sprintf("\"packageName\": \"%s\",", packageName), specifications)
     } else {
       specifications <- gsub("\"skeletonType\"", sprintf("\"packageName\": \"%s\",\"skeletonType\"", packageName), specifications)

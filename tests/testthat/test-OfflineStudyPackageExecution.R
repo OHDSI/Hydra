@@ -11,14 +11,14 @@ test_that("prepareForOfflineStudyPackageExecution installRpackages", {
    startClock <- Sys.time()
    prepareForOfflineStudyPackageExecution(installRpackages = TRUE,
                                           installJdbcDrivers = F,
-                                          skeletonVector =skeleton)
+                                          skeletons =skeleton)
    timeTakenMins <- difftime(Sys.time(), startClock, units='mins')
    
    #running again should be quicker due to caching if it worked
    startClock <- Sys.time()
    prepareForOfflineStudyPackageExecution(installRpackages = TRUE,
                                           installJdbcDrivers = F,
-                                          skeletonVector =skeleton)
+                                          skeletons =skeleton)
    timeTakenRerunMins <- difftime(Sys.time(), startClock, units='mins')
    
    expect_equal(timeTakenMins > timeTakenRerunMins, TRUE)
