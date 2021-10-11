@@ -7,7 +7,7 @@
 prepareForOfflineStudyPackageExecution(
   installRpackages = TRUE,
   installJdbcDrivers = TRUE,
-  skeletonVector = NULL
+  skeletons = listSkeletons()
 )
 }
 \arguments{
@@ -16,7 +16,7 @@ prepareForOfflineStudyPackageExecution(
 \item{installJdbcDrivers}{Install all JDBC drivers? Requires the DATABASECONNECTOR_JAR_FOLDER
 environmental variable to be set.}
 
-\item{skeletonVector}{list of skeletons to check, if null uses all in the Hydra package}
+\item{skeletons}{A list of skeletons to check, for example 'CohortDiagnosticsStudy_v0.0.1.zip'.}
 }
 \value{
 This function does not return anything. Instead, it installs all dependencies required
@@ -30,4 +30,7 @@ Note that when \code{installJdbcDrivers = TRUE} this will only include the Jar d
 supported by DatabaseConnector::downloadJdbcDrivers. Other drivers (like BigQuery) will
 need to be downloaded manually and placed in the folder identified by the 
 DATABASECONNECTOR_JAR_FOLDER environmental variable.
+
+Use \code{list.files(system.file("skeletons", package = "Hydra"), pattern = "*.zip")} for a list of
+all skeletons
 }
