@@ -1,3 +1,10 @@
+Hydra 0.3.1
+===========
+
+Changes:
+
+1. Update to CohortDiagnostics skeleton
+
 Hydra 0.3.0
 ===========
 
