@@ -17,7 +17,7 @@
 # limitations under the License.
 
 # Format and check code -------------------------------------------------------
-OhdsiRTools::formatRFolder("./R")
+styler::style_pkg()
 OhdsiRTools::checkUsagePackage("Hydra")
 OhdsiRTools::updateCopyrightYearFolder()
 devtools::spell_check()
@@ -46,9 +46,9 @@ OhdsiRTools::fixHadesLogo()
 
 
 # Import comparative effectiveness study skeleton ---------------------------------------------
-skeletonSource <- "C:/git/SkeletonComparativeEffectStudy"
+skeletonSource <- "../SkeletonComparativeEffectStudy"
 skeletonName <- "ComparativeEffectStudy_v0.0.1.zip"
-tempFolder <- "c:/temp/skeleton"
+tempFolder <- "d:/temp/skeleton"
 
 unlink(tempFolder, recursive = TRUE, force = TRUE)
 dir.create(tempFolder, recursive = TRUE)

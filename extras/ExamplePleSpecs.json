@@ -3264,8 +3264,8 @@
             "First": true,
             "OccurrenceStartDate": {
               "Op": "bt",
-              "Extent": "2015-03-31",
-              "Value": "2015-01-01"
+              "Extent": "2020-12-31",
+              "Value": "2019-01-01"
             },
             "RouteConcept": null,
             "StopReason": null,
@@ -5079,8 +5079,8 @@
             "First": true,
             "OccurrenceStartDate": {
               "Op": "bt",
-              "Extent": "2015-03-31",
-              "Value": "2015-01-01"
+              "Extent": "2020-12-31",
+              "Value": "2019-01-01"
             },
             "RouteConcept": null,
             "StopReason": null,
