@@ -2,7 +2,7 @@ Hydra
 =====
 
 [![Build Status](https://github.com/OHDSI/Hydra/workflows/R-CMD-check/badge.svg)](https://github.com/OHDSI/Hydra/actions?query=workflow%3AR-CMD-check)
-[![codecov.io](https://codecov.io/github/OHDSI/Hydra/coverage.svg?branch=master)](https://codecov.io/github/OHDSI/Hydra?branch=master)
+[![codecov.io](https://codecov.io/github/OHDSI/Hydra/coverage.svg?branch=main)](https://codecov.io/github/OHDSI/Hydra?branch=main)
 
 Hydra is part of [HADES](https://ohdsi.github.io/Hades).
 
@@ -78,9 +78,9 @@ User Documentation
 Documentation can be found on the [package website](https://ohdsi.github.io/Hydra).
 
 PDF versions of the documentation are also available:
-* Vignette: [Hydrating packags](https://raw.githubusercontent.com/OHDSI/Hydra/master/inst/doc/HydratingPackages.pdf)
-* Vignette: [Writing Hydra configuration files](https://raw.githubusercontent.com/OHDSI/Hydra/master/inst/doc/WritingHydraConfigs.pdf)
-* Package manual: [Hydra.pdf](https://raw.githubusercontent.com/OHDSI/Hydra/master/extras/Hydra.pdf) 
+* Vignette: [Hydrating packags](https://raw.githubusercontent.com/OHDSI/Hydra/main/inst/doc/HydratingPackages.pdf)
+* Vignette: [Writing Hydra configuration files](https://raw.githubusercontent.com/OHDSI/Hydra/main/inst/doc/WritingHydraConfigs.pdf)
+* Package manual: [Hydra.pdf](https://raw.githubusercontent.com/OHDSI/Hydra/main/extras/Hydra.pdf) 
 
 Support
 =======

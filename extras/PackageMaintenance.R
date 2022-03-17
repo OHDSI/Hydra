@@ -46,8 +46,9 @@ OhdsiRTools::fixHadesLogo()
 
 
 # Import comparative effectiveness study skeleton ---------------------------------------------
+skeletonSource <- "../SkeletonComparativeEffectStudy"
 skeletonName <- "ComparativeEffectStudy_v0.0.1.zip"
-skeletonZipUrl <- "https://github.com/OHDSI/SkeletonComparativeEffectStudy/archive/refs/heads/master.zip"
+tempFolder <- "d:/temp/skeleton"
 
 
 tempZipFile <- tempfile(pattern = "skeleton", fileext = ".zip")
