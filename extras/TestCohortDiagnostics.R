@@ -8,12 +8,12 @@
 # Hydrate skeleton with example specifications -----------------------------------
 library(Hydra)
 specifications <- loadSpecifications("extras/ExampleCohortDiagnosticsSpecs.json")
-packageFolder <- "s:/temp/hydraCdOutput"
+packageFolder <- "d:/temp/hydraCdOutput"
 unlink(packageFolder, recursive = TRUE)
 hydrate(specifications = specifications, outputFolder = packageFolder)
 
 # Build and install hydrated package with renv library ---------------------------
-buildPackageWithRenvLibrary <- function(packageFolder) {
+buildPackageWithRenvLibrary <- function(packageFolder, packages = c('devtools')) {
         renv::load(packageFolder)
         renv::restore(prompt = FALSE)
         
@@ -23,6 +23,8 @@ buildPackageWithRenvLibrary <- function(packageFolder) {
         renv::settings$package.dependency.fields(value = c("LinkingTo")) 
         
         renv::install(packageFolder, type = "source")
+        
+        #renv::install(packages = packages, type = "source")
         
         renv::settings$package.dependency.fields(value = old)
         
@@ -35,24 +37,22 @@ ParallelLogger::stopCluster(newSession)
 # Run the package ------------------------------------------------------------
 script <- "
         setwd(packageFolder)
-        library(eunomiaExamplePackage)
-        options(andromedaTempFolder = 's:/andromedaTemp')
-        
+        #require(rstudioapi)
+        #require(devtools)
+        packageZipFile <- devtools::build(path = 'd:/temp/hydraCdOutput', binary = TRUE)
+        unzip(zipfile = packageZipFile)
+        library(eunomiaExamplePackage, lib.loc = c(.libPaths(), file.path('d:/temp/hydraCdOutput')))
+
         maxCores <- parallel::detectCores()
-        outputFolder <- 's:/cdTestPackage'
+        outputFolder <- 'd:/temp/hydraCdResults'
         unlink(outputFolder, recursive = TRUE)
-        connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = 'pdw',
-                                                                        server = Sys.getenv('PDW_SERVER'),
-                                                                        user = NULL,
-                                                                        password = NULL,
-                                                                        port = Sys.getenv('PDW_PORT'))
-        cdmDatabaseSchema <- 'CDM_IBM_MDCD_V1153.dbo'
-        cohortDatabaseSchema <- 'scratch.dbo'
-        cohortTable <- 'mschuemi_skeleton'
-        options(sqlRenderTempEmulationSchema = NULL)
-        databaseId <- 'Synpuf'
-        databaseName <- 'Medicare Claims Synthetic Public Use Files (SynPUFs)'
-        databaseDescription <- 'Medicare Claims Synthetic Public Use Files (SynPUFs) were created to allow interested parties to gain familiarity using Medicare claims data while protecting beneficiary privacy. These files are intended to promote development of software and applications that utilize files in this format, train researchers on the use and complexities of Centers for Medicare and Medicaid Services (CMS) claims, and support safe data mining innovations. The SynPUFs were created by combining randomized information from multiple unique beneficiaries and changing variable values. This randomization and combining of beneficiary information ensures privacy of health information.'
+        connectionDetails <- Eunomia::getEunomiaConnectionDetails()
+        cdmDatabaseSchema <- 'main'
+        cohortDatabaseSchema <- 'main'
+        cohortTable <- 'cd_skeleton'
+        databaseId <- 'Eunomia'
+        databaseName <- 'Eunomia'
+        databaseDescription <- 'Eunomia'
         
         unlink(outputFolder, recursive = TRUE)
         
@@ -66,12 +66,25 @@ script <- "
                 databaseName = databaseId,
                 databaseDescription = databaseId)
 "
-script <- gsub("packageFolder", sprintf("\"%s\"", packageFolder), script)
-tempScriptFile <- tempfile(fileext = ".R")
-sink(tempScriptFile)
-cat(script)
-sink()
 
+script <- gsub("packageFolder", sprintf("\"%s\"", packageFolder), script)
+cat(script)
+
+tempScriptFile <- file.path(packageFolder, basename(tempfile(fileext = ".R")))
+fileConn<-file(tempScriptFile)
+writeLines(script, fileConn)
+close(fileConn)
+
+#sink(tempScriptFile)
+#sink()
+
+old <- renv::settings$package.dependency.fields() 
+renv::settings$package.dependency.fields(value = c("LinkingTo")) 
+renv::install(packages = c("devtools"), type = "source")
+renv::settings$package.dependency.fields(value = old)
+
+renv::activate(project = packageFolder)
+renv::restore(project = packageFolder)
 renv::run(script = tempScriptFile,
           name = "Study package",
           project = packageFolder)
