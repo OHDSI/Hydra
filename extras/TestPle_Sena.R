@@ -11,7 +11,9 @@ hydrate(specifications = specifications, outputFolder = packageFolder)
 #  - renv::install(packageFolder, type = "source") throws an error and it looks like
 #    this function expects a list of packages to install from the source vs the packageFolder
 #    so I don't think we'll need this.
-#  - I'm not sure why we're invoking this function with ParallelLogger?
+#  - I'm not sure why we're invoking this function with ParallelLogger? I think this is so that
+#    renv is not called from the global environment. In the case of Hydra package development
+#    this prevents renv calls from actually installing renv in the project.
 
 buildPackageWithRenvLibrary <- function(packageFolder) {
         renv::load(packageFolder)
@@ -35,44 +37,43 @@ ParallelLogger::stopCluster(newSession)
 # Run the package ------------------------------------------------------------
 script <- "
         #setwd(packageFolder)
-        renv::load(packageFolder)
+        #renv::load(packageFolder)
         # Force restore of renv from the hydrated package
-        renv::restore(packages = 'renv', prompt = FALSE)
-        #renv::restore(prompt = FALSE)
+        #renv::restore(packages = 'renv', prompt = FALSE)
+        renv::restore(prompt = FALSE)
+        
+        install.packages('devtools', prompt = FALSE)
+        remotes::install_github('OHDSI/Eunomia')
+        packageZipFile <- devtools::build(path = packageFolder, binary = TRUE)
+        unzip(zipfile = packageZipFile)
+        library(pleTestPackage, lib.loc = c(.libPaths(), file.path(packageFolder)))
+        options(andromedaTempFolder = 'd:/andromedaTemp')
+
+        outputFolder <- 'd:/temp/hydraPleResults'
+        unlink(outputFolder, recursive = TRUE)
+        maxCores <- 1
+        connectionDetails <- Eunomia::getEunomiaConnectionDetails()
+        cdmDatabaseSchema <- 'main'
+        cohortDatabaseSchema <- 'main'
+        cohortTable <- 'cd_skeleton'
+        databaseId <- 'Eunomia'
+        databaseName <- 'Eunomia'
+        databaseDescription <- 'Eunomia'
+
+        execute(connectionDetails = connectionDetails,
+                cdmDatabaseSchema = cdmDatabaseSchema,
+                cohortDatabaseSchema = cohortDatabaseSchema,
+                cohortTable = cohortTable,
+                outputFolder = outputFolder,
+                databaseId = databaseId,
+                databaseName = databaseName,
+                databaseDescription = databaseDescription,
+                createCohorts = TRUE,
+                synthesizePositiveControls = TRUE,
+                runAnalyses = TRUE,
+                packageResults = TRUE,
+                maxCores = maxCores)
 "
-# #
-#         install.packages('devtools', prompt = FALSE)
-#         remotes::install_github('OHDSI/Eunomia')
-#         packageZipFile <- devtools::build(path = packageFolder, binary = TRUE)
-#         unzip(zipfile = packageZipFile)
-#         library(pleTestPackage, lib.loc = c(.libPaths(), file.path(packageFolder)))
-#         options(andromedaTempFolder = 'd:/andromedaTemp')
-#         
-#         outputFolder <- 'd:/temp/hydraPleResults'
-#         unlink(outputFolder, recursive = TRUE)
-#         maxCores <- 1
-#         connectionDetails <- Eunomia::getEunomiaConnectionDetails()
-#         cdmDatabaseSchema <- 'main'
-#         cohortDatabaseSchema <- 'main'
-#         cohortTable <- 'cd_skeleton'
-#         databaseId <- 'Eunomia'
-#         databaseName <- 'Eunomia'
-#         databaseDescription <- 'Eunomia'
-# 
-#         execute(connectionDetails = connectionDetails,
-#                 cdmDatabaseSchema = cdmDatabaseSchema,
-#                 cohortDatabaseSchema = cohortDatabaseSchema,
-#                 cohortTable = cohortTable,
-#                 outputFolder = outputFolder,
-#                 databaseId = databaseId,
-#                 databaseName = databaseName,
-#                 databaseDescription = databaseDescription,
-#                 createCohorts = TRUE,
-#                 synthesizePositiveControls = TRUE,
-#                 runAnalyses = TRUE,
-#                 packageResults = TRUE,
-#                 maxCores = maxCores)
-# "
 script <- gsub("packageFolder", sprintf("\"%s\"", packageFolder), script)
 tempScriptFile <- file.path(packageFolder, basename(tempfile(fileext = ".R")))
 fileConn<-file(tempScriptFile)
