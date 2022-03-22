@@ -48,7 +48,7 @@ script <- "
                 databaseName = databaseName,
                 databaseDescription = databaseDescription,
                 createCohorts = TRUE,
-                synthesizePositiveControls = TRUE,
+                synthesizePositiveControls = FALSE,
                 runAnalyses = TRUE,
                 packageResults = TRUE,
                 maxCores = maxCores)
