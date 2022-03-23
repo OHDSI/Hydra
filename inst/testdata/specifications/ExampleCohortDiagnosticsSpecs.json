@@ -2,7 +2,7 @@
 	"id" : 1,
 	"version" : "v0.1.0",
 	"name" : "Study of some cohorts of interest",
-	"packageName" : "eunomiaExamplePackage",
+	"packageName" : "cohortDiagnosticsTestPackage",
 	"skeletonVersion" : "v0.0.1",
 	"createdBy" : "rao@ohdsi.org",
 	"createdDate" : 18728,

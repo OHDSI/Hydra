@@ -38,7 +38,7 @@ test_that("hydrate error due to specifications not character", {
   ))
 })
 
-# ExamplePleSpecs is loaded by test/testthat/helper.R 
+# ExamplePleSpecs is loaded by test/testthat/helper.R
 test_that("hydrate when skeletonFileName and packageName specified", {
   resultLoc <- tempfile("indexFolder")
   hydrate(

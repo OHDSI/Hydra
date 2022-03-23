@@ -2,13 +2,13 @@ Package: Hydra
 Type: Package
 Title: Hydrating Package Skeletons into Executable R Study Packages
 Version: 0.3.0
-Date: 2021-4-27
+Date: 2022-03-23
 Authors@R: c(
-    person("Martijn", "Schuemie", , "schuemie@ohdsi.org", role = c("aut", "cre")),
+    person("Martijn", "Schuemie", , "schuemie@ohdsi.org", role = c("aut")),
     person("Jenna", "Reps", role = c("aut")),
-    person("Anthony", "Sena", role = c("aut"))
-    )
-Maintainer: Martijn Schuemie <schuemie@ohdsi.org>
+    person("Anthony", "Sena", , "sena@ohdsi.org", role = c("aut", "cre"))
+  )
+Maintainer: Anthony Sena <sena@ohdsi.org>
 Description: An R package and Java library for hydrating package skeletons into executable R study packages based on specifications in JSON format.
 License: Apache License 2.0
 VignetteBuilder: knitr
@@ -26,7 +26,8 @@ Suggests:
     rmarkdown,
     renv,
     DatabaseConnector,
-    qpdf
+    qpdf,
+    SqlRender
 NeedsCompilation: no
 RoxygenNote: 7.1.1
 Language: en-US

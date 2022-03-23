@@ -1,7 +1,9 @@
 # Hydrate skeleton with example specifications ---------------------------------
 library(Hydra)
-specifications <- loadSpecifications("extras/ExamplePleSpecs.json")
-packageFolder <- "d:/temp/hydraPleOutput"
+specifications <- loadSpecifications(system.file("testdata/ExamplePleSpecs.json",
+                                                 package = "Hydra",
+                                                 mustWork = TRUE))
+packageFolder <- tempdir()
 unlink(packageFolder, recursive = TRUE)
 hydrate(specifications = specifications, outputFolder = packageFolder)
 

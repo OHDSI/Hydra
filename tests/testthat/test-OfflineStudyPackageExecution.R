@@ -1,7 +1,5 @@
 library(testthat)
 
-context("OfflineStudyPackageExecution")
-
 driverTestFolder <- tempdir()
 
 test_that("listSkeletons returns a list", {
@@ -41,7 +39,7 @@ test_that("ensure_installed package is not installed", {
   expect_error(ensure_installed("madeUpPackage11"))
 })
 
-# This test takes a while 
+# This test takes a while
 test_that("prepareForOfflineStudyPackageExecution installRpackages", {
   skeleton <- Hydra::listSkeletons()[1]
   expect_invisible(

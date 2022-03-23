@@ -1,6 +1,8 @@
 # Hydrate skeleton with example specifications ---------------------------------
 library(Hydra)
-specifications <- loadSpecifications("extras/ExamplePredictionSpecs.json")
+specifications <- specifications <- loadSpecifications(system.file("testdata/specifications/ExamplePredictionSpecs.json",
+                                                                   package = "Hydra",
+                                                                   mustWork = TRUE))
 packageFolder <- "d:/temp/hydraPredictionOutput"
 unlink(packageFolder, recursive = TRUE)
 hydrate(specifications = specifications, outputFolder = packageFolder)
@@ -110,6 +112,10 @@ close(fileConn)
 renv::run(script = tempScriptFile,
           name = "Study package",
           project = packageFolder)
+
+# Now test the validation package using a model from the PLP execution
+
+
 
 # Stopping short of running Shiny for now --------------
 # viewResultsScript <- "
