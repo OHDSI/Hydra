@@ -23,6 +23,7 @@ renv::install(project = packageFolder,
 
 # Run the package ------------------------------------------------------------
 script <- "
+        install.packages('remotes')
         remotes::install_github('OHDSI/Eunomia')
         #renv::upgrade()
         library(pleTestPackage)
