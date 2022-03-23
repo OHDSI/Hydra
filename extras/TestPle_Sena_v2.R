@@ -17,15 +17,13 @@ packageZipFile <- devtools::build(pkg = packageFolder,
 
 renv::load(packageFolder)
 renv::restore(project = packageFolder, prompt = FALSE)
+renv::install(c("remotes", "Eunomia"))
 renv::install(project = packageFolder,
               packages = packageZipFile)
 
 
 # Run the package ------------------------------------------------------------
 script <- "
-        install.packages('remotes')
-        remotes::install_github('OHDSI/Eunomia')
-        #renv::upgrade()
         library(pleTestPackage)
         options(andromedaTempFolder = 'd:/andromedaTemp')
 

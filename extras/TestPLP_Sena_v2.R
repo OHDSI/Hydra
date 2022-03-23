@@ -51,6 +51,13 @@ script <- "
                 outcomeTable = cohortTable, 
                 cdmVersion = 5
         )
+        
+        # specify the level of logging 
+        logSettings <- PatientLevelPrediction::createLogSettings(
+                verbosity = 'INFO', 
+                logName = 'SkeletonPredictionStudy'
+        )
+        
 
         #======================
         # PICK THINGS TO EXECUTE
@@ -105,18 +112,18 @@ renv::run(script = tempScriptFile,
           project = packageFolder)
 
 # Stopping short of running Shiny for now --------------
-viewResultsScript <- "
-  library(eunomiaExamplePackage)
-  outputFolder <- 'd:/temp/hydraCohortDiagnosticsResults'
-  CohortDiagnostics::preMergeDiagnosticsFiles(dataFolder = outputFolder)
-  CohortDiagnostics::launchDiagnosticsExplorer(dataFolder = outputFolder)
-"
-viewResultsScript <- gsub("packageFolder", sprintf("\"%s\"", packageFolder), viewResultsScript)
-tempScriptFile <- file.path(packageFolder, basename(tempfile(fileext = ".R")))
-fileConn<-file(tempScriptFile)
-writeLines(viewResultsScript, fileConn)
-close(fileConn)
-
-renv::run(script = tempScriptFile,
-          name = "View results",
-          project = packageFolder)
+# viewResultsScript <- "
+#   library(eunomiaExamplePackage)
+#   outputFolder <- 'd:/temp/hydraCohortDiagnosticsResults'
+#   CohortDiagnostics::preMergeDiagnosticsFiles(dataFolder = outputFolder)
+#   CohortDiagnostics::launchDiagnosticsExplorer(dataFolder = outputFolder)
+# "
+# viewResultsScript <- gsub("packageFolder", sprintf("\"%s\"", packageFolder), viewResultsScript)
+# tempScriptFile <- file.path(packageFolder, basename(tempfile(fileext = ".R")))
+# fileConn<-file(tempScriptFile)
+# writeLines(viewResultsScript, fileConn)
+# close(fileConn)
+# 
+# renv::run(script = tempScriptFile,
+#           name = "View results",
+#           project = packageFolder)
