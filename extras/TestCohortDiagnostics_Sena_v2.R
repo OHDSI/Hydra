@@ -1,7 +1,7 @@
 # Hydrate skeleton with example specifications ---------------------------------
 library(Hydra)
-specifications <- loadSpecifications("extras/ExamplePleSpecs.json")
-packageFolder <- "d:/temp/hydraPleOutput"
+specifications <- loadSpecifications("extras/ExampleCohortDiagnosticsSpecs.json")
+packageFolder <- "d:/temp/hydraCohortDiagnosticsOutput"
 unlink(packageFolder, recursive = TRUE)
 hydrate(specifications = specifications, outputFolder = packageFolder)
 
@@ -17,19 +17,20 @@ packageZipFile <- devtools::build(pkg = packageFolder,
 
 renv::load(packageFolder)
 renv::restore(project = packageFolder, prompt = FALSE)
-renv::install(c("remotes", "Eunomia"))
+renv::install(c("remotes", "Eunomia", "DT", "ggplot2", "ggiraph", "pool", "shiny", "shinydashboard", "shinyWidgets"))
 renv::install(project = packageFolder,
               packages = packageZipFile)
 
 
 # Run the package ------------------------------------------------------------
 script <- "
-        library(pleTestPackage)
+        library(eunomiaExamplePackage)
         options(andromedaTempFolder = 'd:/andromedaTemp')
 
-        outputFolder <- 'd:/temp/hydraPleResults'
+        outputFolder <- 'd:/temp/hydraCohortDiagnosticsResults'
         unlink(outputFolder, recursive = TRUE)
-        maxCores <- 1
+
+        maxCores <- parallel::detectCores()
         connectionDetails <- Eunomia::getEunomiaConnectionDetails()
         cdmDatabaseSchema <- 'main'
         cohortDatabaseSchema <- 'main'
@@ -38,19 +39,16 @@ script <- "
         databaseName <- 'Eunomia'
         databaseDescription <- 'Eunomia'
 
+
         execute(connectionDetails = connectionDetails,
                 cdmDatabaseSchema = cdmDatabaseSchema,
                 cohortDatabaseSchema = cohortDatabaseSchema,
                 cohortTable = cohortTable,
+                verifyDependencies = TRUE,
                 outputFolder = outputFolder,
                 databaseId = databaseId,
-                databaseName = databaseName,
-                databaseDescription = databaseDescription,
-                createCohorts = TRUE,
-                synthesizePositiveControls = FALSE,
-                runAnalyses = TRUE,
-                packageResults = TRUE,
-                maxCores = maxCores)
+                databaseName = databaseId,
+                databaseDescription = databaseId)
 "
 script <- gsub("packageFolder", sprintf("\"%s\"", packageFolder), script)
 tempScriptFile <- file.path(packageFolder, basename(tempfile(fileext = ".R")))
@@ -62,12 +60,19 @@ renv::run(script = tempScriptFile,
           name = "Study package",
           project = packageFolder)
 
+# Stopping short of running Shiny for now --------------
+viewResultsScript <- "
+  library(eunomiaExamplePackage)
+  outputFolder <- 'd:/temp/hydraCohortDiagnosticsResults'
+  CohortDiagnostics::preMergeDiagnosticsFiles(dataFolder = outputFolder)
+  CohortDiagnostics::launchDiagnosticsExplorer(dataFolder = outputFolder)
+"
+viewResultsScript <- gsub("packageFolder", sprintf("\"%s\"", packageFolder), viewResultsScript)
+tempScriptFile <- file.path(packageFolder, basename(tempfile(fileext = ".R")))
+fileConn<-file(tempScriptFile)
+writeLines(viewResultsScript, fileConn)
+close(fileConn)
 
-# # Not part of study execution: View results in Shiny app -----------------------
-# renv::load(packageFolder)
-# 
-# outputFolder <- "s:/pleTestPackage"
-# resultsZipFile <- file.path(outputFolder, "export", paste0("Results_Synpuf.zip"))
-# dataFolder <- file.path(outputFolder, "shinyData")
-# prepareForEvidenceExplorer(resultsZipFile = resultsZipFile, dataFolder = dataFolder)
-# launchEvidenceExplorer(dataFolder = dataFolder, blind = TRUE, launch.browser = FALSE)
+renv::run(script = tempScriptFile,
+          name = "View results",
+          project = packageFolder)
