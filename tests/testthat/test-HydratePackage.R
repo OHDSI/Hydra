@@ -1,12 +1,10 @@
 library(testthat)
 
-context("HydratePackage")
+outputFolder <- tempfile("outputFolder")
 
 # Output location
-indexFolder <- tempfile("indexFolder")
-
 test_that("loadSpecifications", {
-
+  indexFolder <- tempfile("indexFolder")
   # save json
   test <- list(
     name = "testing",
@@ -27,11 +25,9 @@ test_that("loadSpecifications", {
 
   # check load
   expect_equal(names(test), names(testJsonLoad))
+  unlink(indexFolder, recursive = T)
 })
 
-
-
-outputFolder <- tempfile("outputFolder")
 # check input errors work
 test_that("hydrate error due to specifications not character", {
   expect_error(hydrate(
@@ -42,9 +38,7 @@ test_that("hydrate error due to specifications not character", {
   ))
 })
 
-# load specifications
-data(ExamplePleSpecs)
-
+# ExamplePleSpecs is loaded by test/testthat/helper.R 
 test_that("hydrate when skeletonFileName and packageName specified", {
   resultLoc <- tempfile("indexFolder")
   hydrate(
@@ -55,13 +49,19 @@ test_that("hydrate when skeletonFileName and packageName specified", {
   )
 
   expect_equal(length(dir(resultLoc)) > 0, T)
+  unlink(resultLoc)
 })
 
 test_that("hydrate warning due to outputFolder existing ", {
+  indexFolder <- tempfile("indexFolder")
+  dir.create(indexFolder)
   testthat::expect_warning(hydrate(
     specifications = ExamplePleSpecs,
     outputFolder = indexFolder,
     skeletonFileName = NULL,
     packageName = NULL
   ))
+  unlink(indexFolder)
 })
+
+unlink(outputFolder, recursive = TRUE)

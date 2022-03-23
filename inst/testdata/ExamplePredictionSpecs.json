@@ -1,0 +1,5758 @@
+{
+  "analyses": [
+    {
+      "targetId": 5430,
+      "outcomeId": 5412,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 4343,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 70818603,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5413,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 2459,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 17517829,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5414,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 9923,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 91778173,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5415,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 711,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 19052847,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5418,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 6209,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 4789980,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5419,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 2058,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 50831188,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5420,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 3512,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 99988563,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5421,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 2182,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 8215612,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5422,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 1528,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 40446227,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5423,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 1177,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 39587249,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5424,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 2899,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 33695347,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5425,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 8746,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 83401290,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5426,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 2845,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 59338412,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5427,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 2639,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 19660166,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5428,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 6291,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 16325646,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5429,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 8532,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 42269171,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5431,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 5415,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 40736718,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5432,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 6444,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 36976195,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5433,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 4997,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 90256221,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5434,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 2969,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 5516338,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    },
+    {
+      "targetId": 5430,
+      "outcomeId": 5435,
+      "restrictPlpDataSettings": {
+        "studyStartDate": "",
+        "studyEndDate": "",
+        "firstExposureOnly": false,
+        "washoutPeriod": 0,
+        "sampleSize": null,
+        "attr_class": "restrictPlpDataSettings"
+      },
+      "covariateSettings": [
+        {
+          "temporal": false,
+          "DemographicsGender": true,
+          "DemographicsAgeGroup": true,
+          "ConditionGroupEraLongTerm": true,
+          "DrugGroupEraLongTerm": true,
+          "VisitConceptCountLongTerm": true,
+          "longTermStartDays": -365,
+          "mediumTermStartDays": -180,
+          "shortTermStartDays": -30,
+          "endDays": 0,
+          "includedCovariateConceptIds": [],
+          "addDescendantsToInclude": false,
+          "excludedCovariateConceptIds": [],
+          "addDescendantsToExclude": false,
+          "includedCovariateIds": [],
+          "attr_fun": "getDbDefaultCovariateData",
+          "attr_class": "covariateSettings"
+        }
+      ],
+      "populationSettings": {
+        "binary": true,
+        "includeAllOutcomes": true,
+        "firstExposureOnly": false,
+        "washoutPeriod": 365,
+        "removeSubjectsWithPriorOutcome": true,
+        "priorOutcomeLookback": 9999,
+        "requireTimeAtRisk": false,
+        "minTimeAtRisk": 364,
+        "riskWindowStart": 1,
+        "startAnchor": "cohort start",
+        "riskWindowEnd": 365,
+        "endAnchor": "cohort start",
+        "restrictTarToCohortEnd": false,
+        "attr_class": "populationSettings"
+      },
+      "sampleSettings": [
+        {
+          "numberOutcomestoNonOutcomes": 1,
+          "sampleSeed": 9657,
+          "attr_fun": "sameData",
+          "attr_class": "sampleSettings"
+        }
+      ],
+      "featureEngineeringSettings": [
+        {
+          "attr_fun": "sameData",
+          "attr_class": "featureEngineeringSettings"
+        }
+      ],
+      "preprocessSettings": {
+        "minFraction": 0.0001,
+        "normalize": true,
+        "removeRedundancy": true,
+        "attr_class": "preprocessSettings"
+      },
+      "modelSettings": {
+        "fitFunction": "fitCyclopsModel",
+        "param": {
+          "priorParams": {
+            "priorType": "laplace",
+            "forceIntercept": false,
+            "variance": 0.01,
+            "exclude": 0
+          },
+          "includeCovariateIds": null,
+          "upperLimit": 20,
+          "lowerLimit": 0.01,
+          "attr_settings": {
+            "priorfunction": "Cyclops::createPrior",
+            "selectorType": "byPid",
+            "crossValidationInPrior": true,
+            "modelType": "logistic",
+            "addIntercept": true,
+            "useControl": true,
+            "seed": 46156713,
+            "name": "Lasso Logistic Regression",
+            "threads": -1,
+            "tolerance": 2e-06,
+            "cvRepetitions": 1,
+            "maxIterations": 3000
+          },
+          "attr_modelType": "binary",
+          "attr_saveType": "RtoJson"
+        },
+        "attr_class": "modelSettings"
+      },
+      "executeSettings": {
+        "runSplitData": true,
+        "runSampleData": false,
+        "runfeatureEngineering": false,
+        "runPreprocessData": true,
+        "runModelDevelopment": true,
+        "runCovariateSummary": true,
+        "attr_class": "executeSettings"
+      },
+      "attr_class": "modelDesign"
+    }
+  ],
+  "skeletonType": "PatientLevelPredictionStudy",
+  "organizationName": "OHDSI",
+  "skeletonVersion": "v0.0.1",
+  "packageName": "ExamplePredictionFixed",
+  "splitSettings": {
+    "test": 0.25,
+    "train": 0.75,
+    "seed": 23195,
+    "nfold": 3,
+    "attributes": {
+      "names": ["test", "train", "seed", "nfold"],
+      "fun": "randomSplitter",
+      "class": "splitSettings"
+    }
+  },
+  "cohortDefinitions": [
+    {
+      "id": 5430,
+      "name": "[Eunomia] - Celecoxib",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645224180070,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Celecoxib",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_CLASS_ID": "Ingredient",
+                    "CONCEPT_CODE": "140587",
+                    "CONCEPT_ID": 1118084,
+                    "CONCEPT_NAME": "celecoxib",
+                    "DOMAIN_ID": "Drug",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "VOCABULARY_ID": "RxNorm"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "DrugEra": {
+                "CodesetId": 0
+              }
+            }
+          ],
+          "ObservationWindow": {
+            "PriorDays": 0,
+            "PostDays": 0
+          },
+          "PrimaryCriteriaLimit": {
+            "Type": "First"
+          }
+        },
+        "QualifiedLimit": {
+          "Type": "First"
+        },
+        "ExpressionLimit": {
+          "Type": "First"
+        },
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {},
+        "cdmVersionRange": ">=5.0.0"
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5412,
+      "name": "[Eunomia] - GI Bleed",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645214345618,
+      "modifiedDate": 1645217327139,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Gastrointestinal Hemorrhage",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_CLASS_ID": "Clinical Finding",
+                    "CONCEPT_CODE": "74474003",
+                    "CONCEPT_ID": 192671,
+                    "CONCEPT_NAME": "Gastrointestinal hemorrhage",
+                    "DOMAIN_ID": "Condition",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "VOCABULARY_ID": "SNOMED"
+                  },
+                  "includeDescendants": true
+                }
+              ]
+            }
+          }
+        ],
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0
+              }
+            }
+          ],
+          "ObservationWindow": {
+            "PriorDays": 0,
+            "PostDays": 0
+          },
+          "PrimaryCriteriaLimit": {
+            "Type": "All"
+          }
+        },
+        "QualifiedLimit": {
+          "Type": "First"
+        },
+        "ExpressionLimit": {
+          "Type": "All"
+        },
+        "InclusionRules": [],
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {},
+        "cdmVersionRange": ">=5.0.0"
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5413,
+      "name": "[plp task] acute liver injury inpatient",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645217623574,
+      "modifiedDate": 1645217977065,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "AdditionalCriteria": {
+          "Type": "ALL",
+          "CriteriaList": [
+            {
+              "Criteria": {
+                "ConditionOccurrence": {
+                  "CodesetId": 1,
+                  "ConditionTypeExclude": false
+                }
+              },
+              "StartWindow": {
+                "Start": {"Days":365,"Coeff":-1},
+                "End": {"Days":60,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 0,
+                "Count": 0,
+                "IsDistinct": false
+              }
+            },
+            {
+              "Criteria": {
+                "VisitOccurrence": {
+                  "CodesetId": 2,
+                  "VisitTypeExclude": false
+                }
+              },
+              "StartWindow": {
+                "Start": {"Coeff":-1},
+                "End": {"Days":0,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "EndWindow": {
+                "Start": {"Days":0,"Coeff":-1},
+                "End": {"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": true
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 2,
+                "Count": 1,
+                "IsDistinct": false
+              }
+            }
+          ],
+          "DemographicCriteriaList": [],
+          "Groups": []
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "acute liver injury",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 200763,
+                    "CONCEPT_NAME": "Chronic hepatitis",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "76783007",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 377604,
+                    "CONCEPT_NAME": "Hepatic coma",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "72836002",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 196029,
+                    "CONCEPT_NAME": "Hepatic coma due to viral hepatitis",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "40946000",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4337543,
+                    "CONCEPT_NAME": "Hepatic necrosis",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "87248009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 194087,
+                    "CONCEPT_NAME": "Hepatitis due to infection",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "235862008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 196455,
+                    "CONCEPT_NAME": "Hepatorenal syndrome",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "51292008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 194990,
+                    "CONCEPT_NAME": "Inflammatory disease of liver",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "128241005",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4291005,
+                    "CONCEPT_NAME": "Viral hepatitis",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3738000",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "acute liver injury exclusion concepts",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192956,
+                    "CONCEPT_NAME": "Cholecystitis",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "76581006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 200763,
+                    "CONCEPT_NAME": "Chronic hepatitis",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "76783007",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4212540,
+                    "CONCEPT_NAME": "Chronic liver disease",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "328383001",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 197917,
+                    "CONCEPT_NAME": "Disorder of biliary tract",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "105997008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192353,
+                    "CONCEPT_NAME": "Disorder of gallbladder",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "39621005",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192963,
+                    "CONCEPT_NAME": "Disorder of pancreas",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3855007",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 196456,
+                    "CONCEPT_NAME": "Gallstone",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "235919008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4130518,
+                    "CONCEPT_NAME": "Neoplasm of liver",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "126851005",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4291005,
+                    "CONCEPT_NAME": "Viral hepatitis",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "3738000",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 2,
+            "name": "Inpatient or Inpatient/ER visit",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9201,
+                    "CONCEPT_NAME": "Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "IP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 262,
+                    "CONCEPT_NAME": "Emergency Room and Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ERIP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"All"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5414,
+      "name": "[plp task] constipation",
+      "description": "All events of Myocardial Infarction, indexed on a condition occurrence of Myocardial Infarction (MI), limited to events with overlapping inpatient visit with no such events in prior 365 days (clean window). Persons exit the cohort at the start date + 1 day. ",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645218060208,
+      "modifiedDate": 1645218286434,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Constipation",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 75860,
+                    "CONCEPT_NAME": "Constipation",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "14760008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5415,
+      "name": "[plp task] alopecia",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645218160237,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Alopecia",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 133280,
+                    "CONCEPT_NAME": "Alopecia",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "56317004",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 133959,
+                    "CONCEPT_NAME": "Syphilitic alopecia",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "59307008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5418,
+      "name": "[plp task] decreased libido",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645222191349,
+      "modifiedDate": 1645222212798,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "First": true,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Decreased libido",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 436246,
+                    "CONCEPT_NAME": "Reduced libido",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "8357008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5419,
+      "name": "[plp task] delirium",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645222380915,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "AdditionalCriteria": {
+          "Type": "ALL",
+          "CriteriaList": [
+            {
+              "Criteria": {
+                "VisitOccurrence": {
+                  "CodesetId": 1,
+                  "VisitTypeExclude": false
+                }
+              },
+              "StartWindow": {
+                "Start": {"Coeff":-1},
+                "End": {"Days":0,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "EndWindow": {
+                "Start": {"Days":0,"Coeff":-1},
+                "End": {"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": true
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 2,
+                "Count": 1,
+                "IsDistinct": false
+              }
+            }
+          ],
+          "DemographicCriteriaList": [],
+          "Groups": []
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Delirium",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 377830,
+                    "CONCEPT_NAME": "Alcohol withdrawal delirium",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "8635005",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 373995,
+                    "CONCEPT_NAME": "Delirium",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "2776000",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Inpatient or ER visit",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 262,
+                    "CONCEPT_NAME": "Emergency Room and Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ERIP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9203,
+                    "CONCEPT_NAME": "Emergency Room Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ER",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9201,
+                    "CONCEPT_NAME": "Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "IP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"All"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5420,
+      "name": "[plp task] diarrhea",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645222549401,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Diarrhea",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 196523,
+                    "CONCEPT_NAME": "Diarrhea",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "62315008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 80141,
+                    "CONCEPT_NAME": "Functional diarrhea",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "47812002",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5421,
+      "name": "[plp task] fracture",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645222631119,
+      "modifiedDate": 1645222646122,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Fracture",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 435093,
+                    "CONCEPT_NAME": "Closed fracture of femur",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "25415003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 441974,
+                    "CONCEPT_NAME": "Closed fracture of forearm",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "91419009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4230399,
+                    "CONCEPT_NAME": "Closed fracture of hip",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "359817006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 441422,
+                    "CONCEPT_NAME": "Closed fracture of humerus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "43295006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 439166,
+                    "CONCEPT_NAME": "Closed fracture of radius",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "111640008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4278672,
+                    "CONCEPT_NAME": "Fracture of forearm",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "65966004",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 442619,
+                    "CONCEPT_NAME": "Fracture of humerus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "66308002",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 433856,
+                    "CONCEPT_NAME": "Fracture of neck of femur",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "5913000",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4131595,
+                    "CONCEPT_NAME": "Fracture of radius",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "12676007",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 73571,
+                    "CONCEPT_NAME": "Pathological fracture",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "268029009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5422,
+      "name": "[plp task] gastrointestinal hemorrhage",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645222819135,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "AdditionalCriteria": {
+          "Type": "ALL",
+          "CriteriaList": [
+            {
+              "Criteria": {
+                "VisitOccurrence": {
+                  "CodesetId": 1,
+                  "VisitTypeExclude": false
+                }
+              },
+              "StartWindow": {
+                "Start": {"Coeff":-1},
+                "End": {"Days":0,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "EndWindow": {
+                "Start": {"Days":0,"Coeff":-1},
+                "End": {"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": true
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 2,
+                "Count": 1,
+                "IsDistinct": false
+              }
+            }
+          ],
+          "DemographicCriteriaList": [],
+          "Groups": []
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Gastrointestinal hemorrhage",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4280942,
+                    "CONCEPT_NAME": "Acute gastrojejunal ulcer with perforation",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "66636001",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 28779,
+                    "CONCEPT_NAME": "Bleeding esophageal varices",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "17709002",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 198798,
+                    "CONCEPT_NAME": "Dieulafoy's vascular malformation",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "109558001",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4112183,
+                    "CONCEPT_NAME": "Esophageal varices with bleeding, associated with another disorder",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "195475003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 194382,
+                    "CONCEPT_NAME": "External hemorrhoids",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "23913003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": false,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 192671,
+                    "CONCEPT_NAME": "Gastrointestinal hemorrhage",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "74474003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 196436,
+                    "CONCEPT_NAME": "Internal hemorrhoids",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "90458007",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": false,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4338225,
+                    "CONCEPT_NAME": "Peptic ulcer with perforation",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "88169003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 194158,
+                    "CONCEPT_NAME": "Perinatal gastrointestinal hemorrhage",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "48729005",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Inpatient or ER visit",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 262,
+                    "CONCEPT_NAME": "Emergency Room and Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ERIP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9203,
+                    "CONCEPT_NAME": "Emergency Room Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ER",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9201,
+                    "CONCEPT_NAME": "Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "IP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"All"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5423,
+      "name": "[plp task] hypoatremia",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645223023574,
+      "modifiedDate": 1645223046218,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            },
+            {
+              "Measurement": {
+                "CodesetId": 1,
+                "MeasurementTypeExclude": false,
+                "ValueAsNumber": {
+                  "Value": 1,
+                  "Op": "bt",
+                  "Extent": 136
+                },
+                "Unit": [
+                  {
+                    "CONCEPT_ID": 8753,
+                    "CONCEPT_NAME": "millimole per liter",
+                    "STANDARD_CONCEPT": null,
+                    "STANDARD_CONCEPT_CAPTION": "Unknown",
+                    "INVALID_REASON": null,
+                    "INVALID_REASON_CAPTION": "Unknown",
+                    "CONCEPT_CODE": "mmol/L",
+                    "DOMAIN_ID": "Unit",
+                    "VOCABULARY_ID": "UCUM",
+                    "CONCEPT_CLASS_ID": null
+                  }
+                ]
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Hyponatremia",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 435515,
+                    "CONCEPT_NAME": "Hypo-osmolality and or hyponatremia",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "267447008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Serum sodium",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 3032987,
+                    "CONCEPT_NAME": "Sodium [Moles/volume] corrected for glucose in Serum or Plasma",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "51419-0",
+                    "DOMAIN_ID": "Measurement",
+                    "VOCABULARY_ID": "LOINC",
+                    "CONCEPT_CLASS_ID": "Lab Test"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 46235784,
+                    "CONCEPT_NAME": "Sodium [Moles/volume] in Serum, Plasma or Blood",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "77139-4",
+                    "DOMAIN_ID": "Measurement",
+                    "VOCABULARY_ID": "LOINC",
+                    "CONCEPT_CLASS_ID": "Lab Test"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 3019550,
+                    "CONCEPT_NAME": "Sodium serum/plasma",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "2951-2",
+                    "DOMAIN_ID": "Measurement",
+                    "VOCABULARY_ID": "LOINC",
+                    "CONCEPT_CLASS_ID": "Lab Test"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5424,
+      "name": "[plp task] hypotension",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645223112560,
+      "modifiedDate": 1645223134185,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Hypotension",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4120275,
+                    "CONCEPT_NAME": "Drug-induced hypotension",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "234171009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 317002,
+                    "CONCEPT_NAME": "Low blood pressure",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "45007003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 314432,
+                    "CONCEPT_NAME": "Maternal hypotension syndrome",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "88887003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 319041,
+                    "CONCEPT_NAME": "Orthostatic hypotension",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "28651003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5425,
+      "name": "[plp task] hypothyoidism",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645223338281,
+      "modifiedDate": 1645223368667,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "AdditionalCriteria": {
+          "Type": "ALL",
+          "CriteriaList": [
+            {
+              "Criteria": {
+                "ConditionOccurrence": {
+                  "CodesetId": 0,
+                  "ConditionTypeExclude": false
+                }
+              },
+              "StartWindow": {
+                "Start": {"Days":0,"Coeff":-1},
+                "End": {"Days":90,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 2,
+                "Count": 2,
+                "IsDistinct": false
+              }
+            }
+          ],
+          "DemographicCriteriaList": [],
+          "Groups": []
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Hypothyroidism",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 140673,
+                    "CONCEPT_NAME": "Hypothyroidism",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "40930008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"All"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5426,
+      "name": "[plp task] insomnia",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645223461542,
+      "modifiedDate": 1645223478029,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Insomnia",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 439708,
+                    "CONCEPT_NAME": "Disorders of initiating and maintaining sleep",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "194437008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 436962,
+                    "CONCEPT_NAME": "Insomnia",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "193462001",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4305303,
+                    "CONCEPT_NAME": "Sleep deprivation",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "130989002",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5427,
+      "name": "[plp task] ischemic stroke inpatient",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645223599553,
+      "modifiedDate": 1645223684202,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "AdditionalCriteria": {
+          "Type": "ALL",
+          "CriteriaList": [
+            {
+              "Criteria": {
+                "VisitOccurrence": {
+                  "CodesetId": 1,
+                  "VisitTypeExclude": false
+                }
+              },
+              "StartWindow": {
+                "Start": {"Coeff":-1},
+                "End": {"Days":0,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "EndWindow": {
+                "Start": {"Days":0,"Coeff":-1},
+                "End": {"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": true
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 2,
+                "Count": 1,
+                "IsDistinct": false
+              }
+            }
+          ],
+          "DemographicCriteriaList": [],
+          "Groups": []
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Ischemic stroke",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 374060,
+                    "CONCEPT_NAME": "Acute ill-defined cerebrovascular disease",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "288723005",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4108356,
+                    "CONCEPT_NAME": "Cerebral infarction due to embolism of cerebral arteries",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "195190007",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4110192,
+                    "CONCEPT_NAME": "Cerebral infarction due to thrombosis of cerebral arteries",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "195189003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4043731,
+                    "CONCEPT_NAME": "Infarction - precerebral",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "230692004",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Inpatient Visit",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9201,
+                    "CONCEPT_NAME": "Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "IP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"All"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5428,
+      "name": "[plp task] nausea",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645223844069,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Nausea",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 30284,
+                    "CONCEPT_NAME": "Motion sickness",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "37031009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 31967,
+                    "CONCEPT_NAME": "Nausea",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "422587007",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5429,
+      "name": "[plp task] open-angle glaucoma",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645223996831,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 3,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "AdditionalCriteria": {
+          "Type": "ALL",
+          "CriteriaList": [
+            {
+              "Criteria": {
+                "ConditionOccurrence": {
+                  "CodesetId": 3,
+                  "ConditionTypeExclude": false,
+                  "ProviderSpecialty": [
+                    {
+                      "CONCEPT_ID": 38004463,
+                      "CONCEPT_NAME": "Ophthalmology",
+                      "STANDARD_CONCEPT": null,
+                      "STANDARD_CONCEPT_CAPTION": "Unknown",
+                      "INVALID_REASON": null,
+                      "INVALID_REASON_CAPTION": "Unknown",
+                      "CONCEPT_CODE": "18",
+                      "DOMAIN_ID": "Provider Specialty",
+                      "VOCABULARY_ID": "Specialty",
+                      "CONCEPT_CLASS_ID": null
+                    },
+                    {
+                      "CONCEPT_ID": 38004481,
+                      "CONCEPT_NAME": "Optometry",
+                      "STANDARD_CONCEPT": null,
+                      "STANDARD_CONCEPT_CAPTION": "Unknown",
+                      "INVALID_REASON": null,
+                      "INVALID_REASON_CAPTION": "Unknown",
+                      "CONCEPT_CODE": "41",
+                      "DOMAIN_ID": "Provider Specialty",
+                      "VOCABULARY_ID": "Specialty",
+                      "CONCEPT_CLASS_ID": null
+                    },
+                    {
+                      "CONCEPT_ID": 38004701,
+                      "CONCEPT_NAME": "Optician",
+                      "STANDARD_CONCEPT": null,
+                      "STANDARD_CONCEPT_CAPTION": "Unknown",
+                      "INVALID_REASON": null,
+                      "INVALID_REASON_CAPTION": "Unknown",
+                      "CONCEPT_CODE": "96",
+                      "DOMAIN_ID": "Provider Specialty",
+                      "VOCABULARY_ID": "Specialty",
+                      "CONCEPT_CLASS_ID": null
+                    }
+                  ]
+                }
+              },
+              "StartWindow": {
+                "Start": {"Days":1,"Coeff":1},
+                "End": {"Days":365,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 2,
+                "Count": 1,
+                "IsDistinct": false
+              }
+            }
+          ],
+          "DemographicCriteriaList": [],
+          "Groups": []
+        },
+        "ConceptSets": [
+          {
+            "id": 3,
+            "name": "Open-angle glaucoma",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 432908,
+                    "CONCEPT_NAME": "Glaucomatocyclitic crisis",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "29538005",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 441561,
+                    "CONCEPT_NAME": "Low tension glaucoma",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "50485007",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4216823,
+                    "CONCEPT_NAME": "Open angle with borderline findings",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "81416004",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 441284,
+                    "CONCEPT_NAME": "Open-angle glaucoma",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "84494001",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4072218,
+                    "CONCEPT_NAME": "Secondary open-angle glaucoma",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "21928008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"All"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5431,
+      "name": "[plp task] seizure",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645224438688,
+      "modifiedDate": 1645224531091,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "AdditionalCriteria": {
+          "Type": "ALL",
+          "CriteriaList": [
+            {
+              "Criteria": {
+                "VisitOccurrence": {
+                  "CodesetId": 1,
+                  "VisitTypeExclude": false
+                }
+              },
+              "StartWindow": {
+                "Start": {"Coeff":-1},
+                "End": {"Days":0,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "EndWindow": {
+                "Start": {"Days":0,"Coeff":-1},
+                "End": {"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": true
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 2,
+                "Count": 1,
+                "IsDistinct": false
+              }
+            }
+          ],
+          "DemographicCriteriaList": [],
+          "Groups": []
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Seizure and seizure disorder",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 380533,
+                    "CONCEPT_NAME": "Convulsions in the newborn",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "87476004",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 45757050,
+                    "CONCEPT_NAME": "Epilepsy in mother complicating pregnancy",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "100941000119100",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": true,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 377091,
+                    "CONCEPT_NAME": "Seizure",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "91175000",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4029498,
+                    "CONCEPT_NAME": "Seizure disorder",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "128613002",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Inpatient or ER visit",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 262,
+                    "CONCEPT_NAME": "Emergency Room and Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ERIP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9203,
+                    "CONCEPT_NAME": "Emergency Room Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ER",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9201,
+                    "CONCEPT_NAME": "Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "IP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"All"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5432,
+      "name": "[plp task] suicide and ideation",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645224615722,
+      "modifiedDate": 1645224635195,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            },
+            {
+              "Observation": {
+                "CodesetId": 0,
+                "ObservationTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Suicide and suicidal ideation",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 439235,
+                    "CONCEPT_NAME": "Self inflicted injury",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "276853009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4181216,
+                    "CONCEPT_NAME": "Self-administered poisoning",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "363293009",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 444362,
+                    "CONCEPT_NAME": "Suicidal deliberate poisoning",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "86849004",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4273391,
+                    "CONCEPT_NAME": "Suicidal thoughts",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "6471006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 440925,
+                    "CONCEPT_NAME": "Suicide",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "44301001",
+                    "DOMAIN_ID": "Observation",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5433,
+      "name": "[plp task] tinnitus",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "modifiedBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645224751085,
+      "modifiedDate": 1645224772035,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Tinnitus",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 377575,
+                    "CONCEPT_NAME": "Tinnitus",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "60862001",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5434,
+      "name": "[plp task] ventricular arrhythmia and sudden cardiac death inpatient",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645224941377,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "AdditionalCriteria": {
+          "Type": "ALL",
+          "CriteriaList": [
+            {
+              "Criteria": {
+                "VisitOccurrence": {
+                  "CodesetId": 1,
+                  "VisitTypeExclude": false
+                }
+              },
+              "StartWindow": {
+                "Start": {"Coeff":-1},
+                "End": {"Days":0,"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": false
+              },
+              "EndWindow": {
+                "Start": {"Days":0,"Coeff":-1},
+                "End": {"Coeff":1},
+                "UseIndexEnd": false,
+                "UseEventEnd": true
+              },
+              "RestrictVisit": false,
+              "IgnoreObservationPeriod": false,
+              "Occurrence": {
+                "Type": 2,
+                "Count": 1,
+                "IsDistinct": false
+              }
+            }
+          ],
+          "DemographicCriteriaList": [],
+          "Groups": []
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Ventricular arrhythmia and sudden cardiac death",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 321042,
+                    "CONCEPT_NAME": "Cardiac arrest",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "410429000",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 442289,
+                    "CONCEPT_NAME": "Death in less than 24 hours from onset of symptoms",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "53559009",
+                    "DOMAIN_ID": "Observation",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 441139,
+                    "CONCEPT_NAME": "Instantaneous death",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "50514002",
+                    "DOMAIN_ID": "Observation",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4132309,
+                    "CONCEPT_NAME": "Sudden death",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "26636000",
+                    "DOMAIN_ID": "Observation",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4185572,
+                    "CONCEPT_NAME": "Ventricular arrhythmia",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "44103008",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 437894,
+                    "CONCEPT_NAME": "Ventricular fibrillation",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "71908006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 4103295,
+                    "CONCEPT_NAME": "Ventricular tachycardia",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "25569003",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          },
+          {
+            "id": 1,
+            "name": "Inpatient or ER visit",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 262,
+                    "CONCEPT_NAME": "Emergency Room and Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ERIP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9203,
+                    "CONCEPT_NAME": "Emergency Room Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "ER",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 9201,
+                    "CONCEPT_NAME": "Inpatient Visit",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "IP",
+                    "DOMAIN_ID": "Visit",
+                    "VOCABULARY_ID": "Visit",
+                    "CONCEPT_CLASS_ID": "Visit"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"All"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    },
+    {
+      "id": 5435,
+      "name": "[plp task] vertigo",
+      "createdBy": {
+        "id": 1043,
+        "name": "eu\\jreps",
+        "login": "eu\\jreps"
+      },
+      "createdDate": 1645225064121,
+      "hasWriteAccess": false,
+      "tags": [],
+      "expression": {
+        "cdmVersionRange": ">=5.0.0",
+        "PrimaryCriteria": {
+          "CriteriaList": [
+            {
+              "ConditionOccurrence": {
+                "CodesetId": 0,
+                "ConditionTypeExclude": false
+              }
+            }
+          ],
+          "ObservationWindow": {"PriorDays":0,"PostDays":0},
+          "PrimaryCriteriaLimit": {"Type":"All"}
+        },
+        "ConceptSets": [
+          {
+            "id": 0,
+            "name": "Vertigo",
+            "expression": {
+              "items": [
+                {
+                  "concept": {
+                    "CONCEPT_ID": 78162,
+                    "CONCEPT_NAME": "Peripheral vertigo",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "50438001",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 439383,
+                    "CONCEPT_NAME": "Vertigo",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "399153001",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                },
+                {
+                  "concept": {
+                    "CONCEPT_ID": 381035,
+                    "CONCEPT_NAME": "Vertigo of central origin",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "INVALID_REASON": "V",
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "CONCEPT_CODE": "38403006",
+                    "DOMAIN_ID": "Condition",
+                    "VOCABULARY_ID": "SNOMED",
+                    "CONCEPT_CLASS_ID": "Clinical Finding"
+                  },
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        ],
+        "QualifiedLimit": {"Type":"First"},
+        "ExpressionLimit": {"Type":"All"},
+        "InclusionRules": [],
+        "EndStrategy": {
+          "DateOffset": {
+            "DateField": "StartDate",
+            "Offset": 0
+          }
+        },
+        "CensoringCriteria": [],
+        "CollapseSettings": {
+          "CollapseType": "ERA",
+          "EraPad": 0
+        },
+        "CensorWindow": {}
+      },
+      "expressionType": "SIMPLE_EXPRESSION"
+    }
+  ]
+}

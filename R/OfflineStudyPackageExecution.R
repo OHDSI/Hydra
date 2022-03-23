@@ -24,7 +24,7 @@
 #' listSkeletons()
 #' @export
 listSkeletons <- function() {
-  return(list.files(system.file("skeletons", package = "Hydra"), pattern = "*.zip"))
+  return(list.files(system.file("skeletons", package = "Hydra"), pattern = ".zip"))
 }
 
 
