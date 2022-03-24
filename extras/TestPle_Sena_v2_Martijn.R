@@ -1,11 +1,9 @@
 # Hydrate skeleton with example specifications ---------------------------------
 library(Hydra)
-specifications <- loadSpecifications(system.file("testdata/ExamplePleSpecs.json",
-                                                 package = "Hydra",
-                                                 mustWork = TRUE))
-packageFolder <- tempdir()
+data("ExamplePleSpecs")
+packageFolder <- "c:/temp/hydraOutput"
 unlink(packageFolder, recursive = TRUE)
-hydrate(specifications = specifications, outputFolder = packageFolder)
+hydrate(specifications = ExamplePleSpecs, outputFolder = packageFolder)
 
 # Build the hydrated package and put it into the renv
 # cellar: https://rstudio.github.io/renv/articles/cellar.html
@@ -19,11 +17,11 @@ packageZipFile <- devtools::build(pkg = packageFolder,
 
 # Build renv library -----------------------------------------------
 script <- "
-        renv::restore(prompt = FALSE)
-        renv::install(project = packageFolder,
-                      packages = packageZipFile) 
+    writeLines(.libPaths())
+    renv::restore(prompt = FALSE)
+    renv::install(project = packageFolder,
+                  packages = packageZipFile) 
 "
-script <- gsub("packageLockFile", sprintf("\"%s\"", file.path(packageFolder, "lock.renv")), script)
 script <- gsub("packageFolder", sprintf("\"%s\"", packageFolder), script)
 script <- gsub("packageZipFile", sprintf("\"%s\"", packageZipFile), script)
 tempScriptFile <- file.path(packageFolder, basename(tempfile(fileext = ".R")))
