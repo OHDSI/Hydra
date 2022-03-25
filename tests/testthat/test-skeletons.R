@@ -15,7 +15,8 @@ test_that("ComparativeEffectStudy_v0.0.1 skeleton test", {
                                                           mustWork = TRUE))
   packageName <- RJSONIO::fromJSON(specifications)$packageName
   bootstrapRenvTest(specifications = specifications,
-                   packageFolder = packageFolder)
+                   packageFolder = packageFolder,
+                   runDiagnostics = TRUE)
 
   # NOTE: Reading scripts from a file did not work so
   # keeping the script inline
