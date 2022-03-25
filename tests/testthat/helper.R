@@ -5,7 +5,8 @@ ExamplePleSpecs <- Hydra::loadSpecifications(fileName = system.file(fileName = "
 # Helper function for testing skeleton hydration
 bootstrapRenvTest <- function(specifications,
                               packageFolder,
-                              additionalPackagesToInstall = c("remotes", "Eunomia")) {
+                              additionalPackagesToInstall = c("remotes", "Eunomia"),
+                              runDiagnostics = FALSE) {
   unlink(packageFolder, recursive = TRUE)
   Hydra::hydrate(specifications = specifications, outputFolder = packageFolder)
   
@@ -20,6 +21,9 @@ bootstrapRenvTest <- function(specifications,
   
   
   renv::load(packageFolder)
+  if (runDiagnostics) {
+    renv::diagnostics()
+  }
   renv::restore(project = packageFolder, prompt = FALSE)
   if (!is.null(additionalPackagesToInstall)) {
     renv::install(additionalPackagesToInstall)

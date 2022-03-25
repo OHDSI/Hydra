@@ -14,5 +14,4 @@ List skeletons included in Hydra
 }
 \examples{
 listSkeletons()
-
 }
