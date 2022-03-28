@@ -18,45 +18,45 @@ test_that("ComparativeEffectStudy_v0.0.1 skeleton test", {
                    packageFolder = packageFolder,
                    runDiagnostics = TRUE)
 
-  # NOTE: Reading scripts from a file did not work so
-  # keeping the script inline
-  executionScript <- "
-    library(@packageName)
-    outputFolder <- @outputFolder
-    unlink(outputFolder, recursive = TRUE)
-    maxCores <- 1
-    connectionDetails <- Eunomia::getEunomiaConnectionDetails()
-    cdmDatabaseSchema <- 'main'
-    cohortDatabaseSchema <- 'main'
-    cohortTable <- 'cd_skeleton'
-    databaseId <- 'Eunomia'
-    databaseName <- 'Eunomia'
-    databaseDescription <- 'Eunomia'
-
-    execute(connectionDetails = connectionDetails,
-            cdmDatabaseSchema = cdmDatabaseSchema,
-            cohortDatabaseSchema = cohortDatabaseSchema,
-            cohortTable = cohortTable,
-            outputFolder = outputFolder,
-            databaseId = databaseId,
-            databaseName = databaseName,
-            databaseDescription = databaseDescription,
-            createCohorts = TRUE,
-            synthesizePositiveControls = FALSE,
-            runAnalyses = TRUE,
-            packageResults = TRUE,
-            maxCores = maxCores)
-  "
-  executionScript <- gsub("@packageName", sprintf("\"%s\"", packageName), executionScript)
-  executionScript <- gsub("@outputFolder", sprintf("\'%s\'", gsub("\\\\", "/", outputFolder)), executionScript)
-
-  # Write the file to the package directory for execution by renv
-  executionScriptFile <- writeRenvScriptFile(packageFolder,
-                                             executionScript)
-
-  expect_invisible(renv::run(script = executionScriptFile,
-                             name = "Test ComparativeEffectStudy_v0.0.1 execution",
-                             project = packageFolder))
+  # # NOTE: Reading scripts from a file did not work so
+  # # keeping the script inline
+  # executionScript <- "
+  #   library(@packageName)
+  #   outputFolder <- @outputFolder
+  #   unlink(outputFolder, recursive = TRUE)
+  #   maxCores <- 1
+  #   connectionDetails <- Eunomia::getEunomiaConnectionDetails()
+  #   cdmDatabaseSchema <- 'main'
+  #   cohortDatabaseSchema <- 'main'
+  #   cohortTable <- 'cd_skeleton'
+  #   databaseId <- 'Eunomia'
+  #   databaseName <- 'Eunomia'
+  #   databaseDescription <- 'Eunomia'
+  # 
+  #   execute(connectionDetails = connectionDetails,
+  #           cdmDatabaseSchema = cdmDatabaseSchema,
+  #           cohortDatabaseSchema = cohortDatabaseSchema,
+  #           cohortTable = cohortTable,
+  #           outputFolder = outputFolder,
+  #           databaseId = databaseId,
+  #           databaseName = databaseName,
+  #           databaseDescription = databaseDescription,
+  #           createCohorts = TRUE,
+  #           synthesizePositiveControls = FALSE,
+  #           runAnalyses = TRUE,
+  #           packageResults = TRUE,
+  #           maxCores = maxCores)
+  # "
+  # executionScript <- gsub("@packageName", sprintf("\"%s\"", packageName), executionScript)
+  # executionScript <- gsub("@outputFolder", sprintf("\'%s\'", gsub("\\\\", "/", outputFolder)), executionScript)
+  # 
+  # # Write the file to the package directory for execution by renv
+  # executionScriptFile <- writeRenvScriptFile(packageFolder,
+  #                                            executionScript)
+  # 
+  # expect_invisible(renv::run(script = executionScriptFile,
+  #                            name = "Test ComparativeEffectStudy_v0.0.1 execution",
+  #                            project = packageFolder))
 
   unlink(packageFolder)
   unlink(outputFolder)
