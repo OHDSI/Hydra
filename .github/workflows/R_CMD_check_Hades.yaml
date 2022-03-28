@@ -28,9 +28,6 @@ jobs:
       GITHUB_PAT: ${{ secrets.GH_TOKEN }}
       #RENV_CONFIG_REPOS_OVERRIDE: "https://cran.rstudio.com/"
       RENV_DOWNLOAD_FILE_METHOD: "curl"
-      RENV_CI_CACHE_VERSION_LINUX:   "1"
-      RENV_CI_CACHE_VERSION_MACOS:   "1"
-      RENV_CI_CACHE_VERSION_WINDOWS: "1"      
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
       CDM5_ORACLE_CDM_SCHEMA: ${{ secrets.CDM5_ORACLE_CDM_SCHEMA }}
@@ -59,6 +56,11 @@ jobs:
       - uses: r-lib/actions/setup-tinytex@v1
 
       - uses: r-lib/actions/setup-pandoc@v1
+
+      - name: Set renv path for Windows caching
+        if: runner.os == 'Windows'
+        env:
+          RENV_PATHS_ROOT="C:/R/renv"
 
       - name: Query dependencies
         run: |
