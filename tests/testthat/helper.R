@@ -24,7 +24,9 @@ bootstrapRenvTest <- function(specifications,
   if (runDiagnostics) {
     renv::diagnostics()
   }
-  renv::restore(project = packageFolder, prompt = FALSE)
+  renv::restore(project = packageFolder, 
+                prompt = FALSE,
+                repos = "https://api.github.com")
   if (!is.null(additionalPackagesToInstall)) {
     renv::install(additionalPackagesToInstall)
   }
