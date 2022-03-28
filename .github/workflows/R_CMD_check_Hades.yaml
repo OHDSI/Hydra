@@ -60,8 +60,8 @@ jobs:
       - name: Set renv path for Windows caching
         if: runner.os == 'Windows'
         env:
-          RENV_PATHS_ROOT: C:/R/renv
-        run:|
+          RENV_PATHS_ROOT: "C:/R/renv"
+        run: |
           writeLines(sprintf("RENV_PATHS_ROOT: %s", Sys.getenv("RENV_PATHS_ROOT")))
         shell: Rscript {0}
         run: echo "C:/Program Files/Git/usr/bin" >> $GITHUB_PATH
