@@ -63,6 +63,7 @@ jobs:
           RENV_PATHS_ROOT: "C:/R/renv"
         run: |
           writeLines(sprintf("RENV_PATHS_ROOT: %s", Sys.getenv("RENV_PATHS_ROOT")))
+        shell: Rscript {0}
 
       - name: Query dependencies
         run: |
