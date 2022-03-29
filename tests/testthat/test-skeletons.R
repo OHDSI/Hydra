@@ -18,7 +18,7 @@ test_that("ComparativeEffectStudy_v0.0.1 skeleton test", {
   bootstrapRenvTest(specifications = specifications,
                    packageFolder = packageFolder,
                    runDiagnostics = TRUE)
-  
+
   # NOTE: Reading scripts from a file did not work so
   # keeping the script inline
   executionScript <- "
@@ -33,7 +33,7 @@ test_that("ComparativeEffectStudy_v0.0.1 skeleton test", {
     databaseId <- 'Eunomia'
     databaseName <- 'Eunomia'
     databaseDescription <- 'Eunomia'
-  
+
     execute(connectionDetails = connectionDetails,
             cdmDatabaseSchema = cdmDatabaseSchema,
             cohortDatabaseSchema = cohortDatabaseSchema,
@@ -50,11 +50,11 @@ test_that("ComparativeEffectStudy_v0.0.1 skeleton test", {
   "
   executionScript <- gsub("@packageName", sprintf("\"%s\"", packageName), executionScript)
   executionScript <- gsub("@outputFolder", sprintf("\'%s\'", gsub("\\\\", "/", outputFolder)), executionScript)
-  
+
   # Write the file to the package directory for execution by renv
   executionScriptFile <- writeRenvScriptFile(packageFolder,
                                              executionScript)
-  
+
   expect_invisible(renv::run(script = executionScriptFile,
                              name = "Test ComparativeEffectStudy_v0.0.1 execution",
                              project = packageFolder))
