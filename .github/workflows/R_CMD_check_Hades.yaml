@@ -21,8 +21,8 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: 'release'}  # Does not appear to have Java 32-bit, hence the --no-multiarch
-          #- {os: macOS-latest, r: 'release'}
-          #- {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: macOS-latest, r: 'release'}
+          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
       GITHUB_PAT: ${{ secrets.GH_TOKEN }}
@@ -56,14 +56,6 @@ jobs:
       - uses: r-lib/actions/setup-tinytex@v1
 
       - uses: r-lib/actions/setup-pandoc@v1
-
-      - name: Set renv path for Windows caching
-        if: runner.os == 'Windows'
-        env:
-          RENV_PATHS_ROOT: "C:/R/renv"
-        run: |
-          writeLines(sprintf("RENV_PATHS_ROOT: %s", Sys.getenv("RENV_PATHS_ROOT")))
-        shell: Rscript {0}
 
       - name: Query dependencies
         run: |
