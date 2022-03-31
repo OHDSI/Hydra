@@ -28,7 +28,7 @@ Prepare system to run hydrated packages without further internet connection
 \details{
 Note that when \code{installJdbcDrivers = TRUE} this will only include the Jar drivers
 supported by DatabaseConnector::downloadJdbcDrivers. Other drivers (like BigQuery) will
-need to be downloaded manually and placed in the folder identified by the 
+need to be downloaded manually and placed in the folder identified by the
 DATABASECONNECTOR_JAR_FOLDER environmental variable.
 
 Use \code{list.files(system.file("skeletons", package = "Hydra"), pattern = "*.zip")} for a list of

@@ -1,6 +1,6 @@
 # @file Hydra.R
 #
-# Copyright 2021 Observational Health Data Sciences and Informatics
+# Copyright 2022 Observational Health Data Sciences and Informatics
 #
 # This file is part of Hydra
 #
@@ -25,30 +25,3 @@ NULL
 .onLoad <- function(libname, pkgname) {
   rJava::.jpackage(pkgname, lib.loc = libname)
 }
-
-#' Example PLE json specification
-#'
-#' An example json specification object used by Hydra
-#'
-#' @docType data
-#'
-#' @usage data(ExamplePleSpecs)
-#'
-#' @format A character containing the json settings
-#'
-#' @name ExamplePleSpecs
-#'
-#' @keywords datasets
-#'
-#' @examples
-#' \donttest{
-#' data(ExamplePleSpecs)
-#'
-#' hydrate(
-#'   specifications = ExamplePleSpecs,
-#'   outputFolder = file.path(getwd(), "example"),
-#'   skeletonFileName = NULL,
-#'   packageName = NULL
-#' )
-#' }
-NULL

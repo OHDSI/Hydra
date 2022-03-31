@@ -2,7 +2,7 @@ Hydra
 =====
 
 [![Build Status](https://github.com/OHDSI/Hydra/workflows/R-CMD-check/badge.svg)](https://github.com/OHDSI/Hydra/actions?query=workflow%3AR-CMD-check)
-[![codecov.io](https://codecov.io/github/OHDSI/Hydra/coverage.svg?branch=master)](https://codecov.io/github/OHDSI/Hydra?branch=master)
+[![codecov.io](https://codecov.io/github/OHDSI/Hydra/coverage.svg?branch=main)](https://codecov.io/github/OHDSI/Hydra?branch=main)
 
 Hydra is part of [HADES](https://ohdsi.github.io/Hades).
 
@@ -44,33 +44,22 @@ Getting Started
 
 You can fetch the JAR files in the inst/java folder of this repository, or use Maven:
 
-1. First add the SqlRender repository so that maven can find and download the SqlRender artifact automatically:
+1. First add the OHDSI repository so that Maven can find and download the Hydra artifact automatically:
 ```xml
 <repositories>
 	<repository>
 		<id>ohdsi</id>
 		<name>repo.ohdsi.org</name>
-		<url>http://repo.ohdsi.org:8085/nexus/content/repositories/releases</url>
-	</repository>
-	<repository>
-		<id>ohdsi.snapshots</id>
-		<name>repo.ohdsi.org-snapshots</name>
-		<url>http://repo.ohdsi.org:8085/nexus/content/repositories/snapshots</url>
-		<releases>
-			<enabled>false</enabled>
-		</releases>
-		<snapshots>
-			<enabled>true</enabled>
-		</snapshots>
+		<url>https://repo.ohdsi.org/nexus/content/groups/public</url>
 	</repository>
 </repositories>
 ```
 2: Include the Hydra dependency in your pom.xml
 ```xml
 <dependency>
-	<groupId>org.ohdsi.sql</groupId>
-	<artifactId>Hydra</artifactId>
-	<version>0.0.11-SNAPSHOT</version>
+	<groupId>org.ohdsi</groupId>
+	<artifactId>hydra</artifactId>
+	<version>0.3.0</version>
 </dependency>
 ```
 User Documentation
@@ -78,9 +67,9 @@ User Documentation
 Documentation can be found on the [package website](https://ohdsi.github.io/Hydra).
 
 PDF versions of the documentation are also available:
-* Vignette: [Hydrating packags](https://raw.githubusercontent.com/OHDSI/Hydra/master/inst/doc/HydratingPackages.pdf)
-* Vignette: [Writing Hydra configuration files](https://raw.githubusercontent.com/OHDSI/Hydra/master/inst/doc/WritingHydraConfigs.pdf)
-* Package manual: [Hydra.pdf](https://raw.githubusercontent.com/OHDSI/Hydra/master/extras/Hydra.pdf) 
+* Vignette: [Hydrating packags](https://raw.githubusercontent.com/OHDSI/Hydra/main/inst/doc/HydratingPackages.pdf)
+* Vignette: [Writing Hydra configuration files](https://raw.githubusercontent.com/OHDSI/Hydra/main/inst/doc/WritingHydraConfigs.pdf)
+* Package manual: [Hydra.pdf](https://raw.githubusercontent.com/OHDSI/Hydra/main/extras/Hydra.pdf) 
 
 Support
 =======

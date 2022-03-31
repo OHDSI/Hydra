@@ -1,10 +1,3 @@
-Hydra 0.3.1
-===========
-
-Changes:
-
-1. Update to CohortDiagnostics skeleton
-
 Hydra 0.3.0
 ===========
 
@@ -19,6 +12,8 @@ Changes:
 4. Upgrading comparative effect estimation study skeleton. Now includes evidence synthesis across data sites (also shown in the Shiny app), and confidence interval calibration when no positive controls are synthesized.
 
 5. Adding a new cohort diagnostics study package skeleton.
+
+6. Updated skeleton packages which now make use of [renv](https://rstudio.github.io/renv/) for managing R package dependencies.
 
 Bugfixes:
 

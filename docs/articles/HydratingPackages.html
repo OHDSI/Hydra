@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,14 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Hydra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -64,13 +57,16 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://ohdsi.github.io/Hades"><img src='https://ohdsi.github.io/Hades/images/hadesMini.png' width=80 height=17 style='vertical-align: top;'></a>
+  <a href="https://ohdsi.github.io/Hades" class="external-link"><img src='https://ohdsi.github.io/Hades/images/hadesMini.png' width=80 height=17 style='vertical-align: top;'></a>
 </li>
 <li>
-  <a href="https://github.com/OHDSI/Hydra/">
+  <a href="https://github.com/OHDSI/Hydra/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,60 +81,85 @@
 
       
 
-      </header><script src="HydratingPackages_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Hydrating packages</h1>
-                        <h4 class="author">Martijn J. Schuemie</h4>
+                        <h4 data-toc-skip class="author">Martijn J.
+Schuemie</h4>
             
-            <h4 class="date">2021-05-17</h4>
+            <h4 data-toc-skip class="date">2022-03-31</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/OHDSI/Hydra/blob/master/vignettes/HydratingPackages.Rmd"><code>vignettes/HydratingPackages.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/OHDSI/Hydra/blob/HEAD/vignettes/HydratingPackages.Rmd" class="external-link"><code>vignettes/HydratingPackages.Rmd</code></a></small>
       <div class="hidden name"><code>HydratingPackages.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>This vignette describes how the Hydra package can be used to create study R packages. The Hydra package contains several <em>skeletons</em>, empty R packages which contain the main machinery for executing a study but lack the details of a specific study. Using Hydra, we can hydrate these skeletons to implement a specific study using the study specifications stored in a JSON file. This JSON fully describes the study, including the cohorts that are to be used, as well as the analyses to perform. This JSON input can be created in the OHDSI web-based tool <a href="http://atlas-demo.ohdsi.org/">ATLAS</a>. The output of Hydra is an R package that fully executes the user-defined study, from the data in the Common Data Model all the way to the results which can be viewed in a Shiny app embedded in the study package.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>This vignette describes how the Hydra package can be used to create
+study R packages. The Hydra package contains several <em>skeletons</em>,
+empty R packages which contain the main machinery for executing a study
+but lack the details of a specific study. Using Hydra, we can hydrate
+these skeletons to implement a specific study using the study
+specifications stored in a JSON file. This JSON fully describes the
+study, including the cohorts that are to be used, as well as the
+analyses to perform. This JSON input can be created in the OHDSI
+web-based tool <a href="http://atlas-demo.ohdsi.org/" class="external-link">ATLAS</a>. The
+output of Hydra is an R package that fully executes the user-defined
+study, from the data in the Common Data Model all the way to the results
+which can be viewed in a Shiny app embedded in the study package.</p>
 </div>
-<div id="obtaining-the-json" class="section level1">
-<h1 class="hasAnchor">
-<a href="#obtaining-the-json" class="anchor"></a>Obtaining the JSON</h1>
-<p>The first step is to fully define the study in <a href="http://atlas-demo.ohdsi.org/">ATLAS</a>. This can be an estimation study or a prediction study. Once completed, we need to obtain the JSON. We can obtain the JSON from the Export tab in the Utilities tab, as shown in Figure 1.</p>
+<div class="section level2">
+<h2 id="obtaining-the-json">Obtaining the JSON<a class="anchor" aria-label="anchor" href="#obtaining-the-json"></a>
+</h2>
+<p>The first step is to fully define the study in <a href="http://atlas-demo.ohdsi.org/" class="external-link">ATLAS</a>. This can be an estimation
+study or a prediction study. Once completed, we need to obtain the JSON.
+We can obtain the JSON from the Export tab in the Utilities tab, as
+shown in Figure 1.</p>
 <div class="figure" style="text-align: center">
 <img src="atlas.png" alt="Obtaining the JSON specifications from ATLAS" width="100%"><p class="caption">
 Obtaining the JSON specifications from ATLAS
 </p>
 </div>
-<p>Select all the JSON text (for example using Ctrl-a on Windows), copy it, and paste it into a text file. Save the text file somewhere on your computer, for example as <code>c:/temp/specs.json</code>.</p>
+<p>Select all the JSON text (for example using Ctrl-a on Windows), copy
+it, and paste it into a text file. Save the text file somewhere on your
+computer, for example as <code>c:/temp/specs.json</code>.</p>
 </div>
-<div id="installing-hydra" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installing-hydra" class="anchor"></a>Installing Hydra</h1>
-<p>To run Hydra, you will need both R and Java to be installed. See the instructions <a href="https://ohdsi.github.io/Hades/rSetup.html">here</a> for configuring your R environment, including Java.</p>
+<div class="section level2">
+<h2 id="installing-hydra">Installing Hydra<a class="anchor" aria-label="anchor" href="#installing-hydra"></a>
+</h2>
+<p>To run Hydra, you will need both R and Java to be installed. See the
+instructions <a href="https://ohdsi.github.io/Hades/rSetup.html" class="external-link">here</a> for
+configuring your R environment, including Java.</p>
 <p>In R, you can install Hydra using these commands:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ohdsi/Hydra"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span>
+<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ohdsi/Hydra"</span><span class="op">)</span> </code></pre></div>
 </div>
-<div id="hydrating-the-package" class="section level1">
-<h1 class="hasAnchor">
-<a href="#hydrating-the-package" class="anchor"></a>Hydrating the package</h1>
-<p>We can now use Hydra to generate the study package by hydrating one of the skeletons embedded in Hydra. Note that Hydra automatically selects the appropriate skeleton based on the JSON.</p>
+<div class="section level2">
+<h2 id="hydrating-the-package">Hydrating the package<a class="anchor" aria-label="anchor" href="#hydrating-the-package"></a>
+</h2>
+<p>We can now use Hydra to generate the study package by hydrating one
+of the skeletons embedded in Hydra. Note that Hydra automatically
+selects the appropriate skeleton based on the JSON.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/Hydra">Hydra</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/Hydra" class="external-link">Hydra</a></span><span class="op">)</span>
 
 <span class="va">specifications</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadSpecifications.html">loadSpecifications</a></span><span class="op">(</span><span class="st">"c:/temp/specs.json"</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/hydrate.html">hydrate</a></span><span class="op">(</span>specifications <span class="op">=</span> <span class="va">specifications</span>,
         outputFolder <span class="op">=</span> <span class="st">"c:/temp/MyStudyPackage"</span>,
         packageName <span class="op">=</span> <span class="st">"StudyPackage"</span><span class="op">)</span></code></pre></div>
-<p>Here we load the JSON specifications file, and feed it into the <code><a href="../reference/hydrate.html">hydrate()</a></code> function. We specify two additional arguments: The <code>outputFolder</code> is the folder where the R package will be created. The <code>packageName</code> specifies the name of the R package that will be created.</p>
+<p>Here we load the JSON specifications file, and feed it into the
+<code><a href="../reference/hydrate.html">hydrate()</a></code> function. We specify two additional arguments:
+The <code>outputFolder</code> is the folder where the R package will be
+created. The <code>packageName</code> specifies the name of the R
+package that will be created.</p>
 <p>You can now open the new package, for example in RStudio.</p>
 </div>
   </div>
@@ -154,11 +175,14 @@ Obtaining the JSON specifications from ATLAS
 
 
       <footer><div class="copyright">
-  <p>Developed by Martijn Schuemie, Jenna Reps, Anthony Sena.</p>
+  <p></p>
+<p>Developed by Martijn Schuemie, Jenna Reps, Anthony Sena.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
@@ -166,6 +190,8 @@ Obtaining the JSON specifications from ATLAS
 
   
 
+
+  
 
   </body>
 </html>

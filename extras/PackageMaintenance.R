@@ -1,6 +1,6 @@
 # @file PackageMaintenance
 #
-# Copyright 2021 Observational Health Data Sciences and Informatics
+# Copyright 2022 Observational Health Data Sciences and Informatics
 #
 # This file is part of Hydra
 # 
@@ -46,8 +46,9 @@ OhdsiRTools::fixHadesLogo()
 
 
 # Import comparative effectiveness study skeleton ---------------------------------------------
+skeletonZipUrl <- "https://github.com/OHDSI/SkeletonComparativeEffectStudy/archive/refs/heads/main.zip"
 skeletonName <- "ComparativeEffectStudy_v0.0.1.zip"
-skeletonZipUrl <- "https://github.com/OHDSI/SkeletonComparativeEffectStudy/archive/refs/heads/master.zip"
+tempFolder <- "d:/temp/skeleton"
 
 
 tempZipFile <- tempfile(pattern = "skeleton", fileext = ".zip")
