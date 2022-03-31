@@ -1,3 +1,25 @@
+Hydra 0.3.0
+===========
+
+Changes:
+
+1. Upgrading Circe to v1.9.4.
+
+2. Adding 'generateStats' argument to `jsonArrayToSql` and `jsonToSql` actions.
+
+3. Adding experimental `prepareForOfflineStudyPackageExecution` function that will install all dependencies specified in the skeletons so in the future they can be executed without further internet connectivity.
+
+4. Upgrading comparative effect estimation study skeleton. Now includes evidence synthesis across data sites (also shown in the Shiny app), and confidence interval calibration when no positive controls are synthesized.
+
+5. Adding a new cohort diagnostics study package skeleton.
+
+6. Updated skeleton packages which now make use of [renv](https://rstudio.github.io/renv/) for managing R package dependencies.
+
+Bugfixes:
+
+1. Adding skeleton name to JSON if not present at all and user specifies package name when calling `hydrate()`.
+
+
 Hydra 0.2.0
 ===========
 

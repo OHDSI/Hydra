@@ -1,6 +1,6 @@
 # @file PackageMaintenance
 #
-# Copyright 2020 Observational Health Data Sciences and Informatics
+# Copyright 2022 Observational Health Data Sciences and Informatics
 #
 # This file is part of Hydra
 # 
@@ -46,14 +46,19 @@ OhdsiRTools::fixHadesLogo()
 
 
 # Import comparative effectiveness study skeleton ---------------------------------------------
-skeletonSource <- "../SkeletonComparativeEffectStudy"
+skeletonZipUrl <- "https://github.com/OHDSI/SkeletonComparativeEffectStudy/archive/refs/heads/main.zip"
 skeletonName <- "ComparativeEffectStudy_v0.0.1.zip"
 tempFolder <- "d:/temp/skeleton"
 
-unlink(tempFolder, recursive = TRUE, force = TRUE)
-dir.create(tempFolder, recursive = TRUE)
-file.copy(skeletonSource, tempFolder, recursive = TRUE)
-skeletonFolder <- file.path(tempFolder, "SkeletonComparativeEffectStudy")
+
+tempZipFile <- tempfile(pattern = "skeleton", fileext = ".zip")
+download.file(url = skeletonZipUrl, destfile = tempZipFile)
+tempUnzipFolder <- tempfile(pattern = "skeleton")
+unzip(zipfile =  tempZipFile, 
+      exdir = tempUnzipFolder)
+unlink(tempZipFile)
+skeletonFolder <- list.files(tempUnzipFolder, full.names = TRUE)
+
 unlink(file.path(skeletonFolder, "readme.md"))
 file.rename(file.path(skeletonFolder, "studyReadme.md"), file.path(skeletonFolder, "README.md"))
 unlink(file.path(skeletonFolder, "vignettes"), recursive = TRUE)
@@ -70,13 +75,14 @@ files <- gsub(".json$", ".sql", gsub("cohorts", "sql/sql_server", files))
 unlink(files)
 files <- list.files(file.path(skeletonFolder, "inst", "settings"), full.names = TRUE)
 unlink(files)
+
 oldWd <- setwd(skeletonFolder)
-DatabaseConnector::createZipFile(zipFile = file.path(tempFolder, skeletonName), 
-                                 skeletonFolder)
+DatabaseConnector::createZipFile(zipFile = "skeleton.zip", skeletonFolder)
 setwd(oldWd)
-file.rename(file.path(tempFolder, skeletonName), 
-            file.path("inst", "skeletons", skeletonName))
-unlink(tempFolder, recursive = TRUE)
+skeletonPath <-  file.path("inst", "skeletons", skeletonName)
+unlink(skeletonPath)
+file.rename(file.path(skeletonFolder, "skeleton.zip"), skeletonPath)
+unlink(tempUnzipFolder, recursive = TRUE)
 
 
 # Import prediction study skeleton ---------------------------------------------
@@ -97,3 +103,33 @@ file.rename(file.path(tempFolder, skeletonName),
 unlink(tempFolder, recursive = TRUE)
 
 
+
+# Import Cohort Diagnostics study skeleton ---------------------------------------------
+skeletonName <- "CohortDiagnosticsStudy_v0.0.1.zip"
+skeletonZipUrl <- "https://github.com/OHDSI/SkeletonCohortDiagnosticsStudy/archive/refs/heads/main.zip"
+
+
+tempZipFile <- tempfile(pattern = "skeleton", fileext = ".zip")
+download.file(url = skeletonZipUrl, destfile = tempZipFile)
+tempUnzipFolder <- tempfile(pattern = "skeleton")
+unzip(zipfile =  tempZipFile, 
+      exdir = tempUnzipFolder)
+unlink(tempZipFile)
+skeletonFolder <- list.files(tempUnzipFolder, full.names = TRUE)
+
+
+unlink(file.path(skeletonFolder, "vignettes"), recursive = TRUE, force = TRUE)
+unlink(file.path(skeletonFolder, "inst", "doc"), recursive = TRUE, force = TRUE)
+unlink(file.path(skeletonFolder, "extras", "CodeToRunRedShift.R"))
+files <- list.files(file.path(skeletonFolder, "inst", "cohorts"), ".json", full.names = TRUE, recursive = TRUE)
+unlink(files)
+files <- gsub(".json$", ".sql", gsub("cohorts", "sql/sql_server", files))
+unlink(files)
+
+oldWd <- setwd(skeletonFolder)
+DatabaseConnector::createZipFile(zipFile = "skeleton.zip", skeletonFolder)
+setwd(oldWd)
+skeletonPath <-  file.path("inst", "skeletons", skeletonName)
+unlink(skeletonPath)
+file.rename(file.path(skeletonFolder, "skeleton.zip"), skeletonPath)
+unlink(tempUnzipFolder, recursive = TRUE)

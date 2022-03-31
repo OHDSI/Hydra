@@ -18,12 +18,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Martijn Schuemie \email{schuemie@ohdsi.org}
+\strong{Maintainer}: Anthony Sena \email{sena@ohdsi.org}
 
 Authors:
 \itemize{
+  \item Martijn Schuemie \email{schuemie@ohdsi.org}
   \item Jenna Reps
-  \item Anthony Sena
 }
 
 }
