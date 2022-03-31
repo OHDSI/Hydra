@@ -1,19 +1,20 @@
 library(testthat)
 
-driverTestFolder <- tempdir()
-
 test_that("listSkeletons returns a list", {
   skeletonList <- listSkeletons()
   expect_true(length(skeletonList) > 0)
 })
 
 test_that("prepareForOfflineStudyPackageExecution", {
+  driverTestFolder <- tempfile()
+  dir.create(driverTestFolder)
   Sys.setenv("DATABASECONNECTOR_JAR_FOLDER" = driverTestFolder)
   prepareForOfflineStudyPackageExecution(
     installRpackages = F,
     installJdbcDrivers = T
   )
   expect_equal(length(dir(driverTestFolder)) > 0, T)
+  unlink(driverTestFolder)
 })
 
 test_that("prepareForOfflineStudyPackageExecution missing system env DATABASECONNECTOR_JAR_FOLDER", {
@@ -50,6 +51,3 @@ test_that("prepareForOfflineStudyPackageExecution installRpackages", {
     )
   )
 })
-
-# cleanup
-unlink(driverTestFolder)

@@ -9,15 +9,19 @@ library(testthat)
 # check ComparativeEffectStudy_v0.0.1.zip
 test_that("ComparativeEffectStudy_v0.0.1 skeleton test", {
   skip_on_ci()
-  packageFolder <- tempdir()
+  packageFolder <- tempfile()
   outputFolder <- file.path(packageFolder, "output")
-  specifications <- Hydra::loadSpecifications(system.file(fileName = "testdata/specifications/ExamplePleSpecs.json",
-                                                          package = "Hydra",
-                                                          mustWork = TRUE))
+  specifications <- Hydra::loadSpecifications(system.file(
+    fileName = "testdata/specifications/ExamplePleSpecs.json",
+    package = "Hydra",
+    mustWork = TRUE
+  ))
   packageName <- RJSONIO::fromJSON(specifications)$packageName
-  bootstrapRenvTest(specifications = specifications,
-                   packageFolder = packageFolder,
-                   runDiagnostics = TRUE)
+  bootstrapRenvTest(
+    specifications = specifications,
+    packageFolder = packageFolder,
+    runDiagnostics = TRUE
+  )
 
   # NOTE: Reading scripts from a file did not work so
   # keeping the script inline
@@ -52,12 +56,16 @@ test_that("ComparativeEffectStudy_v0.0.1 skeleton test", {
   executionScript <- gsub("@outputFolder", sprintf("\'%s\'", gsub("\\\\", "/", outputFolder)), executionScript)
 
   # Write the file to the package directory for execution by renv
-  executionScriptFile <- writeRenvScriptFile(packageFolder,
-                                             executionScript)
+  executionScriptFile <- writeRenvScriptFile(
+    packageFolder,
+    executionScript
+  )
 
-  expect_invisible(renv::run(script = executionScriptFile,
-                             name = "Test ComparativeEffectStudy_v0.0.1 execution",
-                             project = packageFolder))
+  expect_invisible(renv::run(
+    script = executionScriptFile,
+    name = "Test ComparativeEffectStudy_v0.0.1 execution",
+    project = packageFolder
+  ))
 
   unlink(packageFolder)
   unlink(outputFolder)
@@ -66,14 +74,18 @@ test_that("ComparativeEffectStudy_v0.0.1 skeleton test", {
 # check CohortDiagnosticsStudy_v0.0.1.zip
 test_that("CohortDiagnosticsStudy_v0.0.1 skeleton test", {
   skip_on_ci()
-  packageFolder <- tempdir()
+  packageFolder <- tempfile()
   outputFolder <- file.path(packageFolder, "output")
-  specifications <- Hydra::loadSpecifications(system.file(fileName = "testdata/specifications/ExampleCohortDiagnosticsSpecs.json",
-                                                          package = "Hydra",
-                                                          mustWork = TRUE))
+  specifications <- Hydra::loadSpecifications(system.file(
+    fileName = "testdata/specifications/ExampleCohortDiagnosticsSpecs.json",
+    package = "Hydra",
+    mustWork = TRUE
+  ))
   packageName <- RJSONIO::fromJSON(specifications)$packageName
-  bootstrapRenvTest(specifications = specifications,
-                    packageFolder = packageFolder)
+  bootstrapRenvTest(
+    specifications = specifications,
+    packageFolder = packageFolder
+  )
 
   # NOTE: Reading scripts from a file did not work so
   # keeping the script inline
@@ -104,12 +116,16 @@ test_that("CohortDiagnosticsStudy_v0.0.1 skeleton test", {
   executionScript <- gsub("@outputFolder", sprintf("\'%s\'", gsub("\\\\", "/", outputFolder)), executionScript)
 
   # Write the file to the package directory for execution by renv
-  executionScriptFile <- writeRenvScriptFile(packageFolder,
-                                             executionScript)
+  executionScriptFile <- writeRenvScriptFile(
+    packageFolder,
+    executionScript
+  )
 
-  expect_invisible(renv::run(script = executionScriptFile,
-                             name = "Test CohortDiagnosticsStudy_v0.0.1 execution",
-                             project = packageFolder))
+  expect_invisible(renv::run(
+    script = executionScriptFile,
+    name = "Test CohortDiagnosticsStudy_v0.0.1 execution",
+    project = packageFolder
+  ))
 
   unlink(packageFolder)
   unlink(outputFolder)
@@ -118,14 +134,18 @@ test_that("CohortDiagnosticsStudy_v0.0.1 skeleton test", {
 # check PatientLevelPredictionStudy_v0.0.1.zip
 test_that("PatientLevelPredictionStudy_v0.0.1 skeleton test", {
   skip_on_ci()
-  packageFolder <- tempdir()
+  packageFolder <- tempfile()
   outputFolder <- file.path(packageFolder, "output")
-  specifications <- Hydra::loadSpecifications(system.file(fileName = "testdata/specifications/ExamplePredictionSpecs.json",
-                                                          package = "Hydra",
-                                                          mustWork = TRUE))
+  specifications <- Hydra::loadSpecifications(system.file(
+    fileName = "testdata/specifications/ExamplePredictionSpecs.json",
+    package = "Hydra",
+    mustWork = TRUE
+  ))
   packageName <- RJSONIO::fromJSON(specifications)$packageName
-  bootstrapRenvTest(specifications = specifications,
-                    packageFolder = packageFolder)
+  bootstrapRenvTest(
+    specifications = specifications,
+    packageFolder = packageFolder
+  )
 
   # NOTE: Reading scripts from a file did not work so
   # keeping the script inline
@@ -207,12 +227,16 @@ test_that("PatientLevelPredictionStudy_v0.0.1 skeleton test", {
   executionScript <- gsub("@outputFolder", sprintf("\'%s\'", gsub("\\\\", "/", outputFolder)), executionScript)
 
   # Write the file to the package directory for execution by renv
-  executionScriptFile <- writeRenvScriptFile(packageFolder,
-                                             executionScript)
+  executionScriptFile <- writeRenvScriptFile(
+    packageFolder,
+    executionScript
+  )
 
-  expect_invisible(renv::run(script = executionScriptFile,
-                             name = "Test PatientLevelPredictionStudy_v0.0.1 execution",
-                             project = packageFolder))
+  expect_invisible(renv::run(
+    script = executionScriptFile,
+    name = "Test PatientLevelPredictionStudy_v0.0.1 execution",
+    project = packageFolder
+  ))
 
   unlink(packageFolder)
   unlink(outputFolder)
