@@ -19,12 +19,12 @@
 	    <dependency>
     		<groupId>org.json</groupId>
     		<artifactId>json</artifactId>
-	    	<version>20220320</version>
+	    	<version>20220924</version>
 	    </dependency>
 	    <dependency>
     		<groupId>org.ohdsi</groupId>
     		<artifactId>circe</artifactId>
-    		<version>1.9.4</version>
+    		<version>1.10.0</version>
     	</dependency>
 	    <dependency>
 	    	<groupId>org.apache.commons</groupId>
@@ -70,7 +70,7 @@
 			<!-- Copy resources into jar -->
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.3.0</version>
 				<executions>
 					<execution>
 						<id>copy-resources</id>
@@ -100,7 +100,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.4.0</version>
 				<executions>
 				  <execution>
 					<id>copy-dependencies</id>
@@ -118,7 +118,7 @@
 		    <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.3.2</version>
+				<version>3.4.1</version>
 				<configuration>
 					<additionalparam>${javadoc.doclint.none}</additionalparam>
 					<quiet>true</quiet>
