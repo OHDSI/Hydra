@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Hydra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -88,7 +88,7 @@
                         <h4 data-toc-skip class="author">Martijn J.
 Schuemie</h4>
             
-            <h4 data-toc-skip class="date">2022-03-31</h4>
+            <h4 data-toc-skip class="date">2023-01-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/OHDSI/Hydra/blob/HEAD/vignettes/HydratingPackages.Rmd" class="external-link"><code>vignettes/HydratingPackages.Rmd</code></a></small>
       <div class="hidden name"><code>HydratingPackages.Rmd</code></div>
@@ -137,9 +137,9 @@ instructions <a href="https://ohdsi.github.io/Hades/rSetup.html" class="external
 configuring your R environment, including Java.</p>
 <p>In R, you can install Hydra using these commands:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span>
-<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ohdsi/Hydra"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ohdsi/Hydra"</span><span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="hydrating-the-package">Hydrating the package<a class="anchor" aria-label="anchor" href="#hydrating-the-package"></a>
@@ -148,13 +148,13 @@ configuring your R environment, including Java.</p>
 of the skeletons embedded in Hydra. Note that Hydra automatically
 selects the appropriate skeleton based on the JSON.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/Hydra" class="external-link">Hydra</a></span><span class="op">)</span>
-
-<span class="va">specifications</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadSpecifications.html">loadSpecifications</a></span><span class="op">(</span><span class="st">"c:/temp/specs.json"</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/hydrate.html">hydrate</a></span><span class="op">(</span>specifications <span class="op">=</span> <span class="va">specifications</span>,
-        outputFolder <span class="op">=</span> <span class="st">"c:/temp/MyStudyPackage"</span>,
-        packageName <span class="op">=</span> <span class="st">"StudyPackage"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/Hydra" class="external-link">Hydra</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">specifications</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadSpecifications.html">loadSpecifications</a></span><span class="op">(</span><span class="st">"c:/temp/specs.json"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/hydrate.html">hydrate</a></span><span class="op">(</span>specifications <span class="op">=</span> <span class="va">specifications</span>,</span>
+<span>        outputFolder <span class="op">=</span> <span class="st">"c:/temp/MyStudyPackage"</span>,</span>
+<span>        packageName <span class="op">=</span> <span class="st">"StudyPackage"</span><span class="op">)</span></span></code></pre></div>
 <p>Here we load the JSON specifications file, and feed it into the
 <code><a href="../reference/hydrate.html">hydrate()</a></code> function. We specify two additional arguments:
 The <code>outputFolder</code> is the folder where the R package will be
@@ -181,8 +181,7 @@ package that will be created.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
