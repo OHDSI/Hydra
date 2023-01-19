@@ -1,3 +1,14 @@
+Hydra 0.4.0
+===========
+
+Changes:
+
+1. Upgrading Circe to v1.10.1 and other Java dependencies.
+
+Bugfixes:
+
+1. Updates the PLP Skeleton to address bug described in [OHDSI/WebAPI#2162](https://github.com/OHDSI/WebAPI/issues/2162)
+
 Hydra 0.3.0
 ===========
 

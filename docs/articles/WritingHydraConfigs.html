@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Hydra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -88,7 +88,7 @@
                         <h4 data-toc-skip class="author">Martijn J.
 Schuemie</h4>
             
-            <h4 data-toc-skip class="date">2022-03-31</h4>
+            <h4 data-toc-skip class="date">2023-01-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/OHDSI/Hydra/blob/HEAD/vignettes/WritingHydraConfigs.Rmd" class="external-link"><code>vignettes/WritingHydraConfigs.Rmd</code></a></small>
       <div class="hidden name"><code>WritingHydraConfigs.Rmd</code></div>
@@ -228,9 +228,9 @@ field in the study specifications resolves to the value ‘true’ (or
 }</code></pre>
 <p>Boolean logic is also permitted in condition fields. Here are some
 more examples of conditions:</p>
-<pre><code><span class="st">"(mainSettings.subsetting.type == 'foo') &amp; bar != 3"</span>
-<span class="st">"fooOption IN ('bar', 'pie', 'sky')"</span>
-<span class="st">"(foo == 1) | (bar == 2)"</span></code></pre>
+<pre><code><span><span class="st">"(mainSettings.subsetting.type == 'foo') &amp; bar != 3"</span></span>
+<span><span class="st">"fooOption IN ('bar', 'pie', 'sky')"</span></span>
+<span><span class="st">"(foo == 1) | (bar == 2)"</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="action-types">Action types<a class="anchor" aria-label="anchor" href="#action-types"></a>
@@ -470,19 +470,19 @@ element:</p>
 }</code></pre>
 <p>If the original file fooBar.R in the skeleton contains:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">doFooBar</span><span class="op">(</span>
-  <span class="co"># Start fooBar</span>
-  foo <span class="op">=</span> <span class="st">"Bye"</span>,
-  bar <span class="op">=</span> <span class="cn">NULL</span>
-  <span class="co"># End fooBar</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">doFooBar</span><span class="op">(</span></span>
+<span>  <span class="co"># Start fooBar</span></span>
+<span>  foo <span class="op">=</span> <span class="st">"Bye"</span>,</span>
+<span>  bar <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  <span class="co"># End fooBar</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>The hydrated fooBar.R will become:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">doFooBar</span><span class="op">(</span>
-  foo <span class="op">=</span> <span class="st">"Hello"</span>,
-  bar <span class="op">=</span> <span class="fu">createBar</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">123</span>,
-                  y <span class="op">=</span> <span class="fl">456</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">doFooBar</span><span class="op">(</span></span>
+<span>  foo <span class="op">=</span> <span class="st">"Hello"</span>,</span>
+<span>  bar <span class="op">=</span> <span class="fu">createBar</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">123</span>,</span>
+<span>                  y <span class="op">=</span> <span class="fl">456</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -504,8 +504,7 @@ element:</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Hydra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -64,32 +64,30 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="0.4.0" id="hydra-040">Hydra 0.4.0<a class="anchor" aria-label="anchor" href="#hydra-040"></a></h2>
+<p>Changes:</p>
+<ol style="list-style-type: decimal"><li>Upgrading Circe to v1.10.1 and other Java dependencies.</li>
+</ol><p>Bugfixes:</p>
+<ol style="list-style-type: decimal"><li>Updates the PLP Skeleton to address bug described in <a href="https://github.com/OHDSI/WebAPI/issues/2162" class="external-link">OHDSI/WebAPI#2162</a>
+</li>
+</ol></div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.0" id="hydra-030">Hydra 0.3.0<a class="anchor" aria-label="anchor" href="#hydra-030"></a></h2>
 <p>Changes:</p>
 <ol style="list-style-type: decimal"><li><p>Upgrading Circe to v1.9.4.</p></li>
-<li><p>Adding ‘generateStats’ argument to <code>jsonArrayToSql</code>
-and <code>jsonToSql</code> actions.</p></li>
-<li><p>Adding experimental
-<code>prepareForOfflineStudyPackageExecution</code> function that will
-install all dependencies specified in the skeletons so in the future
-they can be executed without further internet connectivity.</p></li>
-<li><p>Upgrading comparative effect estimation study skeleton. Now
-includes evidence synthesis across data sites (also shown in the Shiny
-app), and confidence interval calibration when no positive controls are
-synthesized.</p></li>
+<li><p>Adding ‘generateStats’ argument to <code>jsonArrayToSql</code> and <code>jsonToSql</code> actions.</p></li>
+<li><p>Adding experimental <code>prepareForOfflineStudyPackageExecution</code> function that will install all dependencies specified in the skeletons so in the future they can be executed without further internet connectivity.</p></li>
+<li><p>Upgrading comparative effect estimation study skeleton. Now includes evidence synthesis across data sites (also shown in the Shiny app), and confidence interval calibration when no positive controls are synthesized.</p></li>
 <li><p>Adding a new cohort diagnostics study package skeleton.</p></li>
-<li><p>Updated skeleton packages which now make use of <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> for managing R package
-dependencies.</p></li>
+<li><p>Updated skeleton packages which now make use of <a href="https://rstudio.github.io/renv/" class="external-link">renv</a> for managing R package dependencies.</p></li>
 </ol><p>Bugfixes:</p>
-<ol style="list-style-type: decimal"><li>Adding skeleton name to JSON if not present at all and user
-specifies package name when calling <code><a href="../reference/hydrate.html">hydrate()</a></code>.</li>
+<ol style="list-style-type: decimal"><li>Adding skeleton name to JSON if not present at all and user specifies package name when calling <code><a href="../reference/hydrate.html">hydrate()</a></code>.</li>
 </ol></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.0" id="hydra-020">Hydra 0.2.0<a class="anchor" aria-label="anchor" href="#hydra-020"></a></h2>
 <p>Changes:</p>
 <ol style="list-style-type: decimal"><li><p>Added updated prediction skeleton (v0.0.6)</p></li>
-<li><p>Fixed oracleTempSchema issue in validation package v0.0.1 plus
-removed ff dependencies.</p></li>
+<li><p>Fixed oracleTempSchema issue in validation package v0.0.1 plus removed ff dependencies.</p></li>
 <li><p>Added updated prediction validation skeleton (v1.0.1)</p></li>
 </ol></div>
     <div class="section level2">
@@ -100,20 +98,15 @@ removed ff dependencies.</p></li>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0" id="hydra-010">Hydra 0.1.0<a class="anchor" aria-label="anchor" href="#hydra-010"></a></h2>
 <p>Changes:</p>
-<ol style="list-style-type: decimal"><li><p>Added <code>packageName</code> argument to <code><a href="../reference/hydrate.html">hydrate()</a></code>
-function to override package name in JSON. (Especially useful when name
-in JSON is <code>null</code>.)</p></li>
-<li><p>Updating to version 1.8.6 of Circe for generation of cohort
-SQL.</p></li>
-<li><p>Added vignette showing how to use the Hydra R package to hydrate
-study packages.</p></li>
+<ol style="list-style-type: decimal"><li><p>Added <code>packageName</code> argument to <code><a href="../reference/hydrate.html">hydrate()</a></code> function to override package name in JSON. (Especially useful when name in JSON is <code>null</code>.)</p></li>
+<li><p>Updating to version 1.8.6 of Circe for generation of cohort SQL.</p></li>
+<li><p>Added vignette showing how to use the Hydra R package to hydrate study packages.</p></li>
 <li><p>Updating PLE skeleton to use renv.</p></li>
 </ol></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.11" id="hydra-0011">Hydra 0.0.11<a class="anchor" aria-label="anchor" href="#hydra-0011"></a></h2>
 <p>Changes:</p>
-<ol style="list-style-type: decimal"><li>Updating prediction and estimation skeletons to use Andromeda
-instead of ff</li>
+<ol style="list-style-type: decimal"><li>Updating prediction and estimation skeletons to use Andromeda instead of ff</li>
 </ol></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.5" id="hydra-005">Hydra 0.0.5<a class="anchor" aria-label="anchor" href="#hydra-005"></a></h2>
@@ -134,8 +127,7 @@ instead of ff</li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
