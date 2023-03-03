@@ -71,6 +71,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get install -y libssh-dev
+          sudo apt-get install -y libsodium-dev
           Rscript -e 'install.packages("remotes")'
           while read -r cmd
           do
